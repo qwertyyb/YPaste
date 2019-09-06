@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PasteItem" representedClassName="PasteItem" syncable="YES" codeGenerationType="class">
+        <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updated_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <fetchIndex name="updated_at">
+            <fetchIndexElement property="updated_at" type="Binary" order="descending"/>
+        </fetchIndex>
+        <fetchIndex name="value">
+            <fetchIndexElement property="value" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <fetchRequest name="FetchFavoriteList" entity="PasteItem" predicateString="favorite == 0"/>
+    <elements>
+        <element name="PasteItem" positionX="-63" positionY="-18" width="128" height="105"/>
+    </elements>
 </model>

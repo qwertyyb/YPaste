@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:YPaste.xcodeproj">
+      location = "group:../Podfile">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

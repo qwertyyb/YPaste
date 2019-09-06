@@ -12,7 +12,21 @@
 		4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */; };
 		4596AE4F232025A800F63EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4596AE4E232025A800F63EBF /* Assets.xcassets */; };
 		4596AE52232025A800F63EBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4596AE50232025A800F63EBF /* Main.storyboard */; };
+		4596AE6123216A8500F63EBF /* YPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6023216A8500F63EBF /* YPaste.swift */; };
+		4596AE6923216E6C00F63EBF /* YPasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6823216E6C00F63EBF /* YPasteTests.swift */; };
+		A207B7554B307CBE59189114 /* Pods_YPaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1E263BDE22EEB7D60E0C3B /* Pods_YPaste.framework */; };
+		FD490BCFBBBAD5382330A424 /* Pods_YPasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45EB7A476FD60E0E0C0BE51B /* Pods_YPasteTests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4596AE6B23216E6C00F63EBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4596AE3C232025A700F63EBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4596AE43232025A700F63EBF;
+			remoteInfo = YPaste;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4596AE44232025A700F63EBF /* YPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,6 +37,16 @@
 		4596AE51232025A800F63EBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4596AE53232025A800F63EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4596AE54232025A800F63EBF /* YPaste.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YPaste.entitlements; sourceTree = "<group>"; };
+		4596AE6023216A8500F63EBF /* YPaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPaste.swift; sourceTree = "<group>"; };
+		4596AE6623216E6C00F63EBF /* YPasteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YPasteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4596AE6823216E6C00F63EBF /* YPasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPasteTests.swift; sourceTree = "<group>"; };
+		4596AE6A23216E6C00F63EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45EB7A476FD60E0E0C0BE51B /* Pods_YPasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YPasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.release.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.release.xcconfig"; sourceTree = "<group>"; };
+		8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.debug.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ADF976CA97E1092109B6B6ED /* Pods-YPasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.release.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.release.xcconfig"; sourceTree = "<group>"; };
+		D8C0DCABD4ABBD4A765E9914 /* Pods-YPaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.debug.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.debug.xcconfig"; sourceTree = "<group>"; };
+		EC1E263BDE22EEB7D60E0C3B /* Pods_YPaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YPaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,17 +54,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A207B7554B307CBE59189114 /* Pods_YPaste.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4596AE6323216E6C00F63EBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD490BCFBBBAD5382330A424 /* Pods_YPasteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B55751B1F6618961E090478 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D8C0DCABD4ABBD4A765E9914 /* Pods-YPaste.debug.xcconfig */,
+				8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */,
+				8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */,
+				ADF976CA97E1092109B6B6ED /* Pods-YPasteTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4596AE3B232025A700F63EBF = {
 			isa = PBXGroup;
 			children = (
 				4596AE46232025A700F63EBF /* YPaste */,
+				4596AE6723216E6C00F63EBF /* YPasteTests */,
 				4596AE45232025A700F63EBF /* Products */,
+				3B55751B1F6618961E090478 /* Pods */,
+				F8B5BBE6526EC7D03DBE8BD7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -48,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				4596AE44232025A700F63EBF /* YPaste.app */,
+				4596AE6623216E6C00F63EBF /* YPasteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,11 +108,30 @@
 				4596AE49232025A700F63EBF /* ViewController.swift */,
 				4596AE4E232025A800F63EBF /* Assets.xcassets */,
 				4596AE50232025A800F63EBF /* Main.storyboard */,
+				4596AE6023216A8500F63EBF /* YPaste.swift */,
 				4596AE53232025A800F63EBF /* Info.plist */,
 				4596AE54232025A800F63EBF /* YPaste.entitlements */,
 				4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */,
 			);
 			path = YPaste;
+			sourceTree = "<group>";
+		};
+		4596AE6723216E6C00F63EBF /* YPasteTests */ = {
+			isa = PBXGroup;
+			children = (
+				4596AE6823216E6C00F63EBF /* YPasteTests.swift */,
+				4596AE6A23216E6C00F63EBF /* Info.plist */,
+			);
+			path = YPasteTests;
+			sourceTree = "<group>";
+		};
+		F8B5BBE6526EC7D03DBE8BD7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC1E263BDE22EEB7D60E0C3B /* Pods_YPaste.framework */,
+				45EB7A476FD60E0E0C0BE51B /* Pods_YPasteTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -73,9 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4596AE57232025A800F63EBF /* Build configuration list for PBXNativeTarget "YPaste" */;
 			buildPhases = (
+				CA29C5B8D0777403973216CA /* [CP] Check Pods Manifest.lock */,
 				4596AE40232025A700F63EBF /* Sources */,
 				4596AE41232025A700F63EBF /* Frameworks */,
 				4596AE42232025A700F63EBF /* Resources */,
+				3F3099D1713A8269175D3708 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -85,6 +155,25 @@
 			productName = YPaste;
 			productReference = 4596AE44232025A700F63EBF /* YPaste.app */;
 			productType = "com.apple.product-type.application";
+		};
+		4596AE6523216E6C00F63EBF /* YPasteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4596AE6F23216E6C00F63EBF /* Build configuration list for PBXNativeTarget "YPasteTests" */;
+			buildPhases = (
+				1540FED79ABAE793B09964A5 /* [CP] Check Pods Manifest.lock */,
+				4596AE6223216E6C00F63EBF /* Sources */,
+				4596AE6323216E6C00F63EBF /* Frameworks */,
+				4596AE6423216E6C00F63EBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4596AE6C23216E6C00F63EBF /* PBXTargetDependency */,
+			);
+			name = YPasteTests;
+			productName = YPasteTests;
+			productReference = 4596AE6623216E6C00F63EBF /* YPasteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -98,6 +187,10 @@
 				TargetAttributes = {
 					4596AE43232025A700F63EBF = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					4596AE6523216E6C00F63EBF = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 4596AE43232025A700F63EBF;
 					};
 				};
 			};
@@ -115,6 +208,7 @@
 			projectRoot = "";
 			targets = (
 				4596AE43232025A700F63EBF /* YPaste */,
+				4596AE6523216E6C00F63EBF /* YPasteTests */,
 			);
 		};
 /* End PBXProject section */
@@ -129,7 +223,78 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4596AE6423216E6C00F63EBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1540FED79ABAE793B09964A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YPasteTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F3099D1713A8269175D3708 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YPaste/Pods-YPaste-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YPaste/Pods-YPaste-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YPaste/Pods-YPaste-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA29C5B8D0777403973216CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YPaste-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4596AE40232025A700F63EBF /* Sources */ = {
@@ -137,12 +302,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */,
+				4596AE6123216A8500F63EBF /* YPaste.swift in Sources */,
 				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4596AE6223216E6C00F63EBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4596AE6923216E6C00F63EBF /* YPasteTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4596AE6C23216E6C00F63EBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4596AE43232025A700F63EBF /* YPaste */;
+			targetProxy = 4596AE6B23216E6C00F63EBF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4596AE50232025A800F63EBF /* Main.storyboard */ = {
@@ -273,6 +455,7 @@
 		};
 		4596AE58232025A800F63EBF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8C0DCABD4ABBD4A765E9914 /* Pods-YPaste.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YPaste/YPaste.entitlements;
@@ -292,6 +475,7 @@
 		};
 		4596AE59232025A800F63EBF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YPaste/YPaste.entitlements;
@@ -306,6 +490,48 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.qwertyyb.YPaste;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		4596AE6D23216E6C00F63EBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = T68XK6867P;
+				INFOPLIST_FILE = YPasteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qwertyyb.YPasteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YPaste.app/Contents/MacOS/YPaste";
+			};
+			name = Debug;
+		};
+		4596AE6E23216E6C00F63EBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADF976CA97E1092109B6B6ED /* Pods-YPasteTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = T68XK6867P;
+				INFOPLIST_FILE = YPasteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qwertyyb.YPasteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YPaste.app/Contents/MacOS/YPaste";
 			};
 			name = Release;
 		};
@@ -326,6 +552,15 @@
 			buildConfigurations = (
 				4596AE58232025A800F63EBF /* Debug */,
 				4596AE59232025A800F63EBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4596AE6F23216E6C00F63EBF /* Build configuration list for PBXNativeTarget "YPasteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4596AE6D23216E6C00F63EBF /* Debug */,
+				4596AE6E23216E6C00F63EBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
