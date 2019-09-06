@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YPaste/YPaste.swift"
+            timestampString = "589395377.7331131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "registerHotKey()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YPaste.YPaste.(registerHotKey in _63CE09B927A2D3937C608E0503003AF5)() -&gt; ()"
+                  moduleName = "YPaste"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qwertyyb/projects/YPaste/YPaste/YPaste.swift"
+                  timestampString = "589395378.022851"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "2967">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in YPaste.YPaste.(registerHotKey in _63CE09B927A2D3937C608E0503003AF5)() -&gt; ()"
+                  moduleName = "YPaste"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qwertyyb/projects/YPaste/YPaste/YPaste.swift"
+                  timestampString = "589395378.024179"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

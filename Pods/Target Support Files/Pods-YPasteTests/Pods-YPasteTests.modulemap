@@ -1,0 +1,6 @@
+framework module Pods_YPasteTests {
+  umbrella header "Pods-YPasteTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
