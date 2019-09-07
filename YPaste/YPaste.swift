@@ -11,7 +11,6 @@ import HotKey
 
 class YPaste {
     private var hotkey: HotKey?
-    
     var handler: HotKey.Handler? {
         get { return self.hotkey?.keyDownHandler }
         set (handler) { self.hotkey?.keyDownHandler = handler }
@@ -24,7 +23,6 @@ class YPaste {
         registerHotKey()
         listeningPasteBoard()
     }
-    
     
     
     func listeningPasteBoard() {

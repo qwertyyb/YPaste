@@ -13,8 +13,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var app: YPaste = YPaste()
 
+    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    
+    @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        statusItem.button!.image = NSImage(named: "statusImage")
+        statusItem.menu = menu
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
