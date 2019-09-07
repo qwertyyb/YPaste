@@ -3,12 +3,29 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in YPaste.registerHotKey():YPaste.swift">
+         contextName = "ViewController.tableViewSelectionDidChange(_:):ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MainWindowController.windowDidLoad():MainWindowController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "NSApp.mainWindow?">
+               value = "self.window">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "YPaste.paste(pasteItem:):YPaste.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "pasteItem.value">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.action(_:):ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "YPaste.checkForChangesInPasteboard():YPaste.swift">
       </ContextState>
       <ContextState
          contextName = "YPaste.registerHotKey():YPaste.swift">
@@ -17,6 +34,17 @@
                value = "NSApp.mainWindow?.visible">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in YPaste.registerHotKey():YPaste.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSApp.keyWindow">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainWindowController.windowDidLoad():MainWindowController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

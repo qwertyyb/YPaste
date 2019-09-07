@@ -11,17 +11,19 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var app: YPaste?
+    var app: YPaste = YPaste()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        app = YPaste()
-        app!.start()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
         
+    }
+    
+    func applicationWillResignActive(_ notification: Notification) {
+        NSApp.keyWindow?.close()
     }
 
     // MARK: - Core Data stack

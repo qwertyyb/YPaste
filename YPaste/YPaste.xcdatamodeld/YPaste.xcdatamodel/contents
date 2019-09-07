@@ -8,12 +8,9 @@
         <fetchIndex name="updated_at">
             <fetchIndexElement property="updated_at" type="Binary" order="descending"/>
         </fetchIndex>
-        <fetchIndex name="value">
-            <fetchIndexElement property="value" type="Binary" order="ascending"/>
-        </fetchIndex>
     </entity>
     <fetchRequest name="FetchFavoriteList" entity="PasteItem" predicateString="favorite == 0"/>
     <elements>
-        <element name="PasteItem" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="PasteItem" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

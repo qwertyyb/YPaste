@@ -8,6 +8,9 @@
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="YPaste" customModuleProvider="target"/>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
@@ -674,18 +677,15 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="YPaste" customModuleProvider="target"/>
-                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="YPaste" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="alertPanel" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindowController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="YPaste" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -698,6 +698,7 @@
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="TB0-0k-jHf"/>
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
@@ -712,16 +713,24 @@
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hah-LV-MYL">
                                 <rect key="frame" x="0.0" y="248" width="480" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="5lS-pC-S4h">
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="5lS-pC-S4h">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
+                                <connections>
+                                    <binding destination="YWq-Kq-AiD" name="predicate" keyPath="filterPredicate" id="wuC-PI-5el">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayName">predicate</string>
+                                            <string key="NSPredicateFormat">self.value contains[cd] $value</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </searchField>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8r-dv-iTb">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" ambiguous="YES" id="BQc-S7-5MY">
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="BQc-S7-5MY">
                                     <rect key="frame" x="1" y="1" width="478" height="248"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -749,19 +758,30 @@
                                                             <rect key="frame" x="1" y="1" width="387" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AGZ-HH-ijD">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="387" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AGZ-HH-ijD">
+                                                                    <rect key="frame" x="-2" y="0.0" width="388" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="sih-Tj-WrW">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         <connections>
-                                                                            <binding destination="AVZ-OU-ox4" name="value" keyPath="objectValue.value" id="3ca-tB-oY8"/>
+                                                                            <binding destination="AVZ-OU-ox4" name="value" keyPath="objectValue.value" id="OXo-hF-Y5F">
+                                                                                <dictionary key="options">
+                                                                                    <string key="NSValueTransformerName">SummaryTransformer</string>
+                                                                                </dictionary>
+                                                                            </binding>
                                                                         </connections>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="AVZ-OU-ox4" name="toolTip" keyPath="objectValue.value" id="q2k-3w-gx4"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="AGZ-HH-ijD" firstAttribute="leading" secondItem="AVZ-OU-ox4" secondAttribute="leading" id="TZL-SV-h0H"/>
+                                                                <constraint firstItem="AGZ-HH-ijD" firstAttribute="top" secondItem="AVZ-OU-ox4" secondAttribute="top" id="l8c-hk-aBt"/>
+                                                                <constraint firstAttribute="trailing" secondItem="AGZ-HH-ijD" secondAttribute="trailing" constant="3" id="xpp-pD-dEm"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="AGZ-HH-ijD" id="WPi-wh-Nnt"/>
                                                             </connections>
@@ -785,10 +805,9 @@
                                                             <rect key="frame" x="391" y="1" width="85" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ew2-hw-lNE">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ew2-hw-lNE">
                                                                     <rect key="frame" x="0.0" y="0.0" width="85" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="dSS-b1-vUc">
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" title="type" id="dSS-b1-vUc">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -798,6 +817,11 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="Ew2-hw-lNE" firstAttribute="centerX" secondItem="vFT-GW-ujY" secondAttribute="centerX" id="AmT-pt-HUq"/>
+                                                                <constraint firstItem="Ew2-hw-lNE" firstAttribute="centerY" secondItem="vFT-GW-ujY" secondAttribute="centerY" id="YYw-kA-9vP"/>
+                                                                <constraint firstItem="Ew2-hw-lNE" firstAttribute="leading" secondItem="vFT-GW-ujY" secondAttribute="leading" constant="2" id="o3p-Zj-e4J"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="Ew2-hw-lNE" id="Xbu-IE-0Ok"/>
                                                             </connections>
@@ -806,10 +830,14 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <action selector="tableViewClicked:" target="XfG-lQ-9wD" id="M71-Ai-lDF"/>
                                                 <binding destination="YWq-Kq-AiD" name="content" keyPath="arrangedObjects" id="NwS-HZ-pRV"/>
+                                                <binding destination="YWq-Kq-AiD" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="NwS-HZ-pRV" id="hLE-Vn-CHh"/>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="LYM-W5-0VM"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GXx-bY-2zG">
                                     <rect key="frame" x="1" y="233" width="478" height="16"/>
@@ -822,11 +850,16 @@
                             </scrollView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="arrayController" destination="YWq-Kq-AiD" id="uEM-s2-BIa"/>
+                        <outlet property="tableView" destination="IWK-h8-GX2" id="hQY-uc-V83"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" automaticallyPreparesContent="YES" id="YWq-Kq-AiD">
+                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" automaticallyPreparesContent="YES" id="YWq-Kq-AiD">
                     <connections>
-                        <binding destination="XfG-lQ-9wD" name="managedObjectContext" keyPath="managedObjectContext" id="h5Y-JX-g0v"/>
+                        <binding destination="XfG-lQ-9wD" name="managedObjectContext" keyPath="managedObjectContext" id="Ujc-1J-jRW"/>
+                        <binding destination="XfG-lQ-9wD" name="sortDescriptors" keyPath="sortByUpdateTime" id="zAk-2D-OPt"/>
                     </connections>
                 </arrayController>
                 <userDefaultsController representsSharedInstance="YES" id="mFB-8f-Zdr"/>

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		4596AE52232025A800F63EBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4596AE50232025A800F63EBF /* Main.storyboard */; };
 		4596AE6123216A8500F63EBF /* YPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6023216A8500F63EBF /* YPaste.swift */; };
 		4596AE6923216E6C00F63EBF /* YPasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6823216E6C00F63EBF /* YPasteTests.swift */; };
+		4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE702322B5CB00F63EBF /* MainWindowController.swift */; };
+		4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE722323CF5800F63EBF /* SummaryTransformer.swift */; };
 		A207B7554B307CBE59189114 /* Pods_YPaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1E263BDE22EEB7D60E0C3B /* Pods_YPaste.framework */; };
 		FD490BCFBBBAD5382330A424 /* Pods_YPasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45EB7A476FD60E0E0C0BE51B /* Pods_YPasteTests.framework */; };
 /* End PBXBuildFile section */
@@ -41,6 +43,8 @@
 		4596AE6623216E6C00F63EBF /* YPasteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YPasteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4596AE6823216E6C00F63EBF /* YPasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPasteTests.swift; sourceTree = "<group>"; };
 		4596AE6A23216E6C00F63EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4596AE702322B5CB00F63EBF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		4596AE722323CF5800F63EBF /* SummaryTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTransformer.swift; sourceTree = "<group>"; };
 		45EB7A476FD60E0E0C0BE51B /* Pods_YPasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YPasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.release.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.release.xcconfig"; sourceTree = "<group>"; };
 		8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.debug.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,7 +81,6 @@
 				8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */,
 				ADF976CA97E1092109B6B6ED /* Pods-YPasteTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -112,6 +115,8 @@
 				4596AE53232025A800F63EBF /* Info.plist */,
 				4596AE54232025A800F63EBF /* YPaste.entitlements */,
 				4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */,
+				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
+				4596AE722323CF5800F63EBF /* SummaryTransformer.swift */,
 			);
 			path = YPaste;
 			sourceTree = "<group>";
@@ -303,8 +308,10 @@
 			files = (
 				4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */,
 				4596AE6123216A8500F63EBF /* YPaste.swift in Sources */,
+				4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */,
 				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
+				4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
