@@ -77,6 +77,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openPreferences(_ sender: AnyObject?) {
+        preferencesWindowController?.window?.orderFront(self)
+        preferencesWindowController?.window?.level = .popUpMenu
         preferencesWindowController?.showWindow(self)
     }
     

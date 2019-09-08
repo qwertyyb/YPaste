@@ -12,7 +12,7 @@ class MainWindowController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
-//        self.window?.level = NSWindow.Level.popUpMenu
+        self.window?.level = NSWindow.Level.popUpMenu
         
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         appDelegate.app.handler = {

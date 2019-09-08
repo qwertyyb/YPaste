@@ -115,7 +115,7 @@ class YPaste {
     }
     
     func checkUpdate() {
-        let url = "https://api.github.com/repos/qwertyyb/YPaste/releases/latest"
+        let url = Bundle.main.object(forInfoDictionaryKey: "checkUpdateURL") as! String
         var urlFetch = URLRequest(url: URL(string: url)!)
         urlFetch.addValue("token 2043b93ba0023253a19d96d2dc60205c74f0eade", forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlFetch) { (data, response, error) in
@@ -132,7 +132,7 @@ class YPaste {
             let latestVersion = Int((obj?["tag_name"] as! String).replacingOccurrences(of: ".", with: ""))
             
             let runningVersion = Int((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String).replacingOccurrences(of: ".", with: ""))
-            if latestVersion! > runningVersion! {
+            if latestVersion! >= runningVersion! {
                 return
             }
             // find new version
