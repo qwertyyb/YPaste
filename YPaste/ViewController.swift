@@ -46,14 +46,6 @@ class ViewController: NSViewController, NSTableViewDelegate {
         // Update the view, if already loaded.
         }
     }
-    
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        let pasteItems = arrayController.selectedObjects as? [PasteItem]
-        if (pasteItems == nil || pasteItems?.count == 0) {
-            return
-        }
-        selectedPasteItem = pasteItems?.first
-    }
     @IBAction func tableViewClicked(_ sender: Any) {
         let pasteItems = arrayController.selectedObjects as? [PasteItem]
         if (pasteItems == nil) { return }

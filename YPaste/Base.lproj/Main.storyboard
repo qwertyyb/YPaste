@@ -29,7 +29,17 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Check for Updates..." id="yaf-RW-gyC" userLabel="Check for Upload">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="RfU-Ls-EcM"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <action selector="openPreferences:" target="Voe-Tx-rLC" id="1v8-Us-01s"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -684,11 +694,11 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller-->
+        <!--Main Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindowController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="YPaste" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" userLabel="Main Window Controller" customClass="MainWindowController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="YPaste" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="alertPanel" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="502" y="405" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -859,7 +869,7 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" automaticallyPreparesContent="YES" id="YWq-Kq-AiD">
+                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="YWq-Kq-AiD">
                     <connections>
                         <binding destination="XfG-lQ-9wD" name="managedObjectContext" keyPath="managedObjectContext" id="Ujc-1J-jRW"/>
                         <binding destination="XfG-lQ-9wD" name="sortDescriptors" keyPath="sortByUpdateTime" id="zAk-2D-OPt"/>
@@ -868,6 +878,67 @@
                 <userDefaultsController representsSharedInstance="YES" id="mFB-8f-Zdr"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
+        </scene>
+        <!--Preferences Window Controller-->
+        <scene sceneID="sGg-qc-9Jt">
+            <objects>
+                <windowController storyboardIdentifier="preferences" id="lIT-Ak-tl4" userLabel="Preferences Window Controller" sceneMemberID="viewController">
+                    <window key="window" identifier="preferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="J2L-Gm-BGd" userLabel="Preferences Window">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="lIT-Ak-tl4" id="Tdx-bu-Zos"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="YFo-Sr-FRU" kind="relationship" relationship="window.shadowedContentViewController" id="UcH-Sg-gp8"/>
+                    </connections>
+                </windowController>
+                <customObject id="GQK-bi-Ugo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="752" y="213"/>
+        </scene>
+        <!--Preferences View Controller-->
+        <scene sceneID="lqm-pK-AsM">
+            <objects>
+                <viewController id="YFo-Sr-FRU" customClass="PreferencesViewController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="nhs-Po-xVi">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UVR-Lh-n2s">
+                                <rect key="frame" x="181" y="218" width="119" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XeA-Pa-vo1">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onLaunchAtLogin:" target="YFo-Sr-FRU" id="7aP-37-G7D"/>
+                                    <binding destination="syB-1m-56h" name="value" keyPath="values.launchAtLogin" id="9Eg-PU-nEU"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixM-ex-2lu" userLabel="Check for Updates Automatically">
+                                <rect key="frame" x="130" y="172" width="221" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Check for Updates Automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VdA-LN-7YD">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="syB-1m-56h" name="value" keyPath="values.checkForUpdateAutommatically" id="0xA-cH-s9T"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="INr-k0-CY4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="KAm-Pb-Wk7"/>
+                <userDefaultsController id="syB-1m-56h"/>
+            </objects>
+            <point key="canvasLocation" x="752" y="655"/>
         </scene>
     </scenes>
 </document>

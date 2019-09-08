@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4563DE7923255739003F2767 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4563DE7823255739003F2767 /* PreferencesViewController.swift */; };
 		4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE47232025A700F63EBF /* AppDelegate.swift */; };
 		4596AE4A232025A700F63EBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE49232025A700F63EBF /* ViewController.swift */; };
 		4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4563DE7823255739003F2767 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		4596AE44232025A700F63EBF /* YPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4596AE47232025A700F63EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4596AE49232025A700F63EBF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				4596AE49232025A700F63EBF /* ViewController.swift */,
 				4596AE4E232025A800F63EBF /* Assets.xcassets */,
 				4596AE50232025A800F63EBF /* Main.storyboard */,
+				4563DE7823255739003F2767 /* PreferencesViewController.swift */,
 				4596AE6023216A8500F63EBF /* YPaste.swift */,
 				4596AE53232025A800F63EBF /* Info.plist */,
 				4596AE54232025A800F63EBF /* YPaste.entitlements */,
@@ -192,6 +195,11 @@
 				TargetAttributes = {
 					4596AE43232025A700F63EBF = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					4596AE6523216E6C00F63EBF = {
 						CreatedOnToolsVersion = 10.1;
@@ -311,6 +319,7 @@
 				4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */,
 				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
+				4563DE7923255739003F2767 /* PreferencesViewController.swift in Sources */,
 				4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

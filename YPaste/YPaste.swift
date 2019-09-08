@@ -8,6 +8,7 @@
 
 import Foundation
 import HotKey
+import Cocoa
 
 class YPaste {
     private var hotkey: HotKey?
@@ -111,5 +112,51 @@ class YPaste {
             keyVDown?.post(tap: .cgAnnotatedSessionEventTap)
             keyVUp?.post(tap: .cgAnnotatedSessionEventTap)
         }
+    }
+    
+    func checkUpdate() {
+        let url = "https://api.github.com/repos/qwertyyb/YPaste/releases/latest"
+        var urlFetch = URLRequest(url: URL(string: url)!)
+        urlFetch.addValue("token 2043b93ba0023253a19d96d2dc60205c74f0eade", forHTTPHeaderField: "Authorization")
+        let dataTask = URLSession.shared.dataTask(with: urlFetch) { (data, response, error) in
+            if error != nil {
+                print("check update, network error: " +  error.debugDescription)
+                return
+            }
+            let r = (response as! HTTPURLResponse)
+            if r.statusCode != 200 {
+                print("check update error, http error: " + String(r.statusCode))
+                return
+            }
+            let obj = try? JSONSerialization.jsonObject(with: data!, options:[]) as! [String: Any]
+            let latestVersion = Int((obj?["tag_name"] as! String).replacingOccurrences(of: ".", with: ""))
+            
+            let runningVersion = Int((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String).replacingOccurrences(of: ".", with: ""))
+            if latestVersion! > runningVersion! {
+                return
+            }
+            // find new version
+            let updateInformation = obj?["body"] as! String
+            
+            DispatchQueue.main.async {
+                let alert = NSAlert()
+                alert.messageText = "a new version " + (obj?["tag_name"] as! String) + " was found, update or not?"
+                alert.informativeText = "version information: " + updateInformation
+                alert.alertStyle = NSAlert.Style.informational
+                let confirmButton = alert.addButton(withTitle: "confirm")
+                confirmButton.highlight(true)
+                let cancelBtn = alert.addButton(withTitle: "cancel")
+                cancelBtn.refusesFirstResponder = false
+                let ok = alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn
+                if ok {
+                    self.updateApp((obj?["assets"] as! [[String: Any]])[0]["browser_download_url"] as! String)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func updateApp (_ downloadURL: String) {
+        NSWorkspace.shared.openFile(downloadURL)
     }
 }

@@ -46,5 +46,21 @@
       <ContextState
          contextName = "MainWindowController.windowDidLoad():MainWindowController.swift">
       </ContextState>
+      <ContextState
+         contextName = "closure #1 in YPaste.checkUpdate():YPaste.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "obj?[&quot;tag_name&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PreferencesViewController.onCheckForUpdate(_:):PreferencesViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sender.value">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

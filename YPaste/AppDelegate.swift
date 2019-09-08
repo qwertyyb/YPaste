@@ -13,13 +13,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var app: YPaste = YPaste()
 
-    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    private var statusItem :NSStatusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    private var preferencesWindowController: NSWindowController?
     
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        statusItem.button!.image = NSImage(named: "statusImage")
-        statusItem.menu = menu
+//        statusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        statusItem?.button!.image = NSImage(named: "statusImage")
+        statusItem?.menu = menu
+        
+        preferencesWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "preferences") as? NSWindowController
+        
+        if UserDefaults.standard.bool(forKey: "checkForUpdatesAutomatically") {
+            app.checkUpdate()
+        }
+        
+        if UserDefaults.standard.bool(forKey: "launchAtLogin") {
+            NSApp.enableRelaunchOnLogin()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -59,7 +71,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         })
         return container
     }()
-
+    
+    @IBAction func checkForUpdates(_ sender: AnyObject?) {
+        app.checkUpdate()
+    }
+    
+    @IBAction func openPreferences(_ sender: AnyObject?) {
+        preferencesWindowController?.showWindow(self)
+    }
+    
     // MARK: - Core Data Saving and Undo support
 
     @IBAction func saveAction(_ sender: AnyObject?) {
