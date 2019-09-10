@@ -93,38 +93,83 @@ class YPaste {
         hotkey = HotKey(key: key, modifiers: modifiers)
     }
     
+    private func checkAccess() -> Bool{
+        //get the value for accesibility
+        let options : NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
+        let accessibilityEnabled = AXIsProcessTrustedWithOptions(options)
+        return accessibilityEnabled
+//        let checkOptPrompt = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
+        //set the options: false means it wont ask
+        //true means it will popup and ask
+//        let options = [checkOptPrompt: true]
+        //translate into boolean value
+//        let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary?)
+//        return accessEnabled
+    }
+    
     func paste(pasteItem: PasteItem){
-        // Based on https://github.com/Clipy/Clipy/blob/develop/Clipy/Sources/Services/PasteService.swift.
-        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)
-        NSWorkspace.shared.menuBarOwningApplication?.activate(options: NSApplication.ActivationOptions.activateIgnoringOtherApps)
-        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
-            let vCode = UInt16(0x09)
-            let source = CGEventSource(stateID: .combinedSessionState)
-            // Disable local keyboard events while pasting
-            source?.setLocalEventsFilterDuringSuppressionState([.permitLocalMouseEvents, .permitSystemDefinedEvents],
-                                                               state: .eventSuppressionStateSuppressionInterval)
-            
-            let keyVDown = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: true)
-            let keyVUp = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: false)
-            keyVDown?.flags = .maskCommand
-            keyVUp?.flags = .maskCommand
-            keyVDown?.post(tap: .cgAnnotatedSessionEventTap)
-            keyVUp?.post(tap: .cgAnnotatedSessionEventTap)
+        self.pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        self.pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)
+        DispatchQueue.main.async {
+            if !self.checkAccess() {
+                let alert = NSAlert()
+                alert.window.level = .popUpMenu
+                alert.alertStyle = .warning
+                alert.window.title = "warning"
+                alert.messageText = "The Application need accessibility permission to paste automatically"
+                alert.addButton(withTitle: "open accessibility preferences")
+                let denyBtn = alert.addButton(withTitle: "deny")
+                denyBtn.refusesFirstResponder = true
+                if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
+                    NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
+                }
+            }
+            // Based on https://github.com/Clipy/Clipy/blob/develop/Clipy/Sources/Services/PasteService.swift.
+            NSWorkspace.shared.menuBarOwningApplication?.activate(options: NSApplication.ActivationOptions.activateIgnoringOtherApps)
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
+                let vCode = UInt16(0x09)
+                let source = CGEventSource(stateID: .combinedSessionState)
+                // Disable local keyboard events while pasting
+                source?.setLocalEventsFilterDuringSuppressionState([.permitLocalMouseEvents, .permitSystemDefinedEvents],
+                                                                   state: .eventSuppressionStateSuppressionInterval)
+                
+                let keyVDown = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: true)
+                let keyVUp = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: false)
+                keyVDown?.flags = .maskCommand
+                keyVUp?.flags = .maskCommand
+                keyVDown?.post(tap: .cgAnnotatedSessionEventTap)
+                keyVUp?.post(tap: .cgAnnotatedSessionEventTap)
+            }
         }
     }
     
-    func checkUpdate() {
+    func checkUpdate(shouldSlientWithoutUpdate: Bool = true) {
         let url = Bundle.main.object(forInfoDictionaryKey: "checkUpdateURL") as! String
         var urlFetch = URLRequest(url: URL(string: url)!)
-        urlFetch.addValue("token 2043b93ba0023253a19d96d2dc60205c74f0eade", forHTTPHeaderField: "Authorization")
+        urlFetch.addValue("token f4198ac1aadbfb2a54a0bf067c01f3e3b85ec18f", forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlFetch) { (data, response, error) in
             if error != nil {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.alertStyle = .critical
+                    alert.window.level = .popUpMenu
+                    alert.window.title = "error"
+                    alert.messageText = "check update, network error: " +  error.debugDescription
+                    alert.runModal()
+                }
                 print("check update, network error: " +  error.debugDescription)
                 return
             }
             let r = (response as! HTTPURLResponse)
             if r.statusCode != 200 {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.alertStyle = .critical
+                    alert.window.level = .popUpMenu
+                    alert.window.title = "error"
+                    alert.messageText = "check update error, http error: " + String(r.statusCode)
+                    alert.runModal()
+                }
                 print("check update error, http error: " + String(r.statusCode))
                 return
             }
@@ -132,7 +177,17 @@ class YPaste {
             let latestVersion = Int((obj?["tag_name"] as! String).replacingOccurrences(of: ".", with: ""))
             
             let runningVersion = Int((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String).replacingOccurrences(of: ".", with: ""))
-            if latestVersion! >= runningVersion! {
+            if latestVersion! <= runningVersion! {
+                if !shouldSlientWithoutUpdate {
+                    DispatchQueue.main.async {
+                        let alert = NSAlert()
+                        alert.window.level = .popUpMenu
+                        alert.alertStyle = .informational
+                        alert.window.title = "information"
+                        alert.messageText = "Already the latest version"
+                        alert.runModal()
+                    }
+                }
                 return
             }
             // find new version
@@ -140,13 +195,14 @@ class YPaste {
             
             DispatchQueue.main.async {
                 let alert = NSAlert()
+                alert.window.title = "information"
+                alert.window.level = .popUpMenu
                 alert.messageText = "a new version " + (obj?["tag_name"] as! String) + " was found, update or not?"
                 alert.informativeText = "version information: " + updateInformation
                 alert.alertStyle = NSAlert.Style.informational
-                let confirmButton = alert.addButton(withTitle: "confirm")
-                confirmButton.highlight(true)
+                alert.addButton(withTitle: "confirm")
                 let cancelBtn = alert.addButton(withTitle: "cancel")
-                cancelBtn.refusesFirstResponder = false
+                cancelBtn.refusesFirstResponder = true
                 let ok = alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn
                 if ok {
                     self.updateApp((obj?["assets"] as! [[String: Any]])[0]["browser_download_url"] as! String)

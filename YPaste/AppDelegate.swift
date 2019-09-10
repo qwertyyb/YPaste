@@ -73,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     @IBAction func checkForUpdates(_ sender: AnyObject?) {
-        app.checkUpdate()
+        app.checkUpdate(shouldSlientWithoutUpdate: false)
     }
     
     @IBAction func openPreferences(_ sender: AnyObject?) {
