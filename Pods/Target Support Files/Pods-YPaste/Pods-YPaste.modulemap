@@ -1,6 +1,0 @@
-module Pods_YPaste {
-  umbrella header "Pods-YPaste-umbrella.h"
-
-  export *
-  module * { export * }
-}
