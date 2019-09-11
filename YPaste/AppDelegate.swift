@@ -25,10 +25,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         preferencesWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "preferences") as? NSWindowController
         
-        if UserDefaults.standard.bool(forKey: "checkForUpdatesAutomatically") {
-            app.checkUpdate()
-        }
-        
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
             NSApp.enableRelaunchOnLogin()
         }
@@ -71,10 +67,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         })
         return container
     }()
-    
-    @IBAction func checkForUpdates(_ sender: AnyObject?) {
-        app.checkUpdate(shouldSlientWithoutUpdate: false)
-    }
     
     @IBAction func openPreferences(_ sender: AnyObject?) {
         preferencesWindowController?.window?.orderFront(self)

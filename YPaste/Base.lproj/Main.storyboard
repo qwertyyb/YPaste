@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,15 +29,15 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Check for Updates..." id="yaf-RW-gyC" userLabel="Check for Upload">
+                                        <menuItem title="Check for Updates..." id="yaf-RW-gyC" userLabel="Check for Updates">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="RfU-Ls-EcM"/>
+                                                <action selector="checkForUpdates:" target="HvN-ei-pjE" id="6fK-cE-VEQ"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
-                                                <action selector="openPreferences:" target="Voe-Tx-rLC" id="1v8-Us-01s"/>
+                                                <segue destination="lIT-Ak-tl4" kind="show" id="YEt-I2-Pqy"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -636,7 +636,7 @@
                                         <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
-                                                <action selector="toggleSourceList:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
+                                                <action selector="toggleSidebar:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
@@ -691,8 +691,9 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
+                <customObject id="HvN-ei-pjE" customClass="SUUpdater"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="753" y="-175"/>
         </scene>
         <!--Main Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -916,27 +917,54 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="onLaunchAtLogin:" target="YFo-Sr-FRU" id="7aP-37-G7D"/>
-                                    <binding destination="syB-1m-56h" name="value" keyPath="values.launchAtLogin" id="9Eg-PU-nEU"/>
+                                    <action selector="onLaunchAtLogin:" target="YFo-Sr-FRU" id="jAr-Qa-pmN"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixM-ex-2lu" userLabel="Check for Updates Automatically">
-                                <rect key="frame" x="130" y="172" width="221" height="18"/>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kdv-NE-vNJ" userLabel="UpdateInterval">
+                                <rect key="frame" x="250" y="171" width="77" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Check for Updates Automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VdA-LN-7YD">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Hourly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="3600" imageScaling="proportionallyDown" inset="2" selectedItem="TEO-zW-tiz" id="f9v-oo-5xT">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="pK6-QL-Sq5">
+                                        <items>
+                                            <menuItem title="Hourly" state="on" tag="3600" id="TEO-zW-tiz">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Daily" tag="86400" id="mBE-Ru-XPc">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Weekly" tag="604800" id="2Fh-Eg-6wM">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Monthly" tag="2629800" id="7dS-7V-KhE">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Never" id="9cf-2w-uyQ">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                    <connections>
+                                        <binding destination="eI7-Ej-wLI" name="selectedTag" keyPath="updateCheckInterval" id="cN5-ft-LaO"/>
+                                    </connections>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wdr-bN-S12" userLabel="Check Update">
+                                <rect key="frame" x="155" y="176" width="91" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Check Update" id="Hek-Ub-jcx">
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="syB-1m-56h" name="value" keyPath="values.checkForUpdateAutommatically" id="0xA-cH-s9T"/>
-                                </connections>
-                            </button>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="INr-k0-CY4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="KAm-Pb-Wk7"/>
-                <userDefaultsController id="syB-1m-56h"/>
+                <userDefaultsController id="1Q6-QO-rfX"/>
+                <customObject id="eI7-Ej-wLI" customClass="SUUpdater"/>
             </objects>
             <point key="canvasLocation" x="752" y="655"/>
         </scene>

@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-YPaste/Pods-YPaste-frameworks.sh
-${BUILT_PRODUCTS_DIR}/HotKey/HotKey.framework
+${PODS_ROOT}/Sparkle/Sparkle.framework
+${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM

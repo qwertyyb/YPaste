@@ -1,4 +1,4 @@
-framework module Pods_YPaste {
+module Pods_YPaste {
   umbrella header "Pods-YPaste-umbrella.h"
 
   export *

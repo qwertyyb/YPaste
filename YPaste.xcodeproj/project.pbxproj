@@ -17,8 +17,8 @@
 		4596AE6923216E6C00F63EBF /* YPasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6823216E6C00F63EBF /* YPasteTests.swift */; };
 		4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE702322B5CB00F63EBF /* MainWindowController.swift */; };
 		4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE722323CF5800F63EBF /* SummaryTransformer.swift */; };
-		A207B7554B307CBE59189114 /* Pods_YPaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1E263BDE22EEB7D60E0C3B /* Pods_YPaste.framework */; };
-		FD490BCFBBBAD5382330A424 /* Pods_YPasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45EB7A476FD60E0E0C0BE51B /* Pods_YPasteTests.framework */; };
+		89E4606D59274DC83FCCFEB8 /* libPods-YPasteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */; };
+		90659D2688F1F0D071B53FBE /* libPods-YPaste.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5798607827522D99BA309E4B /* libPods-YPaste.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,12 +47,12 @@
 		4596AE6A23216E6C00F63EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4596AE702322B5CB00F63EBF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4596AE722323CF5800F63EBF /* SummaryTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTransformer.swift; sourceTree = "<group>"; };
-		45EB7A476FD60E0E0C0BE51B /* Pods_YPasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YPasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5798607827522D99BA309E4B /* libPods-YPaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.release.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.release.xcconfig"; sourceTree = "<group>"; };
 		8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.debug.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADF976CA97E1092109B6B6ED /* Pods-YPasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.release.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.release.xcconfig"; sourceTree = "<group>"; };
 		D8C0DCABD4ABBD4A765E9914 /* Pods-YPaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.debug.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.debug.xcconfig"; sourceTree = "<group>"; };
-		EC1E263BDE22EEB7D60E0C3B /* Pods_YPaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YPaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPasteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A207B7554B307CBE59189114 /* Pods_YPaste.framework in Frameworks */,
+				90659D2688F1F0D071B53FBE /* libPods-YPaste.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD490BCFBBBAD5382330A424 /* Pods_YPasteTests.framework in Frameworks */,
+				89E4606D59274DC83FCCFEB8 /* libPods-YPasteTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,8 +136,8 @@
 		F8B5BBE6526EC7D03DBE8BD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EC1E263BDE22EEB7D60E0C3B /* Pods_YPaste.framework */,
-				45EB7A476FD60E0E0C0BE51B /* Pods_YPasteTests.framework */,
+				5798607827522D99BA309E4B /* libPods-YPaste.a */,
+				FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -197,7 +197,7 @@
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -474,7 +474,6 @@
 			baseConfigurationReference = D8C0DCABD4ABBD4A765E9914 /* Pods-YPaste.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = YPaste/YPaste.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = T68XK6867P;
@@ -494,7 +493,6 @@
 			baseConfigurationReference = 8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = YPaste/YPaste.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = T68XK6867P;
