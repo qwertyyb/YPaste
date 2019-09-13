@@ -22,7 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        statusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         statusItem?.button!.image = NSImage(named: "statusImage")
         statusItem?.menu = menu
-        
         preferencesWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "preferences") as? NSWindowController
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {

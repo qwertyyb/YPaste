@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>Explosion v0.1.7</string>
+	<string>Explosion v0.1.8</string>
 	<key>CFBundleVersion</key>
-	<string>100170</string>
+	<string>100184</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -35,6 +35,6 @@
 	<key>SUFeedURL</key>
 	<string>https://cdn.qwertyyb.cn/cloudfn/appcast.xml</string>
 	<key>SUPublicEDKey</key>
-	<string>ZWs7KLyqOptYwAku3gtqa+UBNenURTVjKdHzPTrlasY=</string>
+	<string>D1ACrxv3LcFHNEWEE5g0oQfFM89xVpQxm75mDyyXcUA=</string>
 </dict>
 </plist>

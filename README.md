@@ -8,8 +8,12 @@
 - 使用 `Cocoa Binding` 同步数据
 - 使用 `Sparkle` 提供自动升级功能
 
+## 使用
+快捷键 `control + command +  c`
+
 ## TODO
 -  支持中文
+- 支持切换快捷键
 - 收藏功能
 - 支持图片
 

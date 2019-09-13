@@ -94,17 +94,9 @@ class YPaste {
     }
     
     private func checkAccess() -> Bool{
-        //get the value for accesibility
         let options : NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
         let accessibilityEnabled = AXIsProcessTrustedWithOptions(options)
         return accessibilityEnabled
-//        let checkOptPrompt = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
-        //set the options: false means it wont ask
-        //true means it will popup and ask
-//        let options = [checkOptPrompt: true]
-        //translate into boolean value
-//        let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary?)
-//        return accessEnabled
     }
     
     func paste(pasteItem: PasteItem){
