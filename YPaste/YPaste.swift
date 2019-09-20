@@ -93,29 +93,17 @@ class YPaste {
         hotkey = HotKey(key: key, modifiers: modifiers)
     }
     
-    private func checkAccess() -> Bool{
-        let options : NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
-        let accessibilityEnabled = AXIsProcessTrustedWithOptions(options)
-        return accessibilityEnabled
+    private func checkAccess() -> Void{
+        let checkOptionPromptKey = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String
+        let opts = [checkOptionPromptKey: false] as CFDictionary
+        AXIsProcessTrustedWithOptions(opts)
     }
     
     func paste(pasteItem: PasteItem){
         self.pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         self.pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)
         DispatchQueue.main.async {
-            if !self.checkAccess() {
-                let alert = NSAlert()
-                alert.window.level = .popUpMenu
-                alert.alertStyle = .warning
-                alert.window.title = "warning"
-                alert.messageText = "The Application need accessibility permission to paste automatically"
-                alert.addButton(withTitle: "open accessibility preferences")
-                let denyBtn = alert.addButton(withTitle: "deny")
-                denyBtn.refusesFirstResponder = true
-                if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
-                    NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
-                }
-            }
+//            self.checkAccess()
             // Based on https://github.com/Clipy/Clipy/blob/develop/Clipy/Sources/Services/PasteService.swift.
             NSWorkspace.shared.menuBarOwningApplication?.activate(options: NSApplication.ActivationOptions.activateIgnoringOtherApps)
             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
