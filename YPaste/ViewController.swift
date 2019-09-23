@@ -30,21 +30,16 @@ class ViewController: NSViewController, NSTableViewDelegate {
     @IBOutlet var arrayController: NSArrayController!
 
     override func viewDidLoad() {
+        arrayController.selectsInsertedObjects = true
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
     @IBOutlet weak var tableView: NSTableView!
     
-    override func viewWillAppear() {
+    override func viewDidAppear() {
         arrayController.fetch(self)
         arrayController.setSelectionIndex(0)
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
     }
     @IBAction func tableViewClicked(_ sender: Any) {
         let pasteItems = arrayController.selectedObjects as? [PasteItem]

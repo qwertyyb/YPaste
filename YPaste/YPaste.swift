@@ -10,14 +10,17 @@ import Foundation
 import HotKey
 import Cocoa
 
+
 class YPaste {
+    typealias historyChangeCallback = () -> Void
     private var hotkey: HotKey?
-    var handler: HotKey.Handler? {
+    var hotKeyHandler: HotKey.Handler? {
         get { return self.hotkey?.keyDownHandler }
         set (handler) { self.hotkey?.keyDownHandler = handler }
     }
+    var onHistoryChange: historyChangeCallback?
     
-    let pasteboard = NSPasteboard.general
+    private let pasteboard = NSPasteboard.general
     private var lastChangeCount: Int = 0
     
     init() {
@@ -26,7 +29,7 @@ class YPaste {
     }
     
     
-    func listeningPasteBoard() {
+    private func listeningPasteBoard() {
         Timer.scheduledTimer(timeInterval: 1.0,
                              target: self,
                              selector: #selector(checkForChangesInPasteboard),
@@ -56,6 +59,7 @@ class YPaste {
                 pasteItems?[0].updated_at = Date()
                 try? saveContext.save()
             }
+            onHistoryChange?()
         }
         
         lastChangeCount = pasteboard.changeCount
@@ -94,7 +98,7 @@ class YPaste {
     }
     
     private func checkAccess() -> Bool{
-        let options : NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
+        let options : NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: false]
         let accessibilityEnabled = AXIsProcessTrustedWithOptions(options)
         return accessibilityEnabled
     }
@@ -122,8 +126,7 @@ class YPaste {
                 let vCode = UInt16(0x09)
                 let source = CGEventSource(stateID: .combinedSessionState)
                 // Disable local keyboard events while pasting
-                source?.setLocalEventsFilterDuringSuppressionState([.permitLocalMouseEvents, .permitSystemDefinedEvents],
-                                                                   state: .eventSuppressionStateSuppressionInterval)
+                source?.setLocalEventsFilterDuringSuppressionState([.permitLocalMouseEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
                 
                 let keyVDown = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: true)
                 let keyVUp = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: false)
