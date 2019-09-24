@@ -210,7 +210,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="85" height="17"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" title="type" id="dSS-b1-vUc">
                                                                         <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         <connections>
                                                                             <binding destination="vFT-GW-ujY" name="value" keyPath="objectValue.type" id="Nnj-fO-rQI"/>
@@ -322,7 +322,7 @@
                                         <rect key="frame" x="93" y="-3" width="87" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Hourly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="3600" imageScaling="proportionallyDown" inset="2" selectedItem="TEO-zW-tiz" id="f9v-oo-5xT">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="pK6-QL-Sq5">
                                                 <items>
                                                     <menuItem title="Hourly" state="on" tag="3600" id="TEO-zW-tiz">
