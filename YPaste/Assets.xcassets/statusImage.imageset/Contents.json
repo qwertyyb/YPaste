@@ -58,6 +58,28 @@
       "idiom" : "universal",
       "filename" : "niantie-5.png",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "niantie-8.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ],
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "粘贴.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "scale" : "3x"
     }
   ],
   "info" : {
