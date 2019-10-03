@@ -1,6 +1,6 @@
 PODS:
   - HotKey (0.1.2)
-  - Sparkle (1.21.3)
+  - Sparkle (1.22.0)
 
 DEPENDENCIES:
   - HotKey
@@ -13,7 +13,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   HotKey: ad59450195936c10992438c4210f673de5aee43e
-  Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
+  Sparkle: 593ac2e677c07bcb6c3b22d621240e7cbedaab57
 
 PODFILE CHECKSUM: 8669f7eec9100ace1f20ed98a124fd15f614df02
 
