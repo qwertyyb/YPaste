@@ -155,6 +155,7 @@
 				4596AE41232025A700F63EBF /* Frameworks */,
 				4596AE42232025A700F63EBF /* Resources */,
 				3F3099D1713A8269175D3708 /* [CP] Embed Pods Frameworks */,
+				45B27B312345C92000A06A94 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -286,6 +287,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YPaste/Pods-YPaste-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		45B27B312345C92000A06A94 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH`\nversion=`expr $version + 1`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $version\" $PRODUCT_SETTINGS_PATH\n";
 		};
 		CA29C5B8D0777403973216CA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

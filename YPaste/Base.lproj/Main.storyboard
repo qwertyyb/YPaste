@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -126,6 +127,7 @@
                                             <string key="NSPredicateFormat">self.value contains[cd] $value</string>
                                         </dictionary>
                                     </binding>
+                                    <outlet property="nextKeyView" destination="R8r-dv-iTb" id="Scd-zc-cmO"/>
                                 </connections>
                             </searchField>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8r-dv-iTb">
@@ -160,7 +162,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AGZ-HH-ijD">
-                                                                    <rect key="frame" x="-2" y="0.0" width="388" height="17"/>
+                                                                    <rect key="frame" x="-2" y="1" width="388" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="sih-Tj-WrW">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -207,7 +209,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ew2-hw-lNE">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="85" height="16"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" title="type" id="dSS-b1-vUc">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -253,6 +255,7 @@
                     </view>
                     <connections>
                         <outlet property="arrayController" destination="YWq-Kq-AiD" id="uEM-s2-BIa"/>
+                        <outlet property="searchField" destination="Hah-LV-MYL" id="NZ6-Cy-yeZ"/>
                         <outlet property="tableView" destination="IWK-h8-GX2" id="hQY-uc-V83"/>
                     </connections>
                 </viewController>
@@ -304,14 +307,14 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="onLaunchAtLogin:" target="YFo-Sr-FRU" id="jAr-Qa-pmN"/>
+                                    <binding destination="uVo-VI-IiG" name="value" keyPath="values.launchAtLogin" id="7Z7-P2-dkr"/>
                                 </connections>
                             </button>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1cJ-rR-LRM">
                                 <rect key="frame" x="151" y="173" width="177" height="21"/>
-                                <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wdr-bN-S12" userLabel="Check Update">
-                                        <rect key="frame" x="-2" y="2" width="91" height="17"/>
+                                        <rect key="frame" x="-2" y="3" width="91" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Check Update" id="Hek-Ub-jcx">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -350,7 +353,7 @@
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
-                                    <real value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
                                     <real value="3.4028234663852886e+38"/>
@@ -363,6 +366,7 @@
                 <customObject id="INr-k0-CY4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="1Q6-QO-rfX"/>
                 <customObject id="eI7-Ej-wLI" customClass="SUUpdater"/>
+                <userDefaultsController id="uVo-VI-IiG"/>
             </objects>
             <point key="canvasLocation" x="752" y="655"/>
         </scene>

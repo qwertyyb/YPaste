@@ -15,10 +15,11 @@ class PreferencesViewController: NSViewController {
         // Do view setup here.
     }
     @IBAction func onLaunchAtLogin(_ sender: NSButton) {
+        let delegate = NSApp.delegate as! AppDelegate
         if sender.state == .on {
-            NSApp.enableRelaunchOnLogin()
+            delegate.app.autoLaunch(active: true)
         } else {
-            NSApp.disableRelaunchOnLogin()
+            delegate.app.autoLaunch(active: false)
         }
     }
 }

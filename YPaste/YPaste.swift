@@ -103,6 +103,20 @@ class YPaste {
         return AXIsProcessTrustedWithOptions(opts)
     }
     
+    func autoLaunch(active: Bool = true) {
+        let launchFolder = "\(NSHomeDirectory())/Library/LaunchAgents"
+        let launchPath = "\(launchFolder)/\(Bundle.main.bundleIdentifier!).plist"
+        let dict = NSMutableDictionary()
+        let arr = NSMutableArray()
+        arr.add(Bundle.main.executablePath)
+        arr.add("-runMode")
+        arr.add("autoLaunched")
+        dict.setObject(active, forKey: NSMutableString("RunAtLoad"))
+        dict.setObject(Bundle.main.bundleIdentifier, forKey: NSMutableString("Label"))
+        dict.setObject(arr, forKey: NSMutableString("ProgramArguments"))
+        dict.write(toFile: launchPath, atomically: false)
+    }
+    
     func paste(pasteItem: PasteItem){
         self.pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         self.pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)

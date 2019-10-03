@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         preferencesWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "preferences") as? NSWindowController
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
-            NSApp.enableRelaunchOnLogin()
+            app.autoLaunch(active: true)
         }
     }
 
