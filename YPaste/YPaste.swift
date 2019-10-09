@@ -108,11 +108,11 @@ class YPaste {
         let launchPath = "\(launchFolder)/\(Bundle.main.bundleIdentifier!).plist"
         let dict = NSMutableDictionary()
         let arr = NSMutableArray()
-        arr.add(Bundle.main.executablePath)
+        arr.add(Bundle.main.executablePath!)
         arr.add("-runMode")
         arr.add("autoLaunched")
         dict.setObject(active, forKey: NSMutableString("RunAtLoad"))
-        dict.setObject(Bundle.main.bundleIdentifier, forKey: NSMutableString("Label"))
+        dict.setObject(Bundle.main.bundleIdentifier!, forKey: NSMutableString("Label"))
         dict.setObject(arr, forKey: NSMutableString("ProgramArguments"))
         dict.write(toFile: launchPath, atomically: false)
     }
@@ -122,7 +122,7 @@ class YPaste {
         self.pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)
         DispatchQueue.main.async {
             if !self.checkAccess() {
-                self.checkAccess(prompt: true)
+                let _ = self.checkAccess(prompt: true)
             }
             // Based on https://github.com/Clipy/Clipy/blob/develop/Clipy/Sources/Services/PasteService.swift.
             NSWorkspace.shared.menuBarOwningApplication?.activate(options: NSApplication.ActivationOptions.activateIgnoringOtherApps)

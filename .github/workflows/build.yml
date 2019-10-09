@@ -12,7 +12,7 @@ jobs:
     - name: install depencies
       run: pod install
     - name: archive
-      run: xcodebuild archive -workspace YPaste.xcworkspace -scheme YPaste -archivePath ./archive-YPaste CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+      run: xcodebuild archive -workspace YPaste.xcworkspace -scheme YPaste -archivePath ./archive-YPaste -configuration Release
     - name: copy app && zip app && generate appcast
       env:
         sparkle_key: ${{ secrets.sparkle_key }}
