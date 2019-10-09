@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>Explosion v0.1.8</string>
 	<key>CFBundleVersion</key>
-	<string>100212</string>
+	<string>100213</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -34,5 +34,7 @@
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>https://cdn.qwertyyb.cn/cloudfn/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>tR/BZ1M7WhteABLgJDf3f/bsxUHYMPABoY9PuPvI0TE=</string>
 </dict>
 </plist>
