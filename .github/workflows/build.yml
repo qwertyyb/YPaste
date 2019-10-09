@@ -28,7 +28,7 @@ jobs:
       run: |
         pip install pip==9.0.0 && pip install coscmd
         coscmd config -a $oss_appid -s $oss_secret -b person-1253524658 -r ap-beijing
-    - name: upload app
+    - name: upload app and appcast
       run: |
         coscmd upload ./apps/YPaste.zip cloudfn/YPaste.zip
         coscmd upload ./apps/appcast.xml cloudfn/appcast.xml

@@ -197,7 +197,7 @@
 				TargetAttributes = {
 					4596AE43232025A700F63EBF = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1100;
+						LastSwiftMigration = 1110;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -206,7 +206,7 @@
 					};
 					4596AE6523216E6C00F63EBF = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1100;
+						LastSwiftMigration = 1110;
 						TestTargetID = 4596AE43232025A700F63EBF;
 					};
 				};

@@ -275,7 +275,7 @@
             <objects>
                 <windowController storyboardIdentifier="preferences" showSeguePresentationStyle="single" id="lIT-Ak-tl4" userLabel="Preferences Window Controller" sceneMemberID="viewController">
                     <window key="window" identifier="preferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" frameAutosaveName="" animationBehavior="default" id="J2L-Gm-BGd" userLabel="Preferences Window">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <connections>
