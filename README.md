@@ -1,5 +1,6 @@
 #  YPaste
 >  Macos 粘贴板扩展, 提供粘贴板历史记录
+![](https://github.com/qwertyyb/YPaste/workflows/CI/badge.svg)
 
 ## 特性
 - 使用 `CoreData` 存储历史记录, 能记录更多的历史
