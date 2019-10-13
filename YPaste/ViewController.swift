@@ -27,20 +27,22 @@ class ViewController: NSViewController, NSTableViewDelegate {
         return NSApplication.shared.delegate as! AppDelegate
     }
     
+    @IBOutlet weak var searchField: NSSearchField!
     @IBOutlet var arrayController: NSArrayController!
 
     override func viewDidLoad() {
-        arrayController.selectsInsertedObjects = true
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear() {
+        arrayController.setSelectionIndex(0)
+    }
+    
+    override func viewDidDisappear() {
+        arrayController.filterPredicate = nil
     }
     
     @IBOutlet weak var tableView: NSTableView!
-    
-    override func viewDidAppear() {
-        arrayController.fetch(self)
-        arrayController.setSelectionIndex(0)
-    }
     @IBAction func tableViewClicked(_ sender: Any) {
         let pasteItems = arrayController.selectedObjects as? [PasteItem]
         if (pasteItems == nil) { return }
@@ -52,6 +54,9 @@ class ViewController: NSViewController, NSTableViewDelegate {
             let pasteItems = arrayController.selectedObjects as? [PasteItem]
             if (pasteItems == nil) { return }
             app().app.paste(pasteItem: (pasteItems?.first)!)
+        }
+        if key == Key.downArrow {
+            
         }
     }
 }

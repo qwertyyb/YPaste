@@ -97,17 +97,33 @@ class YPaste {
         hotkey = HotKey(key: key, modifiers: modifiers)
     }
     
-    private func checkAccess() -> Void{
+    private func checkAccess(prompt: Bool = false) -> Bool {
         let checkOptionPromptKey = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String
-        let opts = [checkOptionPromptKey: false] as CFDictionary
-        AXIsProcessTrustedWithOptions(opts)
+        let opts = [checkOptionPromptKey: prompt] as CFDictionary
+        return AXIsProcessTrustedWithOptions(opts)
+    }
+    
+    func autoLaunch(active: Bool = true) {
+        let launchFolder = "\(NSHomeDirectory())/Library/LaunchAgents"
+        let launchPath = "\(launchFolder)/\(Bundle.main.bundleIdentifier!).plist"
+        let dict = NSMutableDictionary()
+        let arr = NSMutableArray()
+        arr.add(Bundle.main.executablePath!)
+        arr.add("-runMode")
+        arr.add("autoLaunched")
+        dict.setObject(active, forKey: NSMutableString("RunAtLoad"))
+        dict.setObject(Bundle.main.bundleIdentifier!, forKey: NSMutableString("Label"))
+        dict.setObject(arr, forKey: NSMutableString("ProgramArguments"))
+        dict.write(toFile: launchPath, atomically: false)
     }
     
     func paste(pasteItem: PasteItem){
         self.pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         self.pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)
         DispatchQueue.main.async {
-           self.checkAccess()
+            if !self.checkAccess() {
+                let _ = self.checkAccess(prompt: true)
+            }
             // Based on https://github.com/Clipy/Clipy/blob/develop/Clipy/Sources/Services/PasteService.swift.
             NSWorkspace.shared.menuBarOwningApplication?.activate(options: NSApplication.ActivationOptions.activateIgnoringOtherApps)
             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
