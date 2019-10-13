@@ -35,6 +35,7 @@ class ViewController: NSViewController, NSTableViewDelegate {
     }
     
     override func viewWillAppear() {
+        tableView.scrollRowToVisible(0)
         arrayController.setSelectionIndex(0)
     }
     
