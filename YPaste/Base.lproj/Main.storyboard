@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,33 +38,10 @@
                                         </menuItem>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
-                                                <segue destination="lIT-Ak-tl4" kind="modal" id="vPI-at-IvU"/>
+                                                <segue destination="lIT-Ak-tl4" kind="modal" id="Vse-Qt-XsM"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
-                                        <menuItem title="Services" id="NMo-om-nkz">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide YPaste" keyEquivalent="h" id="Olw-nP-bQN">
-                                            <connections>
-                                                <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show All" id="Kd2-mp-pUS">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                                         <menuItem title="Quit YPaste" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
@@ -278,12 +255,9 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <connections>
-                            <outlet property="delegate" destination="lIT-Ak-tl4" id="Tdx-bu-Zos"/>
-                        </connections>
                     </window>
                     <connections>
-                        <segue destination="YFo-Sr-FRU" kind="relationship" relationship="window.shadowedContentViewController" id="UcH-Sg-gp8"/>
+                        <segue destination="YFo-Sr-FRU" kind="relationship" relationship="window.shadowedContentViewController" id="Vgk-7H-9pl"/>
                     </connections>
                 </windowController>
                 <customObject id="GQK-bi-Ugo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -293,25 +267,25 @@
         <!--Preferences View Controller-->
         <scene sceneID="lqm-pK-AsM">
             <objects>
-                <viewController id="YFo-Sr-FRU" customClass="PreferencesViewController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="YFo-Sr-FRU" customClass="PreferencesViewController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="nhs-Po-xVi">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UVR-Lh-n2s">
-                                <rect key="frame" x="181" y="218" width="119" height="18"/>
+                                <rect key="frame" x="18" y="218" width="119" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XeA-Pa-vo1">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="onLaunchAtLogin:" target="YFo-Sr-FRU" id="jAr-Qa-pmN"/>
-                                    <binding destination="uVo-VI-IiG" name="value" keyPath="values.launchAtLogin" id="7Z7-P2-dkr"/>
+                                    <action selector="onLaunchAtLogin:" target="YFo-Sr-FRU" id="mAT-By-FHt"/>
+                                    <binding destination="1Q6-QO-rfX" name="value" keyPath="values.launchAtLogin" id="xoO-Su-4L3"/>
                                 </connections>
                             </button>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1cJ-rR-LRM">
-                                <rect key="frame" x="151" y="173" width="177" height="21"/>
+                                <rect key="frame" x="20" y="176" width="177" height="21"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wdr-bN-S12" userLabel="Check Update">
                                         <rect key="frame" x="-2" y="3" width="91" height="16"/>
@@ -360,15 +334,52 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-Kc-emV">
+                                <rect key="frame" x="20" y="136" width="142" height="21"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ahh-JM-8gO">
+                                        <rect key="frame" x="-2" y="3" width="52" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Hot Key" id="dPA-yk-8qy">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Oz9-un-gxI">
+                                        <rect key="frame" x="50" y="-7" width="98" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="trailing" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="u83-rp-fdR">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="hotKeyClicked:" target="YFo-Sr-FRU" id="D4N-vm-EQZ"/>
+                                            <binding destination="1Q6-QO-rfX" name="title" keyPath="values" id="g8A-Iy-XiD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="hotKey" destination="Oz9-un-gxI" id="3im-uO-838"/>
+                    </connections>
                 </viewController>
                 <customObject id="INr-k0-CY4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="1Q6-QO-rfX"/>
+                <userDefaultsController id="1Q6-QO-rfX" userLabel="Shared User Defaults Controller"/>
                 <customObject id="eI7-Ej-wLI" customClass="SUUpdater"/>
-                <userDefaultsController id="uVo-VI-IiG"/>
             </objects>
-            <point key="canvasLocation" x="752" y="655"/>
+            <point key="canvasLocation" x="752" y="670"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
+    </resources>
 </document>

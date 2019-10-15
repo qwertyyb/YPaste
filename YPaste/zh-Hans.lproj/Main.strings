@@ -76,3 +76,6 @@
 
 /* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "yaf-RW-gyC"; */
 "yaf-RW-gyC.title" = "检查更新";
+
+/* Class = "NSTextFieldCell"; title = "Hot Key"; ObjectID = "dPA-yk-8qy"; */
+"dPA-yk-8qy.title" = "快捷键";

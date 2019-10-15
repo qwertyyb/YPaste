@@ -6,7 +6,7 @@ inhibit_all_warnings!
 target 'YPaste' do
     pod 'Sparkle'
 
-    pod 'HotKey'
+    pod 'Magnet'
 
     target 'YPasteTests' do
         inherit! :search_paths
