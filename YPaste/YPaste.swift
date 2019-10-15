@@ -7,16 +7,20 @@
 //
 
 import Foundation
-import HotKey
+import Magnet
 import Cocoa
 
 
 class YPaste {
     typealias historyChangeCallback = () -> Void
     private var hotkey: HotKey?
-    var hotKeyHandler: HotKey.Handler? {
-        get { return self.hotkey?.keyDownHandler }
-        set (handler) { self.hotkey?.keyDownHandler = handler }
+    var hotKeyHandler: (() -> Void)?
+    var hotKeyString: String? {
+        didSet {
+            self.hotkey?.unregister()
+            let keyCombo = getKeyComboFromString(hotKeyString!)
+            registerHotKey(keyCombo: keyCombo)
+        }
     }
     var onHistoryChange: historyChangeCallback?
     
@@ -24,7 +28,10 @@ class YPaste {
     private var lastChangeCount: Int = 0
     
     init() {
-        registerHotKey()
+        UserDefaults.standard.register(defaults: ["hotKey": "command+shift+v"])
+        hotKeyString = UserDefaults.standard.string(forKey: "hotKey")
+        let keyCombo = getKeyComboFromString(hotKeyString!)
+        registerHotKey(keyCombo: keyCombo)
         listeningPasteBoard()
     }
     
@@ -65,19 +72,11 @@ class YPaste {
         lastChangeCount = pasteboard.changeCount
     }
     
-    private func registerHotKey() {
-//        guard let keybindingString = UserDefaults.standard.string(forKey: hotKeyStore) else {
-//            return
-//        }
-        let keybindingString = "command+shift+v"
-        var keysList = keybindingString.split(separator: "+")
+    private func getKeyComboFromString(_ string: String) -> KeyCombo {
+        var keysList = string.split(separator: "+")
         
-        guard let keyString = keysList.popLast() else {
-            return
-        }
-        guard let key = Key(string: String(keyString)) else {
-            return
-        }
+        let keyString = keysList.popLast()
+        let key = Key(string: String(keyString!))!
         
         var modifiers: NSEvent.ModifierFlags = []
         for keyString in keysList {
@@ -93,8 +92,13 @@ class YPaste {
             default: ()
             }
         }
-        
-        hotkey = HotKey(key: key, modifiers: modifiers)
+        return KeyCombo(keyCode: Int(key.carbonKeyCode), cocoaModifiers: modifiers)!
+    }
+    func registerHotKey(keyCombo: KeyCombo) {
+        hotkey = HotKey(identifier: Bundle.main.bundleIdentifier!, keyCombo: keyCombo) { (hotkey) in
+            if self.hotKeyHandler != nil { self.hotKeyHandler!() }
+        }
+        hotkey?.register()
     }
     
     private func checkAccess(prompt: Bool = false) -> Bool {
@@ -116,6 +120,8 @@ class YPaste {
         dict.setObject(arr, forKey: NSMutableString("ProgramArguments"))
         dict.write(toFile: launchPath, atomically: false)
     }
+    
+    static let shared = YPaste()
     
     func paste(pasteItem: PasteItem){
         self.pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)

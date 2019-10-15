@@ -18,7 +18,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
             self.window?.setFrameTopLeftPoint(NSEvent.mouseLocation)
             self.window?.makeKeyAndOrderFront(self)
             NSApp.activate(ignoringOtherApps: true)
-            self.window?.delegate = self
+            (self.window?.delegate = self)!
         }
         print("init")
         appDelegate.app.onHistoryChange = {

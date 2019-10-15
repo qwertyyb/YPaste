@@ -18,6 +18,7 @@
 		4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE702322B5CB00F63EBF /* MainWindowController.swift */; };
 		4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE722323CF5800F63EBF /* SummaryTransformer.swift */; };
 		67CFA4872351F4FB0058CF29 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 67CFA4862351F4FB0058CF29 /* README.md */; };
+		67F313B32355E819008BAEB7 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F313B22355E819008BAEB7 /* Key.swift */; };
 		89E4606D59274DC83FCCFEB8 /* libPods-YPasteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */; };
 		90659D2688F1F0D071B53FBE /* libPods-YPaste.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5798607827522D99BA309E4B /* libPods-YPaste.a */; };
 /* End PBXBuildFile section */
@@ -48,9 +49,10 @@
 		4596AE6A23216E6C00F63EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4596AE702322B5CB00F63EBF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4596AE722323CF5800F63EBF /* SummaryTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTransformer.swift; sourceTree = "<group>"; };
-		45BE0371232B8630004AD229 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		5798607827522D99BA309E4B /* libPods-YPaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67CFA4862351F4FB0058CF29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		67F313B22355E819008BAEB7 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		67F313B62355F66B008BAEB7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.release.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.release.xcconfig"; sourceTree = "<group>"; };
 		8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.debug.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADF976CA97E1092109B6B6ED /* Pods-YPasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.release.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */,
 				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
 				4596AE722323CF5800F63EBF /* SummaryTransformer.swift */,
+				67F313B22355E819008BAEB7 /* Key.swift */,
 			);
 			path = YPaste;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */,
 				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
+				67F313B32355E819008BAEB7 /* Key.swift in Sources */,
 				4563DE7923255739003F2767 /* PreferencesViewController.swift in Sources */,
 				4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */,
 			);
@@ -373,7 +377,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4596AE51232025A800F63EBF /* Base */,
-				45BE0371232B8630004AD229 /* zh-Hans */,
+				67F313B62355F66B008BAEB7 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

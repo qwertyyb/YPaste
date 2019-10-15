@@ -11,7 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var app: YPaste = YPaste()
+    var app: YPaste = YPaste.shared
 
     private var statusItem :NSStatusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     private var preferencesWindowController: NSWindowController?
@@ -19,10 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-//        statusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         statusItem?.button!.image = NSImage(named: "statusImage")
         statusItem?.menu = menu
-        preferencesWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "preferences") as? NSWindowController
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
             app.autoLaunch(active: true)

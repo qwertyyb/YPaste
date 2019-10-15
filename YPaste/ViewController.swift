@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import HotKey
 
 class ViewController: NSViewController, NSTableViewDelegate {
     
