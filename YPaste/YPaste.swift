@@ -101,7 +101,7 @@ class YPaste {
         hotkey?.register()
     }
     
-    private func checkAccess(prompt: Bool = false) -> Bool {
+    func checkAccess(prompt: Bool = false) -> Bool {
         let checkOptionPromptKey = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String
         let opts = [checkOptionPromptKey: prompt] as CFDictionary
         return AXIsProcessTrustedWithOptions(opts)

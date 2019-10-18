@@ -2,23 +2,14 @@
 /* Class = "NSMenuItem"; title = "YPaste"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "YPaste";
 
-/* Class = "NSMenuItem"; title = "Weekly"; ObjectID = "2Fh-Eg-6wM"; */
-"2Fh-Eg-6wM.title" = "每周";
-
 /* Class = "NSMenuItem"; title = "Quit YPaste"; ObjectID = "4sb-4s-VLi"; */
 "4sb-4s-VLi.title" = "退出YPaste";
 
 /* Class = "NSMenuItem"; title = "About YPaste"; ObjectID = "5kV-Vb-QxS"; */
 "5kV-Vb-QxS.title" = "关于YPaste";
 
-/* Class = "NSMenuItem"; title = "Monthly"; ObjectID = "7dS-7V-KhE"; */
-"7dS-7V-KhE.title" = "每月";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "92q-C9-B8o"; */
 "92q-C9-B8o.title" = "Text Cell";
-
-/* Class = "NSMenuItem"; title = "Never"; ObjectID = "9cf-2w-uyQ"; */
-"9cf-2w-uyQ.title" = "从不";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Main Menu";
@@ -26,35 +17,11 @@
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
 "BOF-NM-1cW.title" = "首选项";
 
-/* Class = "NSTextFieldCell"; title = "Check Update"; ObjectID = "Hek-Ub-jcx"; */
-"Hek-Ub-jcx.title" = "检查更新";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "I37-gj-KWi"; */
 "I37-gj-KWi.title" = "Text Cell";
 
 /* Class = "NSWindow"; title = "YPaste"; ObjectID = "IQv-IB-iLA"; */
 "IQv-IB-iLA.title" = "YPaste";
-
-/* Class = "NSWindow"; title = "Preferences"; ObjectID = "J2L-Gm-BGd"; */
-"J2L-Gm-BGd.title" = "首选项";
-
-/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
-"Kd2-mp-pUS.title" = "全部显示";
-
-/* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
-"NMo-om-nkz.title" = "服务";
-
-/* Class = "NSMenuItem"; title = "Hide YPaste"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "隐藏YPaste";
-
-/* Class = "NSMenuItem"; title = "Hourly"; ObjectID = "TEO-zW-tiz"; */
-"TEO-zW-tiz.title" = "每小时";
-
-/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
-"Vdr-fp-XzO.title" = "隐藏其他";
-
-/* Class = "NSButtonCell"; title = "Launch at Login"; ObjectID = "XeA-Pa-vo1"; */
-"XeA-Pa-vo1.title" = "登录时自动启动 ";
 
 /* Class = "NSTextFieldCell"; title = "type"; ObjectID = "dSS-b1-vUc"; */
 "dSS-b1-vUc.title" = "类型";
@@ -77,5 +44,3 @@
 /* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "yaf-RW-gyC"; */
 "yaf-RW-gyC.title" = "检查更新";
 
-/* Class = "NSTextFieldCell"; title = "Hot Key"; ObjectID = "dPA-yk-8qy"; */
-"dPA-yk-8qy.title" = "快捷键";
