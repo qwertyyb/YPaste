@@ -1,14 +1,28 @@
 //
-//  PreferencesViewController.swift
+//  PreferencesWindowController.swift
 //  YPaste
 //
-//  Created by 虚幻 on 2019/9/8.
+//  Created by marchyang on 2019/10/18.
 //  Copyright © 2019 qwertyyb. All rights reserved.
 //
 
 import Cocoa
 
-class PreferencesViewController: NSViewController {
+class PreferencesWindowController: NSWindowController {
+
+    override func windowDidLoad() {
+        super.windowDidLoad()
+    
+        
+        let symbolString = convertKeyNameToSymbol(YPaste.shared.hotKeyString!)
+        hotKey.title = symbolString
+    }
+    
+    override func showWindow(_ sender: Any?) {
+        NSApp.activate(ignoringOtherApps: true)
+        super.showWindow(sender)
+    }
+    
     
     private var listenKeyActivate = false
     private var eventHandler: Any?
@@ -60,15 +74,6 @@ class PreferencesViewController: NSViewController {
     }
 
     @IBOutlet weak var hotKey: NSButton!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
-        let symbolString = convertKeyNameToSymbol(YPaste.shared.hotKeyString!)
-        hotKey.title = symbolString
-    }
-    override func viewDidDisappear() {
-        clearKeyEvent()
-    }
     @IBAction func onLaunchAtLogin(_ sender: NSButton) {
         let delegate = NSApp.delegate as! AppDelegate
         if sender.state == .on {

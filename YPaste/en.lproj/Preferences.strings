@@ -1,0 +1,30 @@
+
+/* Class = "NSMenuItem"; title = "Never"; ObjectID = "3TG-ts-gEq"; */
+"3TG-ts-gEq.title" = "Never";
+
+/* Class = "NSTextFieldCell"; title = "Hot Key"; ObjectID = "50p-6v-7SJ"; */
+"50p-6v-7SJ.title" = "Hot Key";
+
+/* Class = "NSMenuItem"; title = "Hourly"; ObjectID = "EE6-Ss-Gw7"; */
+"EE6-Ss-Gw7.title" = "Hourly";
+
+/* Class = "NSButtonCell"; title = "Launch at Login"; ObjectID = "LeK-Xa-5ej"; */
+"LeK-Xa-5ej.title" = "Launch at Login";
+
+/* Class = "NSMenuItem"; title = "Monthly"; ObjectID = "Lew-rN-naA"; */
+"Lew-rN-naA.title" = "Monthly";
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "QvC-M9-y7g"; */
+"QvC-M9-y7g.title" = "Preferences";
+
+/* Class = "NSTextFieldCell"; title = "Check Update"; ObjectID = "dWG-eZ-o58"; */
+"dWG-eZ-o58.title" = "Check Update";
+
+/* Class = "NSMenuItem"; title = "Daily"; ObjectID = "eEf-BQ-9PH"; */
+"eEf-BQ-9PH.title" = "Daily";
+
+/* Class = "NSMenuItem"; title = "Weekly"; ObjectID = "fcM-sZ-IDB"; */
+"fcM-sZ-IDB.title" = "Weekly";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "nxD-fc-hgi"; */
+"nxD-fc-hgi.title" = "Button";
