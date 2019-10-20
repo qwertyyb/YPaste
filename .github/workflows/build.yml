@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: ['published']
 
 jobs:
   build:
@@ -12,6 +11,12 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - name: update version
+      run: |
+        PRODUCT_SETTINGS_PATH=./YPaste/Info.plist
+        version=${github.ref#refs*tags/}
+        /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" $PRODUCT_SETTINGS_PATH
+
     - name: install depencies
       run: pod install
     - name: archive
