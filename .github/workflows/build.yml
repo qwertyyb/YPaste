@@ -14,7 +14,7 @@ jobs:
     - name: update version
       run: |
         PRODUCT_SETTINGS_PATH=./YPaste/Info.plist
-        version=${github.ref#refs*tags/}
+        version=$(git describe --tags `git rev-list --tags --max-count=1`)
         /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" $PRODUCT_SETTINGS_PATH
 
     - name: install depencies
