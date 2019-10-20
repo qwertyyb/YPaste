@@ -1,11 +1,11 @@
-name: CI
+name: release
 
 on:
   release:
     types: ['published']
 
 jobs:
-  build:
+  release:
 
     runs-on: macOS-latest
     
@@ -30,6 +30,13 @@ jobs:
         ditto -c -k --sequesterRsrc --keepParent apps/YPaste.app apps/YPaste.zip
         # rm -r ~/Library/Caches/Sparkle_generate_appcast/*
         ./bin/generate_appcast -s $sparkle_key ./apps/
+
+    - name: release
+      uses: AButler/upload-release-assets@v1.0
+      with:
+        files: 'apps/YPaste.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: install & config coscmd
       env:
         oss_appid: ${{ secrets.oss_appid }}
