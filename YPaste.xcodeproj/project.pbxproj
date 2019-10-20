@@ -19,7 +19,6 @@
 		67136E302359E04F00EFB448 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67136E322359E04F00EFB448 /* Preferences.xib */; };
 		67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3262B2359D86300248CDE /* PreferencesWindowController.swift */; };
 		67CFA4872351F4FB0058CF29 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 67CFA4862351F4FB0058CF29 /* README.md */; };
-		67F313B32355E819008BAEB7 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F313B22355E819008BAEB7 /* Key.swift */; };
 		89E4606D59274DC83FCCFEB8 /* libPods-YPasteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */; };
 		90659D2688F1F0D071B53FBE /* libPods-YPaste.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5798607827522D99BA309E4B /* libPods-YPaste.a */; };
 /* End PBXBuildFile section */
@@ -54,7 +53,6 @@
 		67136E372359E66C00EFB448 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.strings"; sourceTree = "<group>"; };
 		67C3262B2359D86300248CDE /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		67CFA4862351F4FB0058CF29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		67F313B22355E819008BAEB7 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		67F313B62355F66B008BAEB7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.release.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.release.xcconfig"; sourceTree = "<group>"; };
 		8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.debug.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */,
 				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
 				4596AE722323CF5800F63EBF /* SummaryTransformer.swift */,
-				67F313B22355E819008BAEB7 /* Key.swift */,
 				67136E322359E04F00EFB448 /* Preferences.xib */,
 				67C3262B2359D86300248CDE /* PreferencesWindowController.swift */,
 			);
@@ -353,7 +350,6 @@
 				4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */,
 				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
-				67F313B32355E819008BAEB7 /* Key.swift in Sources */,
 				67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */,
 				4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */,
 			);

@@ -7,17 +7,21 @@
 //
 
 import Foundation
-import Magnet
+import HotKey
 import Cocoa
 
 
 class YPaste {
     typealias historyChangeCallback = () -> Void
     private var hotkey: HotKey?
-    var hotKeyHandler: (() -> Void)?
+    var hotKeyHandler: (() -> Void)? {
+        didSet {
+            self.hotkey?.keyDownHandler = self.hotKeyHandler
+        }
+    }
     var hotKeyString: String? {
         didSet {
-            self.hotkey?.unregister()
+            UserDefaults.standard.set(hotKeyString, forKey: "hotKey")
             let keyCombo = getKeyComboFromString(hotKeyString!)
             registerHotKey(keyCombo: keyCombo)
         }
@@ -92,13 +96,11 @@ class YPaste {
             default: ()
             }
         }
-        return KeyCombo(keyCode: Int(key.carbonKeyCode), cocoaModifiers: modifiers)!
+        return KeyCombo(key: key, modifiers: modifiers)
     }
     func registerHotKey(keyCombo: KeyCombo) {
-        hotkey = HotKey(identifier: Bundle.main.bundleIdentifier!, keyCombo: keyCombo) { (hotkey) in
-            if self.hotKeyHandler != nil { self.hotKeyHandler!() }
-        }
-        hotkey?.register()
+        hotkey = HotKey(keyCombo: keyCombo)
+        hotkey?.keyDownHandler = self.hotKeyHandler
     }
     
     func checkAccess(prompt: Bool = false) -> Bool {

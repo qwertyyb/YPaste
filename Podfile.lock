@@ -1,21 +1,21 @@
 PODS:
-  - Magnet (2.3.1)
+  - HotKey (0.1.2)
   - Sparkle (1.22.0)
 
 DEPENDENCIES:
-  - Magnet
+  - HotKey
   - Sparkle
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Sparkle
   trunk:
-    - Magnet
+    - HotKey
 
 SPEC CHECKSUMS:
-  Magnet: f8dac2ffc845ffe68b2dd21c68a801f866f4a098
+  HotKey: ad59450195936c10992438c4210f673de5aee43e
   Sparkle: 593ac2e677c07bcb6c3b22d621240e7cbedaab57
 
-PODFILE CHECKSUM: 4933ce023d0ecba90ea4cc3f93c8d2e8efb0a4b3
+PODFILE CHECKSUM: b863336650077d91184235d1730e4258ff89affc
 
 COCOAPODS: 1.8.3
