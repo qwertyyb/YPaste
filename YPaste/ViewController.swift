@@ -9,7 +9,7 @@
 import Cocoa
 import HotKey
 
-class ViewController: NSViewController, NSTableViewDelegate {
+class ViewController: NSViewController {
     
     var selectedPasteItem: PasteItem?
     @objc let managedObjectContext: NSManagedObjectContext
@@ -19,6 +19,9 @@ class ViewController: NSViewController, NSTableViewDelegate {
         self.managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.viewContext
         super.init(coder: coder)
         ValueTransformer.setValueTransformer(SummaryTransformer(), forName: .summaryTransformerName)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil, queue: nil) { (notification) in
+            self.tableView.scrollRowToVisible(0)
+        }
     }
 
     @objc let sortByUpdateTime = [NSSortDescriptor(key: "updated_at", ascending: false)]
@@ -28,19 +31,16 @@ class ViewController: NSViewController, NSTableViewDelegate {
     }
     
     @IBOutlet weak var searchField: NSSearchField!
-    @IBOutlet var arrayController: NSArrayController!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet var arrayController: PasteItemsController!
     
     override func viewWillAppear() {
+        arrayController.resetPage()
         tableView.scrollRowToVisible(0)
         arrayController.setSelectionIndex(0)
     }
     
     override func viewDidDisappear() {
-        arrayController.filterPredicate = nil
+        arrayController.fetchPredicate = nil
     }
     
     @IBOutlet weak var tableView: NSTableView!
@@ -57,8 +57,8 @@ class ViewController: NSViewController, NSTableViewDelegate {
             app().app.paste(pasteItem: (pasteItems?.first)!)
         }
         if key == Key.downArrow {
-            
         }
     }
+
 }
 
