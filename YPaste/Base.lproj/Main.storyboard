@@ -98,7 +98,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                                 <connections>
-                                    <binding destination="YWq-Kq-AiD" name="predicate" keyPath="filterPredicate" id="wuC-PI-5el">
+                                    <binding destination="YWq-Kq-AiD" name="predicate" keyPath="fetchPredicate" id="oEg-4y-qRo">
                                         <dictionary key="options">
                                             <string key="NSDisplayName">predicate</string>
                                             <string key="NSPredicateFormat">self.value contains[cd] $value</string>
@@ -107,7 +107,7 @@
                                     <outlet property="nextKeyView" destination="R8r-dv-iTb" id="Scd-zc-cmO"/>
                                 </connections>
                             </searchField>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8r-dv-iTb">
+                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8r-dv-iTb" customClass="ScrollView" customModule="YPaste" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="BQc-S7-5MY">
@@ -237,7 +237,7 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="YWq-Kq-AiD">
+                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="YWq-Kq-AiD" customClass="PasteItemsController" customModule="YPaste" customModuleProvider="target">
                     <connections>
                         <binding destination="XfG-lQ-9wD" name="managedObjectContext" keyPath="managedObjectContext" id="Ujc-1J-jRW"/>
                         <binding destination="XfG-lQ-9wD" name="sortDescriptors" keyPath="sortByUpdateTime" id="zAk-2D-OPt"/>

@@ -22,7 +22,8 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
         }
         print("init")
         appDelegate.app.onHistoryChange = {
-            (self.contentViewController as! ViewController).arrayController.fetch(self)
+            let arrayController = (self.contentViewController as! ViewController).arrayController
+            arrayController?.resetPage()
         }
     }
     
@@ -37,7 +38,6 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "arrangedObjects" {
-            print("select index 0")
             (self.contentViewController as! ViewController).arrayController.setSelectionIndex(0)
         }
         
