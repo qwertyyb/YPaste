@@ -36,6 +36,7 @@ class PasteItemsController: NSArrayController {
         self.fetch(nil)
     }
     @objc func fetchNextPage() {
+        print(self.total)
         if (arrangedObjects as! [PasteItem]).count >= self.total {
             return
         }
@@ -48,5 +49,20 @@ class PasteItemsController: NSArrayController {
             self.resetPage()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil)
         }
+    }
+    
+    override func defaultFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = super.defaultFetchRequest()
+        if HotkeyHandler.shared.openType == .favorite {
+            var predicate = fetchRequest.predicate
+            if predicate != nil {
+                let origin = predicate!.predicateFormat
+                predicate = NSPredicate(format: "\(origin) and favorite = 1")
+            } else {
+                predicate = NSPredicate(format: "favorite = 1")
+            }
+            fetchRequest.predicate = predicate
+        }
+        return fetchRequest
     }
 }

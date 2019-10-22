@@ -19,6 +19,8 @@
 		67096210235EC02E009068B9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709620F235EC02E009068B9 /* TableView.swift */; };
 		67096213235EC0D7009068B9 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67096212235EC0D7009068B9 /* SearchField.swift */; };
 		67136E302359E04F00EFB448 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67136E322359E04F00EFB448 /* Preferences.xib */; };
+		67446E7A235F3EAE0050AB96 /* HotkeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */; };
+		67784476235F376800970786 /* PasteboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67784475235F376800970786 /* PasteboardHandler.swift */; };
 		67904080235D8C1D00B0C74E /* PasteItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6790407F235D8C1D00B0C74E /* PasteItemsController.swift */; };
 		67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3262B2359D86300248CDE /* PreferencesWindowController.swift */; };
 		67C640E2235DE41D00649FD3 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C640E1235DE41D00649FD3 /* ScrollView.swift */; };
@@ -53,13 +55,15 @@
 		4596AE702322B5CB00F63EBF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4596AE722323CF5800F63EBF /* SummaryTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTransformer.swift; sourceTree = "<group>"; };
 		5798607827522D99BA309E4B /* libPods-YPaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6709620F235EC02E009068B9 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableView.swift; path = MainWindow/TableView.swift; sourceTree = "<group>"; };
+		6709620F235EC02E009068B9 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		67096212235EC0D7009068B9 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		67136E332359E05E00EFB448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		67136E372359E66C00EFB448 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.strings"; sourceTree = "<group>"; };
+		67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyHandler.swift; sourceTree = "<group>"; };
+		67784475235F376800970786 /* PasteboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardHandler.swift; sourceTree = "<group>"; };
 		6790407F235D8C1D00B0C74E /* PasteItemsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteItemsController.swift; sourceTree = "<group>"; };
 		67C3262B2359D86300248CDE /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
-		67C640E1235DE41D00649FD3 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScrollView.swift; path = MainWindow/ScrollView.swift; sourceTree = "<group>"; };
+		67C640E1235DE41D00649FD3 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		67CFA4862351F4FB0058CF29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		67F313B62355F66B008BAEB7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.release.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,20 +130,17 @@
 			children = (
 				67096211235EC0B0009068B9 /* Window */,
 				4596AE47232025A700F63EBF /* AppDelegate.swift */,
-				4596AE49232025A700F63EBF /* ViewController.swift */,
 				4596AE4E232025A800F63EBF /* Assets.xcassets */,
 				4596AE50232025A800F63EBF /* Main.storyboard */,
 				4596AE6023216A8500F63EBF /* YPaste.swift */,
 				4596AE53232025A800F63EBF /* Info.plist */,
 				4596AE54232025A800F63EBF /* YPaste.entitlements */,
 				4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */,
-				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
 				4596AE722323CF5800F63EBF /* SummaryTransformer.swift */,
 				67136E322359E04F00EFB448 /* Preferences.xib */,
 				67C3262B2359D86300248CDE /* PreferencesWindowController.swift */,
-				6790407F235D8C1D00B0C74E /* PasteItemsController.swift */,
-				67C640E1235DE41D00649FD3 /* ScrollView.swift */,
-				6709620F235EC02E009068B9 /* TableView.swift */,
+				67784475235F376800970786 /* PasteboardHandler.swift */,
+				67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */,
 			);
 			path = YPaste;
 			sourceTree = "<group>";
@@ -156,7 +157,12 @@
 		67096211235EC0B0009068B9 /* Window */ = {
 			isa = PBXGroup;
 			children = (
+				6709620F235EC02E009068B9 /* TableView.swift */,
+				67C640E1235DE41D00649FD3 /* ScrollView.swift */,
 				67096212235EC0D7009068B9 /* SearchField.swift */,
+				4596AE49232025A700F63EBF /* ViewController.swift */,
+				6790407F235D8C1D00B0C74E /* PasteItemsController.swift */,
+				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -366,11 +372,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				67904080235D8C1D00B0C74E /* PasteItemsController.swift in Sources */,
+				67784476235F376800970786 /* PasteboardHandler.swift in Sources */,
 				67096210235EC02E009068B9 /* TableView.swift in Sources */,
 				4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */,
 				4596AE6123216A8500F63EBF /* YPaste.swift in Sources */,
 				67096213235EC0D7009068B9 /* SearchField.swift in Sources */,
 				4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */,
+				67446E7A235F3EAE0050AB96 /* HotkeyHandler.swift in Sources */,
 				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
 				67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */,

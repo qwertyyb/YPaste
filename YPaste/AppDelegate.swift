@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem?.menu = menu
         
         //  check permission
-        let _ = app.checkAccess(prompt: true)
+        let _ = PasteboardHandler.shared.checkAccess(prompt: true)
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
             app.autoLaunch(active: true)
