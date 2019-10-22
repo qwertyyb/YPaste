@@ -29,6 +29,7 @@ class PasteboardHandler {
             return
         }
         if let curItem = pasteboard.string(forType: NSPasteboard.PasteboardType.string) {
+            if curItem == lastItem { return }
             let isFavorite = self.isFavorite(string: curItem)
             lastItem = curItem
             lastTime = Date()

@@ -52,7 +52,7 @@ class ViewController: NSViewController {
         if (pasteItems == nil) { return }
         PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
     }
-    override func keyDown(with event: NSEvent) {
+    override func keyUp(with event: NSEvent) {
         let key = Key(carbonKeyCode: UInt32(event.keyCode))
         if key == Key.return {
             let pasteItems = arrayController.selectedObjects as? [PasteItem]

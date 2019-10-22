@@ -18,11 +18,6 @@ enum OpenType {
 class HotkeyHandler {
     private var openHistoryHotkey: HotKey?
     private var openFavoriteHotkey: HotKey?
-    var hotKeyString: String? {
-        didSet {
-//            register()
-        }
-    }
     
     
     init() {
@@ -57,13 +52,13 @@ class HotkeyHandler {
         return KeyCombo(key: key, modifiers: modifiers)
     }
     func register() {
-        hotKeyString = UserDefaults.standard.string(forKey: "hotKey")
+        let hotKeyString = UserDefaults.standard.string(forKey: "hotKey")
         let keyCombo = getKeyComboFromString(hotKeyString!)
         openHistoryHotkey = HotKey(keyCombo: keyCombo, keyDownHandler: {
             self.openType = .history
             NotificationCenter.default.post(name: HotkeyHandler.openHistoryNotification, object: nil)
         }, keyUpHandler: nil)
-        openFavoriteHotkey = HotKey(key: Key.v, modifiers: NSEvent.ModifierFlags.init(arrayLiteral: .control, .command), keyDownHandler: {
+        openFavoriteHotkey = HotKey(key: Key.f, modifiers: NSEvent.ModifierFlags.init(arrayLiteral: .command, .shift), keyDownHandler: {
             self.openType = .favorite
             NotificationCenter.default.post(name: HotkeyHandler.openFavoriteNotification, object: nil)
         }, keyUpHandler: nil)

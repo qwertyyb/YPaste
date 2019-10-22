@@ -8,21 +8,25 @@
 
 import Cocoa
 
-class PreferencesWindowController: NSWindowController {
+class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 
     override func windowDidLoad() {
         super.windowDidLoad()
+        self.window?.delegate = self
     
-        
-        let symbolString = convertKeyNameToSymbol(HotkeyHandler.shared.hotKeyString!)
+        let symbolString = convertKeyNameToSymbol(UserDefaults.standard.string(forKey: "hotKey")!)
         hotKey.title = symbolString
+        clearKeyEvent()
     }
     
     override func showWindow(_ sender: Any?) {
-        NSApp.activate(ignoringOtherApps: true)
         super.showWindow(sender)
+        NSApp.activate(ignoringOtherApps: true)
+        self.window?.delegate = self
     }
-    
+    func windowWillClose(_ notification: Notification) {
+        clearKeyEvent()
+    }
     
     private var listenKeyActivate = false
     private var eventHandler: Any?
@@ -90,7 +94,8 @@ class PreferencesWindowController: NSWindowController {
     private func handleKeyEvent(with event: NSEvent) -> NSEvent? {
         if event.modifierFlags.description == "" { return event }
         hotKey.title = event.modifierFlags.description + event.charactersIgnoringModifiers!.uppercased()
-        HotkeyHandler.shared.hotKeyString = convertToKeyName(hotKey.title)
+        UserDefaults.standard.setValue(convertToKeyName(hotKey.title), forKey: "hotKey")
+        HotkeyHandler.shared.register()
         clearKeyEvent()
         return event
     }
