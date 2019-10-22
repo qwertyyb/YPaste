@@ -12,19 +12,14 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        appDelegate.app.hotKeyHandler = {
-            self.window?.setFrameTopLeftPoint(NSEvent.mouseLocation)
-            self.window?.makeKeyAndOrderFront(self)
-            NSApp.activate(ignoringOtherApps: true)
-            (self.window?.delegate = self)!
-        }
-        print("init")
-        appDelegate.app.onHistoryChange = {
-            let arrayController = (self.contentViewController as! ViewController).arrayController
-            arrayController?.resetPage()
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(openWindow), name: HotkeyHandler.openFavoriteNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(openWindow), name: HotkeyHandler.openHistoryNotification, object: nil)
+    }
+    
+    @objc func openWindow() {
+        self.window?.setFrameTopLeftPoint(NSEvent.mouseLocation)
+        self.window?.makeKeyAndOrderFront(self)
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     override func windowDidLoad() {

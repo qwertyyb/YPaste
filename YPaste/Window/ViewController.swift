@@ -22,6 +22,9 @@ class ViewController: NSViewController {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil, queue: nil) { (notification) in
             self.tableView.scrollRowToVisible(0)
         }
+        NotificationCenter.default.addObserver(forName: PasteboardHandler.changeNotification, object: nil, queue: nil) { (notification) in
+            self.arrayController.resetPage()
+        }
     }
 
     @objc let sortByUpdateTime = [NSSortDescriptor(key: "updated_at", ascending: false)]
@@ -47,14 +50,14 @@ class ViewController: NSViewController {
     @IBAction func tableViewClicked(_ sender: Any) {
         let pasteItems = arrayController.selectedObjects as? [PasteItem]
         if (pasteItems == nil) { return }
-        app().app.paste(pasteItem: (pasteItems?.first)!)
+        PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
     }
     override func keyDown(with event: NSEvent) {
         let key = Key(carbonKeyCode: UInt32(event.keyCode))
         if key == Key.return {
             let pasteItems = arrayController.selectedObjects as? [PasteItem]
             if (pasteItems == nil) { return }
-            app().app.paste(pasteItem: (pasteItems?.first)!)
+            PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
         }
         if key == Key.downArrow {
         }

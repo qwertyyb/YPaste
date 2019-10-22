@@ -14,7 +14,7 @@ class PreferencesWindowController: NSWindowController {
         super.windowDidLoad()
     
         
-        let symbolString = convertKeyNameToSymbol(YPaste.shared.hotKeyString!)
+        let symbolString = convertKeyNameToSymbol(HotkeyHandler.shared.hotKeyString!)
         hotKey.title = symbolString
     }
     
@@ -90,7 +90,7 @@ class PreferencesWindowController: NSWindowController {
     private func handleKeyEvent(with event: NSEvent) -> NSEvent? {
         if event.modifierFlags.description == "" { return event }
         hotKey.title = event.modifierFlags.description + event.charactersIgnoringModifiers!.uppercased()
-        YPaste.shared.hotKeyString = convertToKeyName(hotKey.title)
+        HotkeyHandler.shared.hotKeyString = convertToKeyName(hotKey.title)
         clearKeyEvent()
         return event
     }

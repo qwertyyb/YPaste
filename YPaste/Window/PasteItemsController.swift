@@ -27,8 +27,18 @@ class PasteItemsController: NSArrayController {
     }
     
     override func fetch(with fetchRequest: NSFetchRequest<NSFetchRequestResult>?, merge: Bool) throws {
-        fetchRequest?.fetchOffset = 0
-        fetchRequest?.fetchLimit = page * 30
+        if fetchRequest != nil {
+            fetchRequest?.fetchOffset = 0
+            fetchRequest?.fetchLimit = page * 30
+            var predicate = fetchRequest?.predicate
+            if predicate != nil {
+                let origin = predicate!.predicateFormat
+                predicate = NSPredicate(format: "\(origin) and favorite = \(NSNumber.init(booleanLiteral: HotkeyHandler.shared.openType == .favorite))")
+            } else {
+                predicate = NSPredicate(format: "favorite = \(NSNumber.init(booleanLiteral: HotkeyHandler.shared.openType == .favorite))")
+            }
+            fetchRequest?.predicate = predicate
+        }
         try! super.fetch(with: fetchRequest, merge: merge)
     }
     func resetPage () {
