@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var app: YPaste = YPaste.shared
 
     private var statusItem :NSStatusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-    private var preferencesWindowController = PreferencesWindowController.init(windowNibName: "Preferences")
+    let preferencesWindowController = PreferencesWindowController.init(windowNibName: NSNib.Name(NSString("Preferences")))
     
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -68,9 +68,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     @IBAction func openPreferences(_ sender: AnyObject?) {
-//        preferencesWindowController.window.orderFront(self)
-//        preferencesWindowController.window.level = .popUpMenu
+//        preferencesWindowController = PreferencesWindowController.init(windowNibName: "Preferences")
+//        preferencesWindowController.window?.orderFront(self)
+//        preferencesWindowController.window?.level = .popUpMenu
         preferencesWindowController.showWindow(self)
+        print(preferencesWindowController.windowNibName)
     }
     
     // MARK: - Core Data Saving and Undo support

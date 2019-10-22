@@ -21,6 +21,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
         self.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
         self.window?.level = NSWindow.Level.popUpMenu
+        self.window?.title = HotkeyHandler.shared.openType == .favorite ? "YPaste - 收藏" : "YPaste - 历史"
     }
 
 }
