@@ -27,18 +27,8 @@ class PasteItemsController: NSArrayController {
     }
     
     override func fetch(with fetchRequest: NSFetchRequest<NSFetchRequestResult>?, merge: Bool) throws {
-        if fetchRequest != nil {
-            fetchRequest?.fetchOffset = 0
-            fetchRequest?.fetchLimit = page * 30
-            var predicate = fetchRequest?.predicate
-            if predicate != nil {
-                let origin = predicate!.predicateFormat
-                predicate = NSPredicate(format: "\(origin) and favorite = \(NSNumber.init(booleanLiteral: HotkeyHandler.shared.openType == .favorite))")
-            } else {
-                predicate = NSPredicate(format: "favorite = \(NSNumber.init(booleanLiteral: HotkeyHandler.shared.openType == .favorite))")
-            }
-            fetchRequest?.predicate = predicate
-        }
+        fetchRequest?.fetchOffset = 0
+        fetchRequest?.fetchLimit = page * 30
         try! super.fetch(with: fetchRequest, merge: merge)
     }
     func resetPage () {
@@ -46,6 +36,7 @@ class PasteItemsController: NSArrayController {
         self.fetch(nil)
     }
     @objc func fetchNextPage() {
+        print(self.total)
         if (arrangedObjects as! [PasteItem]).count >= self.total {
             return
         }
@@ -58,5 +49,20 @@ class PasteItemsController: NSArrayController {
             self.resetPage()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil)
         }
+    }
+    
+    override func defaultFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = super.defaultFetchRequest()
+        if HotkeyHandler.shared.openType == .favorite {
+            var predicate = fetchRequest.predicate
+            if predicate != nil {
+                let origin = predicate!.predicateFormat
+                predicate = NSPredicate(format: "\(origin) and favorite = 1")
+            } else {
+                predicate = NSPredicate(format: "favorite = 1")
+            }
+            fetchRequest.predicate = predicate
+        }
+        return fetchRequest
     }
 }
