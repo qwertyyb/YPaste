@@ -41,10 +41,12 @@ class TableView: NSTableView {
 
         // Drawing code here.
     }
-    
+    static let rowRemovedNotification = Notification.Name("rowRemovedNotification")
     override func keyDown(with event: NSEvent) {
         if self.selectedRow == 0 && event.keyCode == Key.upArrow.carbonKeyCode {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TableView-ReachTop"), object: nil, userInfo: nil)
+        } else if event.keyCode == Key.delete.carbonKeyCode {
+            NotificationCenter.default.post(name: TableView.rowRemovedNotification, object: nil)
         }
         super.keyDown(with: event)
     }

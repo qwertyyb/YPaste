@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var app: YPaste = YPaste.shared
 
     private var statusItem :NSStatusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-    private var preferencesWindowController = PreferencesWindowController.init(windowNibName: "Preferences")
+    let preferencesWindowController = PreferencesWindowController.init(windowNibName: NSNib.Name(NSString("Preferences")))
     
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem?.menu = menu
         
         //  check permission
-        let _ = app.checkAccess(prompt: true)
+        let _ = PasteboardHandler.shared.checkAccess(prompt: true)
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
             app.autoLaunch(active: true)
@@ -68,8 +68,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     @IBAction func openPreferences(_ sender: AnyObject?) {
-//        preferencesWindowController.window.orderFront(self)
-//        preferencesWindowController.window.level = .popUpMenu
         preferencesWindowController.showWindow(self)
     }
     

@@ -14,6 +14,7 @@ class ViewController: NSViewController {
     var selectedPasteItem: PasteItem?
     @objc let managedObjectContext: NSManagedObjectContext
     override var acceptsFirstResponder: Bool { return true }
+
     
     required init?(coder: NSCoder) {
         self.managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.viewContext
@@ -21,6 +22,9 @@ class ViewController: NSViewController {
         ValueTransformer.setValueTransformer(SummaryTransformer(), forName: .summaryTransformerName)
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil, queue: nil) { (notification) in
             self.tableView.scrollRowToVisible(0)
+        }
+        NotificationCenter.default.addObserver(forName: PasteboardHandler.changeNotification, object: nil, queue: nil) { (notification) in
+            self.arrayController.resetPage()
         }
     }
 
@@ -47,14 +51,14 @@ class ViewController: NSViewController {
     @IBAction func tableViewClicked(_ sender: Any) {
         let pasteItems = arrayController.selectedObjects as? [PasteItem]
         if (pasteItems == nil) { return }
-        app().app.paste(pasteItem: (pasteItems?.first)!)
+        PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
     }
-    override func keyDown(with event: NSEvent) {
+    override func keyUp(with event: NSEvent) {
         let key = Key(carbonKeyCode: UInt32(event.keyCode))
         if key == Key.return {
             let pasteItems = arrayController.selectedObjects as? [PasteItem]
             if (pasteItems == nil) { return }
-            app().app.paste(pasteItem: (pasteItems?.first)!)
+            PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
         }
         if key == Key.downArrow {
         }

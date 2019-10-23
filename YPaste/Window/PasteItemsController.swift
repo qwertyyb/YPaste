@@ -17,6 +17,7 @@ class PasteItemsController: NSArrayController {
         super.init(coder: coder)
         NotificationCenter.default.addObserver(self, selector: #selector(fetchNextPage), name: Notification.Name(rawValue: "scrollerview-ToReachBottom"), object: nil)
         self.addObserver(self, forKeyPath: "fetchPredicate", options: [.new], context: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(remove(_:)), name: TableView.rowRemovedNotification, object: nil)
     }
     
     var page = 1
@@ -36,6 +37,7 @@ class PasteItemsController: NSArrayController {
         self.fetch(nil)
     }
     @objc func fetchNextPage() {
+        print(self.total)
         if (arrangedObjects as! [PasteItem]).count >= self.total {
             return
         }
@@ -47,6 +49,31 @@ class PasteItemsController: NSArrayController {
         if (keyPath == "fetchPredicate") {
             self.resetPage()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil)
+        }
+    }
+    
+    override func defaultFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = super.defaultFetchRequest()
+        if HotkeyHandler.shared.openType == .favorite {
+            var predicate = fetchRequest.predicate
+            if predicate != nil {
+                let origin = predicate!.predicateFormat
+                predicate = NSPredicate(format: "\(origin) and favorite = 1")
+            } else {
+                predicate = NSPredicate(format: "favorite = 1")
+            }
+            fetchRequest.predicate = predicate
+        }
+        return fetchRequest
+    }
+    override func remove(_ sender: Any?) {
+        let selectedIndex = self.selectionIndex
+        if selectedObjects != nil  && selectedObjects!.count > 0 {
+            let pasteItems = selectedObjects as! [PasteItem]
+            self.managedObjectContext?.mergePolicy = NSMergePolicy.overwrite
+            self.managedObjectContext?.delete(pasteItems[0])
+            try! self.managedObjectContext?.save()
+            self.setSelectionIndex(selectedIndex)
         }
     }
 }
