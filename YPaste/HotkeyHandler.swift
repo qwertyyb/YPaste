@@ -58,6 +58,9 @@ class HotkeyHandler {
             self.openType = .history
             NotificationCenter.default.post(name: HotkeyHandler.openHistoryNotification, object: nil)
         }, keyUpHandler: nil)
+        /* @todo 自定义打开收藏快捷键
+         * @body 首选项中添加收藏快捷键自定义设置
+         */
         openFavoriteHotkey = HotKey(key: Key.f, modifiers: NSEvent.ModifierFlags.init(arrayLiteral: .command, .shift), keyDownHandler: {
             self.openType = .favorite
             NotificationCenter.default.post(name: HotkeyHandler.openFavoriteNotification, object: nil)
