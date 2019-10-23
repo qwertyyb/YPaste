@@ -68,11 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     @IBAction func openPreferences(_ sender: AnyObject?) {
-//        preferencesWindowController = PreferencesWindowController.init(windowNibName: "Preferences")
-//        preferencesWindowController.window?.orderFront(self)
-//        preferencesWindowController.window?.level = .popUpMenu
         preferencesWindowController.showWindow(self)
-        print(preferencesWindowController.windowNibName)
     }
     
     // MARK: - Core Data Saving and Undo support

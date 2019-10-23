@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController" customModule="YPaste" customModuleProvider="target">
             <connections>
+                <outlet property="favoriteHotkeyButton" destination="BdC-eq-jkS" id="ywq-ee-gRK"/>
                 <outlet property="hotKey" destination="fpl-NK-Zox" id="Gts-4U-Rv4"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="kDe-J4-Gei"/>
             </connections>
@@ -134,6 +135,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="favoriteHotKeyClicked:" target="-2" id="cDr-WC-Y3J"/>
+                                </connections>
                             </button>
                         </subviews>
                         <visibilityPriorities>

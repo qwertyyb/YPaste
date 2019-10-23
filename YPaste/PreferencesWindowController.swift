@@ -8,14 +8,16 @@
 
 import Cocoa
 
+enum HotKeyType {
+    case history
+    case favorite
+}
+
 class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 
     override func windowDidLoad() {
         super.windowDidLoad()
         self.window?.delegate = self
-    
-        let symbolString = convertKeyNameToSymbol(UserDefaults.standard.string(forKey: "hotKey")!)
-        hotKey.title = symbolString
         clearKeyEvent()
     }
     
@@ -78,6 +80,9 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     }
 
     @IBOutlet weak var hotKey: NSButton!
+    @IBOutlet weak var favoriteHotkeyButton: NSButton!
+    
+    private var curHotKey = HotKeyType.history
     @IBAction func onLaunchAtLogin(_ sender: NSButton) {
         let delegate = NSApp.delegate as! AppDelegate
         if sender.state == .on {
@@ -89,12 +94,25 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     @IBAction func hotKeyClicked(_ sender: NSButton) {
         clearKeyEvent()
         hotKey.title = "输入快捷键"
+        curHotKey = .history
+        eventHandler = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: self.handleKeyEvent)
+    }
+    @IBAction func favoriteHotKeyClicked(_ sender: NSButton) {
+        clearKeyEvent()
+        sender.title = "输入快捷键"
+        curHotKey = .favorite
         eventHandler = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: self.handleKeyEvent)
     }
     private func handleKeyEvent(with event: NSEvent) -> NSEvent? {
         if event.modifierFlags.description == "" { return event }
-        hotKey.title = event.modifierFlags.description + event.charactersIgnoringModifiers!.uppercased()
-        UserDefaults.standard.setValue(convertToKeyName(hotKey.title), forKey: "hotKey")
+        let keyName = event.modifierFlags.description + event.charactersIgnoringModifiers!.uppercased()
+        if curHotKey == .history {
+            hotKey.title = keyName
+            UserDefaults.standard.setValue(convertToKeyName(keyName), forKey: "hotKey")
+        } else if curHotKey == .favorite {
+            favoriteHotkeyButton.title = keyName
+            UserDefaults.standard.setValue(convertToKeyName(keyName), forKey: "favoriteHotKey")
+        }
         HotkeyHandler.shared.register()
         clearKeyEvent()
         return event
@@ -104,5 +122,7 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
             NSEvent.removeMonitor(eventHandler!)
             eventHandler = nil
         }
+        hotKey.title = convertKeyNameToSymbol(UserDefaults.standard.string(forKey: "hotKey")!)
+        favoriteHotkeyButton.title = convertKeyNameToSymbol(UserDefaults.standard.string(forKey: "favoriteHotKey")!)
     }
 }

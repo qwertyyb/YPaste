@@ -22,6 +22,7 @@ class HotkeyHandler {
     
     init() {
         UserDefaults.standard.register(defaults: ["hotKey": "command+shift+v"])
+        UserDefaults.standard.register(defaults: ["favoriteHotKey": "command+shift+f"])
     }
     
     static let openHistoryNotification = Notification.Name("openHistoryNotification")
@@ -52,16 +53,16 @@ class HotkeyHandler {
         return KeyCombo(key: key, modifiers: modifiers)
     }
     func register() {
-        let hotKeyString = UserDefaults.standard.string(forKey: "hotKey")
-        let keyCombo = getKeyComboFromString(hotKeyString!)
+        var hotKeyString = UserDefaults.standard.string(forKey: "hotKey")
+        var keyCombo = getKeyComboFromString(hotKeyString!)
         openHistoryHotkey = HotKey(keyCombo: keyCombo, keyDownHandler: {
             self.openType = .history
             NotificationCenter.default.post(name: HotkeyHandler.openHistoryNotification, object: nil)
         }, keyUpHandler: nil)
-        /* @todo 自定义打开收藏快捷键
-         * @body 首选项中添加收藏快捷键自定义设置
-         */
-        openFavoriteHotkey = HotKey(key: Key.f, modifiers: NSEvent.ModifierFlags.init(arrayLiteral: .command, .shift), keyDownHandler: {
+        
+        hotKeyString = UserDefaults.standard.string(forKey: "favoriteHotKey")
+        keyCombo = getKeyComboFromString(hotKeyString!)
+        openFavoriteHotkey = HotKey(keyCombo: keyCombo, keyDownHandler: {
             self.openType = .favorite
             NotificationCenter.default.post(name: HotkeyHandler.openFavoriteNotification, object: nil)
         }, keyUpHandler: nil)
