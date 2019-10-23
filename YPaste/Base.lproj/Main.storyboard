@@ -237,7 +237,7 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="YWq-Kq-AiD" customClass="PasteItemsController" customModule="YPaste" customModuleProvider="target">
+                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" editable="NO" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="YWq-Kq-AiD" customClass="PasteItemsController" customModule="YPaste" customModuleProvider="target">
                     <connections>
                         <binding destination="XfG-lQ-9wD" name="managedObjectContext" keyPath="managedObjectContext" id="Ujc-1J-jRW"/>
                         <binding destination="XfG-lQ-9wD" name="sortDescriptors" keyPath="sortByUpdateTime" id="zAk-2D-OPt"/>

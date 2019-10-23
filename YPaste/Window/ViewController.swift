@@ -14,6 +14,7 @@ class ViewController: NSViewController {
     var selectedPasteItem: PasteItem?
     @objc let managedObjectContext: NSManagedObjectContext
     override var acceptsFirstResponder: Bool { return true }
+
     
     required init?(coder: NSCoder) {
         self.managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.viewContext
