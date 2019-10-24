@@ -29,11 +29,10 @@ class PasteboardHandler {
             return
         }
         if let curItem = pasteboard.string(forType: NSPasteboard.PasteboardType.string) {
-            if curItem == lastItem { return }
             let isFavorite = self.isFavorite(string: curItem)
             lastItem = curItem
             lastTime = Date()
-            let predicate = NSPredicate(format: "value = %@ and type = %@ and favorite = %@", curItem, "text", NSNumber.init(booleanLiteral: isFavorite))
+            let predicate = NSPredicate(format: "value = %@ and type = %@", curItem, "text")
             let saveContext = (NSApp.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
             let fetchRequest: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
             fetchRequest.predicate = predicate
@@ -48,8 +47,9 @@ class PasteboardHandler {
                 pasteItem.updated_at = Date()
                 try? saveContext.save()
                 NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItem])
-            } else if !isFavorite {
+            } else {
                 pasteItems?[0].updated_at = Date()
+                pasteItems?[0].favorite = isFavorite
                 NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItems![0]])
                 try? saveContext.save()
             }
