@@ -21,6 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem?.button!.image = NSImage(named: "statusImage")
         statusItem?.menu = menu
         
+        ValueTransformer.setValueTransformer(SummaryTransformer(), forName: .summaryTransformerName)
+        ValueTransformer.setValueTransformer(TimeTransformer(), forName: .timeTransformerName)
+        
         //  check permission
         let _ = PasteboardHandler.shared.checkAccess(prompt: true)
         

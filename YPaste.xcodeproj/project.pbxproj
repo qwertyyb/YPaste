@@ -15,7 +15,7 @@
 		4596AE6123216A8500F63EBF /* YPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6023216A8500F63EBF /* YPaste.swift */; };
 		4596AE6923216E6C00F63EBF /* YPasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6823216E6C00F63EBF /* YPasteTests.swift */; };
 		4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE702322B5CB00F63EBF /* MainWindowController.swift */; };
-		4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE722323CF5800F63EBF /* SummaryTransformer.swift */; };
+		4596AE732323CF5800F63EBF /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE722323CF5800F63EBF /* Transformers.swift */; };
 		67096210235EC02E009068B9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709620F235EC02E009068B9 /* TableView.swift */; };
 		67096213235EC0D7009068B9 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67096212235EC0D7009068B9 /* SearchField.swift */; };
 		67136E302359E04F00EFB448 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67136E322359E04F00EFB448 /* Preferences.xib */; };
@@ -53,7 +53,7 @@
 		4596AE6823216E6C00F63EBF /* YPasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPasteTests.swift; sourceTree = "<group>"; };
 		4596AE6A23216E6C00F63EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4596AE702322B5CB00F63EBF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		4596AE722323CF5800F63EBF /* SummaryTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTransformer.swift; sourceTree = "<group>"; };
+		4596AE722323CF5800F63EBF /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		5798607827522D99BA309E4B /* libPods-YPaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6709620F235EC02E009068B9 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		67096212235EC0D7009068B9 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
@@ -136,7 +136,6 @@
 				4596AE53232025A800F63EBF /* Info.plist */,
 				4596AE54232025A800F63EBF /* YPaste.entitlements */,
 				4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */,
-				4596AE722323CF5800F63EBF /* SummaryTransformer.swift */,
 				67136E322359E04F00EFB448 /* Preferences.xib */,
 				67C3262B2359D86300248CDE /* PreferencesWindowController.swift */,
 				67784475235F376800970786 /* PasteboardHandler.swift */,
@@ -163,6 +162,7 @@
 				4596AE49232025A700F63EBF /* ViewController.swift */,
 				6790407F235D8C1D00B0C74E /* PasteItemsController.swift */,
 				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
+				4596AE722323CF5800F63EBF /* Transformers.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -377,7 +377,7 @@
 				4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */,
 				4596AE6123216A8500F63EBF /* YPaste.swift in Sources */,
 				67096213235EC0D7009068B9 /* SearchField.swift in Sources */,
-				4596AE732323CF5800F63EBF /* SummaryTransformer.swift in Sources */,
+				4596AE732323CF5800F63EBF /* Transformers.swift in Sources */,
 				67446E7A235F3EAE0050AB96 /* HotkeyHandler.swift in Sources */,
 				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
