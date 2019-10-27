@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -114,8 +114,8 @@
                                     <rect key="frame" x="1" y="1" width="478" height="248"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="IWK-h8-GX2" customClass="TableView" customModule="YPaste" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="478" height="248"/>
+                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="IWK-h8-GX2" customClass="TableView" customModule="YPaste" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="479" height="248"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -168,7 +168,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="85" minWidth="40" maxWidth="1000" id="yX1-kQ-pUb">
+                                                <tableColumn width="86" minWidth="40" maxWidth="1000" id="yX1-kQ-pUb">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -182,17 +182,21 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="vFT-GW-ujY">
-                                                            <rect key="frame" x="391" y="1" width="85" height="17"/>
+                                                            <rect key="frame" x="391" y="1" width="86" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ew2-hw-lNE">
-                                                                    <rect key="frame" x="0.0" y="1" width="85" height="16"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" title="type" id="dSS-b1-vUc">
+                                                                    <rect key="frame" x="0.0" y="1" width="86" height="16"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" title="Time" id="dSS-b1-vUc">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         <connections>
-                                                                            <binding destination="vFT-GW-ujY" name="value" keyPath="objectValue.type" id="Nnj-fO-rQI"/>
+                                                                            <binding destination="vFT-GW-ujY" name="value" keyPath="objectValue.updated_at" id="rMS-Qg-xZy">
+                                                                                <dictionary key="options">
+                                                                                    <string key="NSValueTransformerName">TimeTransformer</string>
+                                                                                </dictionary>
+                                                                            </binding>
                                                                         </connections>
                                                                     </textFieldCell>
                                                                 </textField>
@@ -219,7 +223,7 @@
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GXx-bY-2zG">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GXx-bY-2zG">
                                     <rect key="frame" x="1" y="233" width="478" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

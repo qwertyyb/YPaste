@@ -19,7 +19,6 @@ class ViewController: NSViewController {
     required init?(coder: NSCoder) {
         self.managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.viewContext
         super.init(coder: coder)
-        ValueTransformer.setValueTransformer(SummaryTransformer(), forName: .summaryTransformerName)
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil, queue: nil) { (notification) in
             self.tableView.scrollRowToVisible(0)
         }
