@@ -1,0 +1,12 @@
+
+/* Cancel button title */
+"Cancel" = "取消";
+
+/* Quit without saves error question message */
+"Could not save changes while quitting. Quit anyway?" = "";
+
+/* Quit anyway button title */
+"Quit anyway" = "强制退出";
+
+/* Quit without saves error question info */
+"Quitting now will lose any changes you have made since the last successful save" = "";

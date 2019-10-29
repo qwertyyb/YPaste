@@ -3,22 +3,13 @@
 "3TG-ts-gEq.title" = "从不";
 
 /* Class = "NSTextFieldCell"; title = "Hot Key"; ObjectID = "50p-6v-7SJ"; */
-"50p-6v-7SJ.title" = "快捷键";
-
-/* Class = "NSMenuItem"; title = "Hourly"; ObjectID = "EE6-Ss-Gw7"; */
-"EE6-Ss-Gw7.title" = "每小时";
-
-/* Class = "NSButtonCell"; title = "Launch at Login"; ObjectID = "LeK-Xa-5ej"; */
-"LeK-Xa-5ej.title" = "开机启动";
-
-/* Class = "NSMenuItem"; title = "Monthly"; ObjectID = "Lew-rN-naA"; */
-"Lew-rN-naA.title" = "每月";
-
-/* Class = "NSWindow"; title = "Preferences"; ObjectID = "QvC-M9-y7g"; */
-"QvC-M9-y7g.title" = "首选项";
+"50p-6v-7SJ.title" = "打开历史";
 
 /* Class = "NSTextFieldCell"; title = "Check Update"; ObjectID = "dWG-eZ-o58"; */
 "dWG-eZ-o58.title" = "检查更新";
+
+/* Class = "NSMenuItem"; title = "Hourly"; ObjectID = "EE6-Ss-Gw7"; */
+"EE6-Ss-Gw7.title" = "每小时";
 
 /* Class = "NSMenuItem"; title = "Daily"; ObjectID = "eEf-BQ-9PH"; */
 "eEf-BQ-9PH.title" = "每天";
@@ -26,5 +17,20 @@
 /* Class = "NSMenuItem"; title = "Weekly"; ObjectID = "fcM-sZ-IDB"; */
 "fcM-sZ-IDB.title" = "每周";
 
+/* Class = "NSButtonCell"; title = "Launch at Login"; ObjectID = "LeK-Xa-5ej"; */
+"LeK-Xa-5ej.title" = "开机启动";
+
+/* Class = "NSMenuItem"; title = "Monthly"; ObjectID = "Lew-rN-naA"; */
+"Lew-rN-naA.title" = "每月";
+
+/* Class = "NSTextFieldCell"; title = "Favorite Hot Key"; ObjectID = "Md5-LI-tBD"; */
+"Md5-LI-tBD.title" = "打开收藏";
+
 /* Class = "NSButtonCell"; title = "Button"; ObjectID = "nxD-fc-hgi"; */
 "nxD-fc-hgi.title" = "button";
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "QvC-M9-y7g"; */
+"QvC-M9-y7g.title" = "首选项";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "be5-qF-ZfL"; */
+"be5-qF-ZfL.title" = "";

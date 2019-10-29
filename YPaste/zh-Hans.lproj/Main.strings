@@ -17,20 +17,14 @@
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
 "BOF-NM-1cW.title" = "首选项";
 
+/* Class = "NSTextFieldCell"; title = "Time"; ObjectID = "dSS-b1-vUc"; */
+"dSS-b1-vUc.title" = "类型";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "I37-gj-KWi"; */
 "I37-gj-KWi.title" = "Text Cell";
 
 /* Class = "NSWindow"; title = "YPaste"; ObjectID = "IQv-IB-iLA"; */
 "IQv-IB-iLA.title" = "YPaste";
-
-/* Class = "NSTextFieldCell"; title = "type"; ObjectID = "dSS-b1-vUc"; */
-"dSS-b1-vUc.title" = "类型";
-
-/* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
-"hz9-B4-Xy5.title" = "服务";
-
-/* Class = "NSMenuItem"; title = "Daily"; ObjectID = "mBE-Ru-XPc"; */
-"mBE-Ru-XPc.title" = "每天 ";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "sih-Tj-WrW"; */
 "sih-Tj-WrW.title" = "Table View Cell";
@@ -38,9 +32,8 @@
 /* Class = "NSMenu"; title = "YPaste"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "YPaste";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayName = "predicate"; ObjectID = "wuC-PI-5el"; */
-"wuC-PI-5el.ibShadowedDisplayName" = "predicate";
-
 /* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "yaf-RW-gyC"; */
 "yaf-RW-gyC.title" = "检查更新";
 
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayName = "predicate"; ObjectID = "oEg-4y-qRo"; */
+"oEg-4y-qRo.ibShadowedDisplayName" = "";
