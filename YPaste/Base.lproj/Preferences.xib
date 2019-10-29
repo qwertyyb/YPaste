@@ -119,7 +119,7 @@
                         </customSpacing>
                     </stackView>
                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLM-rR-dFA">
-                        <rect key="frame" x="23" y="29" width="194" height="21"/>
+                        <rect key="frame" x="32" y="30" width="194" height="21"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-PF-6eu" userLabel="Favorite Hot Key">
                                 <rect key="frame" x="-2" y="5" width="104" height="16"/>
