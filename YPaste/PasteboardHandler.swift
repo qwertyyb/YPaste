@@ -14,6 +14,8 @@ class PasteboardHandler {
     private var lastItem: String?
     private var lastTime: Date = Date()
     
+    var application: NSRunningApplication?
+    
     static let changeNotification = Notification.Name(rawValue: "HistoryChangeNotification")
     
     private func isFavorite(string: String) -> Bool {
@@ -80,7 +82,8 @@ class PasteboardHandler {
                 let _ = self.checkAccess(prompt: true)
             }
             // Based on https://github.com/Clipy/Clipy/blob/develop/Clipy/Sources/Services/PasteService.swift.
-            NSWorkspace.shared.menuBarOwningApplication?.activate(options: NSApplication.ActivationOptions.activateIgnoringOtherApps)
+            self.application?.activate(options: .activateIgnoringOtherApps)
+            
             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
                 let vCode = UInt16(0x09)
                 let source = CGEventSource(stateID: .combinedSessionState)

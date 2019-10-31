@@ -17,6 +17,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     }
     
     @objc func openWindow() {
+        PasteboardHandler.shared.application = NSWorkspace.shared.frontmostApplication
         self.window?.setFrameTopLeftPoint(NSEvent.mouseLocation)
         self.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
