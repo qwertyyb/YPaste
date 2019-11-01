@@ -14,9 +14,8 @@ class PasteboardHandler {
     private var lastItem: String?
     private var lastTime: Date = Date()
     
-    var application: NSRunningApplication?
-    
     static let changeNotification = Notification.Name(rawValue: "HistoryChangeNotification")
+    static let pastedNotification = Notification.Name(rawValue: "PastedNotification")
     
     private func isFavorite(string: String) -> Bool {
         if string == lastItem && lastTime.timeIntervalSinceNow > TimeInterval(-0.6) {
@@ -74,6 +73,7 @@ class PasteboardHandler {
         return AXIsProcessTrustedWithOptions(opts)
     }
     
+    
     func paste(pasteItem: PasteItem){
         self.pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         self.pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)
@@ -82,21 +82,19 @@ class PasteboardHandler {
                 let _ = self.checkAccess(prompt: true)
             }
             // Based on https://github.com/Clipy/Clipy/blob/develop/Clipy/Sources/Services/PasteService.swift.
-            self.application?.activate(options: .activateIgnoringOtherApps)
             
-            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
-                let vCode = UInt16(0x09)
-                let source = CGEventSource(stateID: .combinedSessionState)
-                // Disable local keyboard events while pasting
-                source?.setLocalEventsFilterDuringSuppressionState([.permitLocalMouseEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
-                
-                let keyVDown = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: true)
-                let keyVUp = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: false)
-                keyVDown?.flags = .maskCommand
-                keyVUp?.flags = .maskCommand
-                keyVDown?.post(tap: .cgAnnotatedSessionEventTap)
-                keyVUp?.post(tap: .cgAnnotatedSessionEventTap)
-            }
+            let vCode = UInt16(0x09)
+            let source = CGEventSource(stateID: .combinedSessionState)
+            // Disable local keyboard events while pasting
+            source?.setLocalEventsFilterDuringSuppressionState([.permitLocalMouseEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
+            
+            let keyVDown = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: true)
+            let keyVUp = CGEvent(keyboardEventSource: source, virtualKey: vCode, keyDown: false)
+            keyVDown?.flags = .maskCommand
+            keyVUp?.flags = .maskCommand
+            keyVDown?.post(tap: .cgAnnotatedSessionEventTap)
+            keyVUp?.post(tap: .cgAnnotatedSessionEventTap)
+            NotificationCenter.default.post(name: PasteboardHandler.pastedNotification, object: nil)
         }
     }
     

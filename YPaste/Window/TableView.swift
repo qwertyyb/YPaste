@@ -10,7 +10,7 @@ import Cocoa
 import HotKey
 
 
-class TableView: NSTableView {
+class TableView: NSTableView, NSTableViewDelegate {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
