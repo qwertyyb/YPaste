@@ -24,8 +24,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ValueTransformer.setValueTransformer(SummaryTransformer(), forName: .summaryTransformerName)
         ValueTransformer.setValueTransformer(TimeTransformer(), forName: .timeTransformerName)
         
-        //  check permission
-        let _ = PasteboardHandler.shared.checkAccess(prompt: true)
+        let environments = ProcessInfo.processInfo.environment
+        if environments["dont_check_permission_at_startup"] != "yes" {
+            //  check permission
+            let _ = PasteboardHandler.shared.checkAccess(prompt: true)
+        }
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
             app.autoLaunch(active: true)

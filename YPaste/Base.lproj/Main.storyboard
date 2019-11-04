@@ -90,9 +90,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hah-LV-MYL" customClass="SearchField" customModule="YPaste" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="240" width="480" height="21"/>
+                                <rect key="frame" x="-2" y="251" width="484" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" drawsBackground="YES" usesSingleLineMode="YES" id="5lS-pC-S4h">
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" usesSingleLineMode="YES" bezelStyle="round" id="5lS-pC-S4h">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -107,19 +107,18 @@
                                     <outlet property="nextKeyView" destination="R8r-dv-iTb" id="Scd-zc-cmO"/>
                                 </connections>
                             </searchField>
-                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="38" horizontalPageScroll="10" verticalLineScroll="38" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8r-dv-iTb" customClass="ScrollView" customModule="YPaste" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="240"/>
+                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8r-dv-iTb" customClass="ScrollView" customModule="YPaste" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="251"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="BQc-S7-5MY">
-                                    <rect key="frame" x="0.0" y="0.0" width="480" height="240"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="251"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="34" viewBased="YES" id="IWK-h8-GX2" customClass="TableView" customModule="YPaste" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="480" height="240"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" viewBased="YES" id="IWK-h8-GX2" customClass="TableView" customModule="YPaste" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="480" height="251"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <size key="intercellSpacing" width="3" height="4"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="387" minWidth="40" maxWidth="1000" id="8xv-qV-Qfd">
@@ -136,11 +135,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="AVZ-OU-ox4">
-                                                            <rect key="frame" x="1" y="2" width="387" height="30"/>
+                                                            <rect key="frame" x="1" y="1" width="387" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AGZ-HH-ijD">
-                                                                    <rect key="frame" x="-2" y="14" width="388" height="16"/>
+                                                                    <rect key="frame" x="-2" y="1" width="388" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="sih-Tj-WrW">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

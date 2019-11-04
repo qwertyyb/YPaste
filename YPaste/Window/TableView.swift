@@ -23,7 +23,7 @@ class TableView: NSTableView, NSTableViewDelegate {
                 self.window?.makeFirstResponder(self)
             }
         }
-        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.mouseMoved) { (event) -> NSEvent? in
+        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.mouseEntered) { (event) -> NSEvent? in
             var location = event.locationInWindow
             var visibleRect = self.visibleRect
             let originY = visibleRect.origin.y

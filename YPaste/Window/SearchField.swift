@@ -18,7 +18,7 @@ class SearchField: NSSearchField {
             self.window?.makeFirstResponder(self)
         }
 //        self.setFrameOrigin(NSMakePoint(self.frame.origin.x, self.frame.origin.y - 10))
-        self.setFrameSize(NSMakeSize(self.frame.width, self.frame.height + 8))
+//        self.setFrameSize(NSMakeSize(self.frame.width, self.frame.height + 8))
     }
 
     override func draw(_ dirtyRect: NSRect) {

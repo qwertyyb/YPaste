@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HotKey
 
 class MainWindow: NSPanel {
     override var canBecomeKey: Bool {
@@ -14,6 +15,10 @@ class MainWindow: NSPanel {
     }
     
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
+        let key = Key(carbonKeyCode: UInt32(event.keyCode))
+        if [Key.upArrow, Key.downArrow].contains(key) {
+            return false
+        }
         return true
     }
 }
