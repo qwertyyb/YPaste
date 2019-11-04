@@ -11,9 +11,13 @@ import HotKey
 
 
 class TableView: NSTableView, NSTableViewDelegate {
+    let popover = Popover()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        self.delegate = self
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "SearchField-KeyUp"), object: nil, queue: nil) { (notification) in
             if notification.userInfo!["keyCode"] as! UInt16 == Key.downArrow.carbonKeyCode {
                 self.window?.makeFirstResponder(self)
@@ -53,6 +57,17 @@ class TableView: NSTableView, NSTableViewDelegate {
     
     @objc override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
+    }
+    
+    @IBOutlet var arrayController: PasteItemsController!
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if self.window == nil { return }
+        if let selectedRow = self.rowView(atRow: self.selectedRow, makeIfNecessary: false) {
+            let selectedPasteItem = (self.arrayController.arrangedObjects as! [PasteItem])[self.selectedRow]
+            self.popover.updateContent(pasteItem: selectedPasteItem)
+            self.popover.show(relativeTo: self.frame, of: selectedRow, preferredEdge: .maxX)
+        }
     }
     
 }

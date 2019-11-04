@@ -169,7 +169,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="87" minWidth="40" maxWidth="1000" id="yX1-kQ-pUb">
+                                                <tableColumn width="85" minWidth="40" maxWidth="1000" id="yX1-kQ-pUb">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -183,11 +183,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="vFT-GW-ujY">
-                                                            <rect key="frame" x="391" y="2" width="87" height="17"/>
+                                                            <rect key="frame" x="391" y="1" width="85" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ew2-hw-lNE">
-                                                                    <rect key="frame" x="0.0" y="1" width="87" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="85" height="16"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" title="Time" id="dSS-b1-vUc">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -218,14 +218,14 @@
                                                 <action selector="tableViewClicked:" target="XfG-lQ-9wD" id="M71-Ai-lDF"/>
                                                 <binding destination="YWq-Kq-AiD" name="content" keyPath="arrangedObjects" id="NwS-HZ-pRV"/>
                                                 <binding destination="YWq-Kq-AiD" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="NwS-HZ-pRV" id="hLE-Vn-CHh"/>
-                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="LYM-W5-0VM"/>
+                                                <outlet property="arrayController" destination="YWq-Kq-AiD" id="ovM-zN-cTw"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GXx-bY-2zG">
-                                    <rect key="frame" x="1" y="233" width="469" height="16"/>
+                                    <rect key="frame" x="1" y="233" width="478" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="t62-zk-YBk">
