@@ -17,6 +17,8 @@ class SearchField: NSSearchField {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "TableView-ReachTop"), object: nil, queue: nil) { (notification) in
             self.window?.makeFirstResponder(self)
         }
+//        self.setFrameOrigin(NSMakePoint(self.frame.origin.x, self.frame.origin.y - 10))
+//        self.setFrameSize(NSMakeSize(self.frame.width, self.frame.height + 8))
     }
 
     override func draw(_ dirtyRect: NSRect) {

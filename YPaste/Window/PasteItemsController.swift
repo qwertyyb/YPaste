@@ -9,6 +9,9 @@
 import Cocoa
 
 class PasteItemsController: NSArrayController {
+    
+    static let selectionChange = Notification.Name(rawValue: "selectionChange")
+    
     override init(content: Any?) {
         super.init(content: content)
     }

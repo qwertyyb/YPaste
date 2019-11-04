@@ -18,8 +18,7 @@ class YPaste {
     
     init() {
         hotkeyHandler.register()
-        pasteboardHandler.startListener()
-    }
+        pasteboardHandler.startListener()    }
     
     func autoLaunch(active: Bool = true) {
         let launchFolder = "\(NSHomeDirectory())/Library/LaunchAgents"

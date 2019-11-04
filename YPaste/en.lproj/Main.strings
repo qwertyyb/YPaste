@@ -17,17 +17,11 @@
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
 "BOF-NM-1cW.title" = "Preferences…";
 
-/* Class = "NSTextFieldCell"; title = "Time"; ObjectID = "dSS-b1-vUc"; */
-"dSS-b1-vUc.title" = "Time";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "I37-gj-KWi"; */
 "I37-gj-KWi.title" = "Text Cell";
 
 /* Class = "NSWindow"; title = "YPaste"; ObjectID = "IQv-IB-iLA"; */
 "IQv-IB-iLA.title" = "YPaste";
-
-/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "sih-Tj-WrW"; */
-"sih-Tj-WrW.title" = "Table View Cell";
 
 /* Class = "NSMenu"; title = "YPaste"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "YPaste";
@@ -35,5 +29,11 @@
 /* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "yaf-RW-gyC"; */
 "yaf-RW-gyC.title" = "Check for Updates...";
 
+/* Class = "NSTextFieldCell"; title = "Time"; ObjectID = "dSS-b1-vUc"; */
+"dSS-b1-vUc.title" = "";
+
 /* Class = "CocoaBindingsConnection"; ibShadowedDisplayName = "predicate"; ObjectID = "oEg-4y-qRo"; */
 "oEg-4y-qRo.ibShadowedDisplayName" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "sih-Tj-WrW"; */
+"sih-Tj-WrW.title" = "";

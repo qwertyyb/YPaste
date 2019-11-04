@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		456001E4236C8950002086DE /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456001E3236C8950002086DE /* Popover.swift */; };
 		4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE47232025A700F63EBF /* AppDelegate.swift */; };
 		4596AE4A232025A700F63EBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE49232025A700F63EBF /* ViewController.swift */; };
 		4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */; };
@@ -19,6 +20,7 @@
 		67096210235EC02E009068B9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6709620F235EC02E009068B9 /* TableView.swift */; };
 		67096213235EC0D7009068B9 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67096212235EC0D7009068B9 /* SearchField.swift */; };
 		67136E302359E04F00EFB448 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67136E322359E04F00EFB448 /* Preferences.xib */; };
+		6734CC5A236C60B40008F7E3 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6734CC59236C60B40008F7E3 /* MainWindow.swift */; };
 		67446E7A235F3EAE0050AB96 /* HotkeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */; };
 		67784476235F376800970786 /* PasteboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67784475235F376800970786 /* PasteboardHandler.swift */; };
 		678C62AF23680DB10036A81A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 678C62B123680DB10036A81A /* Localizable.strings */; };
@@ -41,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		456001E3236C8950002086DE /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		4596AE44232025A700F63EBF /* YPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4596AE47232025A700F63EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4596AE49232025A700F63EBF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		67096212235EC0D7009068B9 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		67136E332359E05E00EFB448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		67136E372359E66C00EFB448 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.strings"; sourceTree = "<group>"; };
+		6734CC59236C60B40008F7E3 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyHandler.swift; sourceTree = "<group>"; };
 		67784475235F376800970786 /* PasteboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardHandler.swift; sourceTree = "<group>"; };
 		678C62B023680DB10036A81A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				6790407F235D8C1D00B0C74E /* PasteItemsController.swift */,
 				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
 				4596AE722323CF5800F63EBF /* Transformers.swift */,
+				6734CC59236C60B40008F7E3 /* MainWindow.swift */,
+				456001E3236C8950002086DE /* Popover.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -346,7 +352,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH`\nversion=`expr $version + 1`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $version\" $PRODUCT_SETTINGS_PATH\n";
+			shellScript = "
+";
 		};
 		678C62AC23680A190036A81A /* bartycrouch */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -401,6 +408,7 @@
 				4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */,
 				4596AE6123216A8500F63EBF /* YPaste.swift in Sources */,
 				67096213235EC0D7009068B9 /* SearchField.swift in Sources */,
+				6734CC5A236C60B40008F7E3 /* MainWindow.swift in Sources */,
 				4596AE732323CF5800F63EBF /* Transformers.swift in Sources */,
 				67446E7A235F3EAE0050AB96 /* HotkeyHandler.swift in Sources */,
 				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
@@ -408,6 +416,7 @@
 				67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */,
 				4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */,
 				67C640E2235DE41D00649FD3 /* ScrollView.swift in Sources */,
+				456001E4236C8950002086DE /* Popover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
