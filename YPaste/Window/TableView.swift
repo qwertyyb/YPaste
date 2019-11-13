@@ -62,7 +62,7 @@ class TableView: NSTableView, NSTableViewDelegate {
     @IBOutlet var arrayController: PasteItemsController!
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        if self.window == nil { return }
+        if self.window == nil || !UserDefaults.standard.bool(forKey: "popover") { return }
         if let selectedRow = self.rowView(atRow: self.selectedRow, makeIfNecessary: false) {
             let selectedPasteItem = (self.arrayController.arrangedObjects as! [PasteItem])[self.selectedRow]
             self.popover.updateContent(pasteItem: selectedPasteItem)
