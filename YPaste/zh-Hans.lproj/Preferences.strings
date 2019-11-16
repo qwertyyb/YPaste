@@ -5,6 +5,9 @@
 /* Class = "NSTextFieldCell"; title = "Hot Key"; ObjectID = "50p-6v-7SJ"; */
 "50p-6v-7SJ.title" = "打开历史";
 
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "be5-qF-ZfL"; */
+"be5-qF-ZfL.title" = "button";
+
 /* Class = "NSTextFieldCell"; title = "Check Update"; ObjectID = "dWG-eZ-o58"; */
 "dWG-eZ-o58.title" = "检查更新";
 
@@ -29,8 +32,8 @@
 /* Class = "NSButtonCell"; title = "Button"; ObjectID = "nxD-fc-hgi"; */
 "nxD-fc-hgi.title" = "button";
 
+/* Class = "NSButtonCell"; title = "Popover"; ObjectID = "oJw-7C-ZNt"; */
+"oJw-7C-ZNt.title" = "Popover窗口提示";
+
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "QvC-M9-y7g"; */
 "QvC-M9-y7g.title" = "首选项";
-
-/* Class = "NSButtonCell"; title = "Button"; ObjectID = "be5-qF-ZfL"; */
-"be5-qF-ZfL.title" = "";

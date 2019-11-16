@@ -34,3 +34,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Favorite Hot Key"; ObjectID = "Md5-LI-tBD"; */
 "Md5-LI-tBD.title" = "";
+
+/* Class = "NSButtonCell"; title = "Popover"; ObjectID = "oJw-7C-ZNt"; */
+"oJw-7C-ZNt.title" = "";
