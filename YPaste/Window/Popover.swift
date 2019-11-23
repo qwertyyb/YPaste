@@ -21,9 +21,20 @@ class Popover: NSPopover {
     }
     
     func updateContent(pasteItem: PasteItem) {
-        let view = NSTextField(labelWithString: pasteItem.value!)
+        var str = pasteItem.value!
+        if (str.count > 1000) {
+            let end = str.index(str.startIndex, offsetBy: 1000)
+            let range = Range<String.Index>(uncheckedBounds: (lower: str.startIndex, upper: end))
+            str = String(str[range]) + "..."
+        }
+        let view = NSTextField(labelWithString: str)
         view.cell?.wraps = true
         view.cell?.lineBreakMode = .byCharWrapping
+        self.contentViewController!.view = view
+    }
+    
+    func clear () {
+        let view = NSTextField()
         self.contentViewController!.view = view
     }
 }

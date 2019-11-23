@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -64,7 +64,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" userLabel="Main Window Controller" customClass="MainWindowController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="YPaste" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="none" titlebarAppearsTransparent="YES" id="IQv-IB-iLA" customClass="MainWindow" customModule="YPaste" customModuleProvider="target">
+                    <window key="window" title="YPaste" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="none" titlebarAppearsTransparent="YES" id="IQv-IB-iLA" customClass="MainWindow" customModule="YPaste" customModuleProvider="target">
                         <windowStyleMask key="styleMask" closable="YES" nonactivatingPanel="YES"/>
                         <rect key="contentRect" x="502" y="405" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -84,8 +84,8 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
+                <viewController id="XfG-lQ-9wD" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl" customClass="MainView" customModule="YPaste" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -114,7 +114,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="480" height="251"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" viewBased="YES" id="IWK-h8-GX2" customClass="TableView" customModule="YPaste" customModuleProvider="target">
+                                        <tableView verticalHuggingPriority="750" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" viewBased="YES" id="IWK-h8-GX2" customClass="TableView" customModule="YPaste" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="480" height="251"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -152,9 +152,6 @@
                                                                             </binding>
                                                                         </connections>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="AVZ-OU-ox4" name="toolTip" keyPath="objectValue.value" id="q2k-3w-gx4"/>
-                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
@@ -214,7 +211,6 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <action selector="tableViewClicked:" target="XfG-lQ-9wD" id="M71-Ai-lDF"/>
                                                 <binding destination="YWq-Kq-AiD" name="content" keyPath="arrangedObjects" id="NwS-HZ-pRV"/>
                                                 <binding destination="YWq-Kq-AiD" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="NwS-HZ-pRV" id="hLE-Vn-CHh"/>
                                                 <outlet property="arrayController" destination="YWq-Kq-AiD" id="ovM-zN-cTw"/>
@@ -234,19 +230,9 @@
                             </scrollView>
                         </subviews>
                     </view>
-                    <connections>
-                        <outlet property="arrayController" destination="YWq-Kq-AiD" id="uEM-s2-BIa"/>
-                        <outlet property="searchField" destination="Hah-LV-MYL" id="NZ6-Cy-yeZ"/>
-                        <outlet property="tableView" destination="IWK-h8-GX2" id="hQY-uc-V83"/>
-                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" editable="NO" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="YWq-Kq-AiD" customClass="PasteItemsController" customModule="YPaste" customModuleProvider="target">
-                    <connections>
-                        <binding destination="XfG-lQ-9wD" name="managedObjectContext" keyPath="managedObjectContext" id="Ujc-1J-jRW"/>
-                        <binding destination="XfG-lQ-9wD" name="sortDescriptors" keyPath="sortByUpdateTime" id="zAk-2D-OPt"/>
-                    </connections>
-                </arrayController>
+                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" editable="NO" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="YWq-Kq-AiD" customClass="PasteItemsController" customModule="YPaste" customModuleProvider="target"/>
                 <userDefaultsController representsSharedInstance="YES" id="mFB-8f-Zdr"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
