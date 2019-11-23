@@ -21,6 +21,12 @@ class PasteItemsController: NSArrayController {
         NotificationCenter.default.addObserver(self, selector: #selector(fetchNextPage), name: Notification.Name(rawValue: "scrollerview-ToReachBottom"), object: nil)
         self.addObserver(self, forKeyPath: "fetchPredicate", options: [.new], context: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(remove(_:)), name: TableView.rowRemovedNotification, object: nil)
+        NotificationCenter.default.addObserver(forName: PasteboardHandler.changeNotification, object: nil, queue: nil) { (notification) in
+            self.resetPage()
+        }
+        
+        managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.viewContext
+        sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
     }
     
     var page = 1

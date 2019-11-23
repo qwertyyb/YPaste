@@ -18,25 +18,25 @@ class TableView: NSTableView, NSTableViewDelegate {
         
         self.delegate = self
         
+        
+        action = #selector(pasteSelected)
+
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil, queue: nil) { (notification) in
+            self.scrollRowToVisible(0)
+        }
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "SearchField-KeyUp"), object: nil, queue: nil) { (notification) in
             if notification.userInfo!["keyCode"] as! UInt16 == Key.downArrow.carbonKeyCode {
                 self.window?.makeFirstResponder(self)
             }
         }
-        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.mouseEntered) { (event) -> NSEvent? in
-            var location = event.locationInWindow
-            var visibleRect = self.visibleRect
-            let originY = visibleRect.origin.y
-            visibleRect.origin.y = 0
-            guard visibleRect.contains(location) else { return event }
-            location.y = self.frame.height - (visibleRect.height - location.y) - originY
-            let row = self.row(at: location)
-            if row == -1 {
-                return event
-            }
-            self.window?.makeFirstResponder(self)
-            self.selectRowIndexes(IndexSet.init(arrayLiteral: self.numberOfRows - row - 1), byExtendingSelection: false)
-            return event
+        NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: nil, queue: nil) { (notification) in
+            self.popover.clear()
+            self.popover.close()
+        }
+        
+        self.window?.makeFirstResponder(self)
+        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.init(arrayLiteral: .mouseMoved, NSEvent.EventTypeMask.scrollWheel)) { (event) -> NSEvent? in
+            return self.popoverAtMouseLocation(with: event)
         }
     }
     
@@ -70,4 +70,36 @@ class TableView: NSTableView, NSTableViewDelegate {
         }
     }
     
+    override func keyUp(with event: NSEvent) {
+        let key = Key(carbonKeyCode: UInt32(event.keyCode))
+        if key == Key.return {
+            let pasteItems = arrayController.selectedObjects as? [PasteItem]
+            if (pasteItems == nil) { return }
+            PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
+        }
+    }
+    
+    func popoverAtMouseLocation(with event: NSEvent) -> NSEvent {
+//      print(event)
+        var location = event.locationInWindow
+        var visibleRect = self.visibleRect
+        let originY = visibleRect.origin.y
+        visibleRect.origin.y = 0
+        guard visibleRect.contains(location) else { return event }
+        location.y = self.frame.height - (visibleRect.height - location.y) - originY
+        let row = self.row(at: location)
+        if row == -1 {return event }
+        self.window?.makeFirstResponder(self)
+        self.selectRowIndexes(IndexSet.init(arrayLiteral: self.numberOfRows - row - 1), byExtendingSelection: false)
+        return event
+    }
+    
+    @objc func pasteSelected () {
+        let pasteItems = arrayController.selectedObjects as? [PasteItem]
+        if (pasteItems == nil) { return }
+        PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
+    }
+    override func viewWillDraw() {
+        print("did draw")
+    }
 }

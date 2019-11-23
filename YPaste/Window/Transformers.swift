@@ -11,9 +11,15 @@ import Cocoa
 class SummaryTransformer: ValueTransformer {
     override func transformedValue(_ value: Any?) -> Any? {
         if (value == nil) { return value }
-        let str = value as! String
-        let trimmedTitle = str.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        return trimmedTitle
+        var str = value as! String
+        str = str.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if (str.count > 100) {
+            let start = str.index(str.startIndex, offsetBy: 0)
+            let end = str.index(str.startIndex, offsetBy: 100)
+            let range = Range<String.Index>(uncheckedBounds: (lower: start, upper: end))
+            return String(str[range])
+        }
+        return str
     }
 }
 

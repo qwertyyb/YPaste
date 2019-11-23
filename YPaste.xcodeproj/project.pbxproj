@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		456001E4236C8950002086DE /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456001E3236C8950002086DE /* Popover.swift */; };
 		4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE47232025A700F63EBF /* AppDelegate.swift */; };
-		4596AE4A232025A700F63EBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE49232025A700F63EBF /* ViewController.swift */; };
+		4596AE4A232025A700F63EBF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE49232025A700F63EBF /* MainView.swift */; };
 		4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */; };
 		4596AE4F232025A800F63EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4596AE4E232025A800F63EBF /* Assets.xcassets */; };
 		4596AE52232025A800F63EBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4596AE50232025A800F63EBF /* Main.storyboard */; };
@@ -46,7 +46,7 @@
 		456001E3236C8950002086DE /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		4596AE44232025A700F63EBF /* YPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4596AE47232025A700F63EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4596AE49232025A700F63EBF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4596AE49232025A700F63EBF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4596AE4C232025A700F63EBF /* YPaste.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YPaste.xcdatamodel; sourceTree = "<group>"; };
 		4596AE4E232025A800F63EBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4596AE51232025A800F63EBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 				6709620F235EC02E009068B9 /* TableView.swift */,
 				67C640E1235DE41D00649FD3 /* ScrollView.swift */,
 				67096212235EC0D7009068B9 /* SearchField.swift */,
-				4596AE49232025A700F63EBF /* ViewController.swift */,
+				4596AE49232025A700F63EBF /* MainView.swift */,
 				6790407F235D8C1D00B0C74E /* PasteItemsController.swift */,
 				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
 				4596AE722323CF5800F63EBF /* Transformers.swift */,
@@ -411,7 +411,7 @@
 				6734CC5A236C60B40008F7E3 /* MainWindow.swift in Sources */,
 				4596AE732323CF5800F63EBF /* Transformers.swift in Sources */,
 				67446E7A235F3EAE0050AB96 /* HotkeyHandler.swift in Sources */,
-				4596AE4A232025A700F63EBF /* ViewController.swift in Sources */,
+				4596AE4A232025A700F63EBF /* MainView.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
 				67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */,
 				4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */,
