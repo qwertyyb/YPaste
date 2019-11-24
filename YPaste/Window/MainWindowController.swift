@@ -59,4 +59,5 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
         NSEvent.removeMonitor(clickOutCloseWindowMonitor!)
         clickOutCloseWindowMonitor = nil
     }
+    
 }
