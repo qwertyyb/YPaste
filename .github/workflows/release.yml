@@ -50,6 +50,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: switch master branch
+      run: git checkout master
+
     - uses: actions/download-artifact@v1
       with:
         name: appcast
