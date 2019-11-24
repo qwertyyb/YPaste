@@ -45,8 +45,9 @@ jobs:
         path: ./apps/appcast.xml
 
   commit:
-    needs: build
     runs-on: ubuntu-latest
+    needs: build
+    steps:
     - uses: actions/checkout@v1
 
     - name: download artifact
