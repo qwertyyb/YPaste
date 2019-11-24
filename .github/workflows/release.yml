@@ -58,11 +58,10 @@ jobs:
       run: mv appcast/appcast.xml ./appcast.xml
 
     - name: commit appcast.xml
-      uses: EndBug/add-and-commit@v2.1.0 
+      uses: stefanzweifel/git-auto-commit-action@v2.3.0
       with:
-        author_name: appcast updater
-        author_email: qwertyyb@foxmail.com
-        message: "release: update version"
-        path: "appcast.xml"
+        commit_message: "release: update version"
+        branch: master
+        file_pattern: appcast.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
