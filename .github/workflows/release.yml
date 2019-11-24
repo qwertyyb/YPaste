@@ -5,7 +5,7 @@ on:
     types: ['published']
 
 jobs:
-  release:
+  build:
 
     runs-on: macOS-latest
     
@@ -30,15 +30,29 @@ jobs:
         ditto -c -k --sequesterRsrc --keepParent apps/YPaste.app apps/YPaste.zip
         # rm -r ~/Library/Caches/Sparkle_generate_appcast/*
         ./bin/generate_appcast -s $sparkle_key ./apps/
+        c=$(cat ./apps/appcast.xml)
+        echo $c | sed -e "s/url[^ ]*/url=\"https:\/\/github.com\/qwertyyb\/YPaste\/releases\/latest\/download\/YPaste.zip\"/g" > apps/appcast.xml
 
-    - name: release
+    - name: upload release file
       uses: AButler/upload-release-assets@v1.0
       with:
         files: 'apps/YPaste.zip'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: update appcast.xml
-      run: cp -f ./apps/appcast.xml ./
+    - name: upload artifact
+      with:
+        name: appcast
+        path: ./apps/appcast.xml
+
+  commit:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: download artifact
+      with:
+        name: appcast
 
     - name: commit appcast.xml
       uses: EndBug/add-and-commit@v2.1.0 
@@ -49,4 +63,3 @@ jobs:
         path: "appcast.xml"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
