@@ -39,7 +39,7 @@ jobs:
         files: 'apps/YPaste.zip'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: upload artifact
+    - uses: actions/upload-artifact@v1
       with:
         name: appcast
         path: ./apps/appcast.xml
@@ -50,7 +50,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: download artifact
+    - uses: actions/download-artifact@v1
       with:
         name: appcast
 
