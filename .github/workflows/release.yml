@@ -37,14 +37,16 @@ jobs:
         files: 'apps/YPaste.zip'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: install & config coscmd
+    - name: update appcast.xml
+      run: cp -y ./apps/appcast.xml ./
+
+    - name: commit appcast.xml
+      uses: EndBug/add-and-commit@v2.1.0 
+      with:
+        author_name: appcast updater
+        author_email: qwertyyb@foxmail.com
+        message: "release: update version"
+        path: "appcast.xml"
       env:
-        oss_appid: ${{ secrets.oss_appid }}
-        oss_secret: ${{ secrets.oss_secret }}
-      run: |
-        pip install pip==9.0.0 && pip install coscmd
-        coscmd config -a $oss_appid -s $oss_secret -b person-1253524658 -r ap-beijing
-    - name: upload app and appcast
-      run: |
-        coscmd upload ./apps/YPaste.zip cloudfn/YPaste.zip
-        coscmd upload ./apps/appcast.xml cloudfn/appcast.xml
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
