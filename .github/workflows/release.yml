@@ -68,7 +68,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .
         git commit -m "update version"
-    - name: Push changes
+    - name: push changes
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
