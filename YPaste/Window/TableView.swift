@@ -17,9 +17,6 @@ class TableView: NSTableView, NSTableViewDelegate {
         super.init(coder: coder)
         
         self.delegate = self
-        
-        
-        action = #selector(pasteSelected)
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil, queue: nil) { (notification) in
             self.scrollRowToVisible(0)
@@ -36,7 +33,7 @@ class TableView: NSTableView, NSTableViewDelegate {
         
         self.window?.makeFirstResponder(self)
         NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.init(arrayLiteral: .mouseMoved, NSEvent.EventTypeMask.scrollWheel)) { (event) -> NSEvent? in
-            return self.popoverAtMouseLocation(with: event)
+            return self.selectItemAtMouseLocation(with: event)
         }
     }
     
@@ -56,7 +53,9 @@ class TableView: NSTableView, NSTableViewDelegate {
     }
     
     @objc override func mouseDown(with event: NSEvent) {
-        super.mouseDown(with: event)
+//        super.mouseDown(with: event)
+        let _ = self.selectItemAtMouseLocation(with: event)
+        pasteSelected()
     }
     
     @IBOutlet var arrayController: PasteItemsController!
@@ -79,7 +78,7 @@ class TableView: NSTableView, NSTableViewDelegate {
         }
     }
     
-    func popoverAtMouseLocation(with event: NSEvent) -> NSEvent {
+    func selectItemAtMouseLocation(with event: NSEvent) -> NSEvent {
 //      print(event)
         var location = event.locationInWindow
         var visibleRect = self.visibleRect
@@ -95,11 +94,8 @@ class TableView: NSTableView, NSTableViewDelegate {
     }
     
     @objc func pasteSelected () {
-        let pasteItems = arrayController.selectedObjects as? [PasteItem]
+        let pasteItems = self.arrayController.selectedObjects as? [PasteItem]
         if (pasteItems == nil) { return }
         PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
-    }
-    override func viewWillDraw() {
-        print("did draw")
     }
 }
