@@ -50,21 +50,22 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: switch branch
-      run: git checkout master
-
     - uses: actions/download-artifact@v1
       with:
         name: appcast
 
     - name: move appcast.xml
-      run: mv appcast/appcast.xml ./appcast.xml
+      run: |
+        mv appcast/appcast.xml ./appcast.xml
+        rm -rf appcast
 
-    - name: commit appcast.xml
-      uses: stefanzweifel/git-auto-commit-action@v2.3.0
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "update version" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
       with:
-        commit_message: "release: update version"
-        branch: master
-        file_pattern: appcast.xml
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
