@@ -54,6 +54,9 @@ jobs:
       with:
         name: appcast
 
+    - name: move appcast.xml
+      run: mv appcast/appcast.xml ./appcast.xml
+
     - name: commit appcast.xml
       uses: EndBug/add-and-commit@v2.1.0 
       with:
