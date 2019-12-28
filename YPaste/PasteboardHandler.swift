@@ -48,9 +48,10 @@ class PasteboardHandler {
                 pasteItem.updated_at = Date()
                 try? saveContext.save()
                 NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItem])
-            } else {
-                pasteItems?[0].updated_at = Date()
-                pasteItems?[0].favorite = pasteItems?[0].favorite ?? false ? true : isFavorite
+            } else if (pasteItems != nil && pasteItems!.count > 0) {
+                let existItem = pasteItems![0]
+                existItem.updated_at = Date()
+                existItem.favorite = existItem.favorite ? true : isFavorite
                 NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItems![0]])
                 try? saveContext.save()
             }
