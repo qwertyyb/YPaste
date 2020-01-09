@@ -27,7 +27,6 @@ class ScrollView: NSScrollView {
 
         let clipView = self.contentView
         if clipView.bounds.origin.y == 0 {
-            print("top")
         } else if clipView.bounds.origin.y + clipView.bounds.height == documentView.bounds.height {
             let notification = Notification(name: Notification.Name(rawValue: "scrollerview-ToReachBottom"), object: nil)
             NotificationCenter.default.post(notification)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4541BB0023C76D1300204946 /* PasteboardHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */; };
+		4541BB0223C78A1C00204946 /* HotkeyHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */; };
 		456001E4236C8950002086DE /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456001E3236C8950002086DE /* Popover.swift */; };
 		4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE47232025A700F63EBF /* AppDelegate.swift */; };
 		4596AE4A232025A700F63EBF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE49232025A700F63EBF /* MainViewController.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardHandlerTests.swift; sourceTree = "<group>"; };
+		4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyHandlerTests.swift; sourceTree = "<group>"; };
 		456001E3236C8950002086DE /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		4596AE44232025A700F63EBF /* YPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4596AE47232025A700F63EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 			children = (
 				4596AE6823216E6C00F63EBF /* YPasteTests.swift */,
 				4596AE6A23216E6C00F63EBF /* Info.plist */,
+				4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */,
+				4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */,
 			);
 			path = YPasteTests;
 			sourceTree = "<group>";
@@ -423,6 +429,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4541BB0023C76D1300204946 /* PasteboardHandlerTests.swift in Sources */,
+				4541BB0223C78A1C00204946 /* HotkeyHandlerTests.swift in Sources */,
 				4596AE6923216E6C00F63EBF /* YPasteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

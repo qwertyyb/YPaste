@@ -62,7 +62,6 @@ class TableView: NSTableView, NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         if self.window == nil || !UserDefaults.standard.bool(forKey: "popover") { return }
-        print(self.selectedRow)
         if let selectedRow = self.rowView(atRow: self.selectedRow, makeIfNecessary: false) {
             let selectedPasteItem = (self.arrayController.arrangedObjects as! [PasteItem])[self.selectedRow]
             /* 在到达可视区域的底部后，继续使用按向下方向键，会出现选中行尚未可见，但本方法已被调用的情况
