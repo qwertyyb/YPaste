@@ -10,7 +10,6 @@ import Foundation
 import HotKey
 import Cocoa
 
-
 class YPaste {
     
     let pasteboardHandler = PasteboardHandler.shared

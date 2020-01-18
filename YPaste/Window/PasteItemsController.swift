@@ -46,7 +46,6 @@ class PasteItemsController: NSArrayController {
         self.fetch(nil)
     }
     @objc func fetchNextPage() {
-        print(self.total)
         if (arrangedObjects as! [PasteItem]).count >= self.total {
             return
         }

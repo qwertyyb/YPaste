@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import YPaste
 
 class YPasteTests: XCTestCase {
 
@@ -17,17 +18,22 @@ class YPasteTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    private func getAutoLaunch() -> Bool {
+        let launchFolder = "\(NSHomeDirectory())/Library/LaunchAgents"
+        let launchPath = "\(launchFolder)/\(Bundle.main.bundleIdentifier!).plist"
+        let dict = NSDictionary.init(contentsOfFile: launchPath)
+        let value = dict?.value(forKey: "RunAtLoad")
+        return value as! Bool
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func test_autoLaunch_active() {
+        YPaste.shared.autoLaunch()
+        XCTAssertTrue(getAutoLaunch(), "开机自启激活正常")
+    }
+    func test_autoLaunch_deactive() {
+        YPaste.shared.autoLaunch(active: false)
+        XCTAssertFalse(getAutoLaunch(), "开机自启禁用正常")
     }
 
 }
