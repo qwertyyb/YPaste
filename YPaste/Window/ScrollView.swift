@@ -12,23 +12,22 @@ class ScrollView: NSScrollView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    static let reachBottomNotification = Notification.Name("reachBottomNotification")
+    
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
         contentView.postsBoundsChangedNotifications = true
         NotificationCenter.default.addObserver(self, selector: #selector(contentViewDidChangeBounds), name: NSView.boundsDidChangeNotification, object: nil)
-    }
-
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        // Drawing code here.
     }
     
     @objc private func contentViewDidChangeBounds(_ notification: Notification) {
         guard let documentView = self.documentView else { return }
 
         let clipView = self.contentView
-        if clipView.bounds.origin.y == 0 {
-        } else if clipView.bounds.origin.y + clipView.bounds.height == documentView.bounds.height {
-            let notification = Notification(name: Notification.Name(rawValue: "scrollerview-ToReachBottom"), object: nil)
+        if clipView.bounds.origin.y + clipView.bounds.height == documentView.bounds.height {
+            let notification = Notification(name: ScrollView.reachBottomNotification, object: nil)
             NotificationCenter.default.post(notification)
 
         }

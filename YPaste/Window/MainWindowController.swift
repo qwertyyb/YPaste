@@ -11,7 +11,7 @@ import HotKey
 
 class MainWindowController: NSWindowController, NSWindowDelegate {
     
-    private var clickOutCloseWindowMonitor: Any?
+    private var monitors: [Any?] = []
     
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         return true
@@ -23,44 +23,90 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(close), name: PasteboardHandler.pastedNotification, object: nil)
         
         clearMonitor()
-        clickOutCloseWindowMonitor = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown) { (event) in
+        monitors.append(NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown) { (event) in
             if self.window == nil { return }
             let location = NSEvent.mouseLocation
             if !self.window!.frame.contains(location) {
                 self.close()
             }
-        }
+        })
+    }
+    override init(window: NSWindow?) {
+        super.init(window: window)
+        
+        guard let win = self.window else { return }
+        win.title = "YPaste"
+        win.isOpaque = true
+        win.level = NSWindow.Level.popUpMenu
+        win.isReleasedWhenClosed = false
+        win.hidesOnDeactivate = false
+        
+        openWindow()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(openWindow), name: HotkeyHandler.openWindowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(close), name: PasteboardHandler.pastedNotification, object: nil)
+        
+        clearMonitor()
+        monitors.append(NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown) { (event) in
+            if self.window == nil { return }
+            let location = NSEvent.mouseLocation
+            if !self.window!.frame.contains(location) {
+                self.close()
+            }
+        })
     }
     
     
     
     @objc func openWindow() {
-        if (HotkeyHandler.shared.openType != .order) {
-            self.window?.setFrameTopLeftPoint(NSEvent.mouseLocation)
-            self.window?.isOpaque = true
-            self.window?.backgroundColor = NSColor.white
-        } else {
-            let x = NSScreen.main?.frame.minX ?? 0
-            let y = NSScreen.main?.frame.maxY ?? 0
-            self.window?.setFrameTopLeftPoint(NSMakePoint(x, y))
-            self.window?.isOpaque = false
-            self.window?.backgroundColor = NSColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)
-        }
-        self.window?.makeKeyAndOrderFront(self)
-        self.window?.ignoresMouseEvents = HotkeyHandler.shared.openType == .order
-        self.window?.level = NSWindow.Level.popUpMenu
-        self.window?.title = HotkeyHandler.shared.openType == .favorite ? "YPaste - 收藏" : "YPaste - 历史"
+        guard let win = self.window else { return }
+        win.ignoresMouseEvents = HotkeyHandler.shared.openType == .order
         clearMonitor()
         
+        let x = NSScreen.main?.frame.minX ?? 0
+        let y = NSScreen.main?.frame.minY ?? 0
+        let menuBarHeight = NSMenu.menuBarVisible() ? NSApplication.shared.mainMenu?.menuBarHeight ?? 24 : 0
+        let height = (NSScreen.main?.frame.height ?? NSScreen.screens.first!.frame.height) - menuBarHeight
+        win.setFrame(NSMakeRect(0, 0, 400, 1080), display: true)
+        
         if (HotkeyHandler.shared.openType != .order) {
-            clickOutCloseWindowMonitor = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown) { (event) in
+//            NSApp.activate(ignoringOtherApps: true)
+            win.makeKeyAndOrderFront(nil)
+            win.isOpaque = true
+            win.backgroundColor = .init(red: 0.88, green: 0.88, blue: 0.88, alpha: 1)
+            
+            var event = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown) { (event) in
                 if self.window == nil { return }
                 let location = NSEvent.mouseLocation
                 if !self.window!.frame.contains(location) {
                     self.close()
                 }
             }
+            monitors.append(event)
+            event = NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved) { (event) in
+                guard self.window != nil else { return }
+                let location = NSEvent.mouseLocation
+                if !self.window!.frame.contains(location) {
+                    Popover.shared.clear()
+                    Popover.shared.close()
+                }
+            }
+            monitors.append(event)
+            
+        } else {
+            win.orderFrontRegardless()
+            win.isOpaque = false
+            win.backgroundColor = .init(white: 0, alpha: 0.2)
         }
+        let anim = NSViewAnimation(duration: 0.25, animationCurve: .easeOut)
+        anim.viewAnimations = [
+            [
+                NSViewAnimation.Key.target: win,
+                NSViewAnimation.Key.startFrame: NSMakeRect(x - 200, y, 400, height),
+                NSViewAnimation.Key.endFrame: NSMakeRect(x, y, 400, height)
+            ]
+        ]
+        anim.start()
     }
     
     func windowWillClose(_ notification: Notification) {
@@ -68,9 +114,27 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     }
     
     func clearMonitor() {
-        if clickOutCloseWindowMonitor == nil { return }
-        NSEvent.removeMonitor(clickOutCloseWindowMonitor!)
-        clickOutCloseWindowMonitor = nil
+        monitors.forEach { (monitor) in
+            NSEvent.removeMonitor(monitor as Any)
+        }
+        monitors = []
+    }
+    
+    override func close() {
+        if let win = self.window {
+            let anim = NSViewAnimation(duration: 0.16, animationCurve: .easeIn)
+            anim.viewAnimations = [
+                [
+                    NSViewAnimation.Key.target: win,
+                    NSViewAnimation.Key.startFrame: NSMakeRect(win.frame.minX, win.frame.minY, win.frame.width, win.frame.height),
+                    NSViewAnimation.Key.endFrame: NSMakeRect(win.frame.minX - win.frame.width / 2, win.frame.minY, win.frame.width, win.frame.height)
+                ]
+            ]
+            anim.start()
+            super.close()
+        }
+        Popover.shared.clear()
+        Popover.shared.close()
     }
     
 }

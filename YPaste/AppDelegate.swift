@@ -11,13 +11,14 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var app: YPaste = YPaste.shared
+    var app: YPaste?
 
     private var statusItem :NSStatusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let preferencesWindowController = PreferencesWindowController.init(windowNibName: NSNib.Name(NSString("Preferences")))
     
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        app = YPaste.shared
         statusItem?.button!.image = NSImage(named: "statusImage")
         statusItem?.menu = menu
         
@@ -31,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
-            app.autoLaunch(active: true)
+            app?.autoLaunch(active: true)
         }
     }
 

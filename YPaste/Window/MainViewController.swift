@@ -11,24 +11,27 @@ import HotKey
 
 class MainViewController: NSViewController {
     
-    @IBOutlet weak var tableView: TableView!
-    @IBOutlet var arrayController: PasteItemsController!
-    //    override var acceptsFirstResponder: Bool { return true }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        view = NSView()
+    }
     
     override func viewWillAppear() {
-        arrayController.resetPage()
-        tableView.scrollRowToVisible(0)
-        arrayController.setSelectionIndex(0)
-        self.view.alphaValue = HotkeyHandler.shared.openType == .order ? 0.4 : 1
+        let mainView = MainView()
+        mainView.alphaValue = HotkeyHandler.shared.openType == .order ? 0.4 : 1
+        mainView.updateFooter(string: HotkeyHandler.shared.openType == .favorite ? "YPaste - 收藏" : "YPaste - 历史")
+        if HotkeyHandler.shared.openType == .order { mainView.removeSearchView() }
+        view = mainView
     }
-//    
     override func viewDidDisappear() {
-        arrayController.fetchPredicate = nil
+        view = NSView()
+        PasteItemsController.shared.fetchPredicate = nil
+        PasteItemsController.shared.resetPage()
+        PasteItemsController.shared.setSelectionIndex(0)
     }
 
 }

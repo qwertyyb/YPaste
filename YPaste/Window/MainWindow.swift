@@ -11,7 +11,7 @@ import HotKey
 
 class MainWindow: NSPanel {
     override var canBecomeKey: Bool {
-        get { return HotkeyHandler.shared.openType != .order }
+        get { return true }
     }
     
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
@@ -20,5 +20,14 @@ class MainWindow: NSPanel {
             return false
         }
         return true
+    }
+
+    
+    override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
+        super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
+        
+        self.styleMask = .nonactivatingPanel
+        contentViewController = MainViewController()
+        isFloatingPanel = true
     }
 }

@@ -86,9 +86,9 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     @IBAction func onLaunchAtLogin(_ sender: NSButton) {
         let delegate = NSApp.delegate as! AppDelegate
         if sender.state == .on {
-            delegate.app.autoLaunch(active: true)
+            delegate.app?.autoLaunch(active: true)
         } else {
-            delegate.app.autoLaunch(active: false)
+            delegate.app?.autoLaunch(active: false)
         }
     }
     @IBAction func hotKeyClicked(_ sender: NSButton) {

@@ -19,6 +19,7 @@ enum OpenType {
 class HotkeyHandler {
     private var openHistoryHotkey: HotKey?
     private var openFavoriteHotkey: HotKey?
+    private var openOrderHotkey: HotKey?
     private var pasteHotkey: HotKey?
     
     
@@ -30,7 +31,15 @@ class HotkeyHandler {
     
     static let openWindowNotification = Notification.Name("openWindowNotification")
 
-    var openType = OpenType.history
+    var openType = OpenType.history {
+        didSet {
+            if self.openType != .order {
+                pasteHotkey = nil
+            } else {
+                registerOrderPaste()
+            }
+        }
+    }
     
     
     private func getKeyComboFromString(_ string: String) -> KeyCombo {
@@ -72,12 +81,20 @@ class HotkeyHandler {
         
         hotKeyString = UserDefaults.standard.string(forKey: "activeHotKey")
         keyCombo = getKeyComboFromString(hotKeyString!)
-        openFavoriteHotkey = HotKey(keyCombo: keyCombo, keyDownHandler: {
+        openOrderHotkey = HotKey(keyCombo: keyCombo, keyDownHandler: {
+            if self.openType == .order {
+                self.openType = .history
+//                return YPaste.shared.mainWindowController.close()
+            }
             self.openType = .order
             PasteboardHandler.shared.orderedItems = []
             NotificationCenter.default.post(name: HotkeyHandler.openWindowNotification, object: nil)
         }, keyUpHandler: nil)
         
+        
+    }
+    
+    private func registerOrderPaste () {
         pasteHotkey = HotKey(key: .v, modifiers: .command, keyDownHandler: {
             let pasteboard = PasteboardHandler.shared
             if let objectId = pasteboard.orderedItems.first {
