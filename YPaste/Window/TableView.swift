@@ -31,7 +31,7 @@ class TableView: NSTableView, NSTableViewDelegate {
             self.popover.close()
         }
         
-        self.window?.makeFirstResponder(self)
+//        self.window?.makeFirstResponder(self)
         NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.init(arrayLiteral: .mouseMoved, NSEvent.EventTypeMask.scrollWheel)) { (event) -> NSEvent? in
             return self.selectItemAtMouseLocation(with: event)
         }
@@ -62,8 +62,9 @@ class TableView: NSTableView, NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         if self.window == nil || !UserDefaults.standard.bool(forKey: "popover") { return }
-        if let selectedRow = self.rowView(atRow: self.selectedRow, makeIfNecessary: false) {
-            let selectedPasteItem = (self.arrayController.arrangedObjects as! [PasteItem])[self.selectedRow]
+        let objects = self.arrayController.arrangedObjects as! [PasteItem]
+        if let selectedRow = self.rowView(atRow: self.selectedRow, makeIfNecessary: false), objects.count > self.selectedRow {
+            let selectedPasteItem = objects[self.selectedRow]
             /* 在到达可视区域的底部后，继续使用按向下方向键，会出现选中行尚未可见，但本方法已被调用的情况
                根据文档，NSPopover.show当目标视图不可见时，该方法不会产生任何行为，所以导致位置不能及时得到更新
                为了解决如上情况，延迟执行show方法
@@ -78,9 +79,7 @@ class TableView: NSTableView, NSTableViewDelegate {
     override func keyUp(with event: NSEvent) {
         let key = Key(carbonKeyCode: UInt32(event.keyCode))
         if key == Key.return {
-            let pasteItems = arrayController.selectedObjects as? [PasteItem]
-            if (pasteItems == nil) { return }
-            PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
+            pasteSelected()
         }
     }
     
@@ -101,7 +100,8 @@ class TableView: NSTableView, NSTableViewDelegate {
     
     @objc func pasteSelected () {
         let pasteItems = self.arrayController.selectedObjects as? [PasteItem]
-        if (pasteItems == nil) { return }
+        if (pasteItems?.first == nil) { return }
         PasteboardHandler.shared.paste(pasteItem: (pasteItems?.first)!)
+        NotificationCenter.default.post(name: PasteboardHandler.pastedNotification, object: nil)
     }
 }

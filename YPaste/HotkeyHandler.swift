@@ -13,20 +13,23 @@ enum OpenType {
     case history
     case favorite
     case all
+    case order
 }
 
 class HotkeyHandler {
     private var openHistoryHotkey: HotKey?
     private var openFavoriteHotkey: HotKey?
+    private var pasteHotkey: HotKey?
     
     
     init() {
         UserDefaults.standard.register(defaults: ["hotKey": "command+shift+v"])
         UserDefaults.standard.register(defaults: ["favoriteHotKey": "command+shift+f"])
+        UserDefaults.standard.register(defaults: ["activeHotKey": "command+shift+c"])
     }
     
-    static let openHistoryNotification = Notification.Name("openHistoryNotification")
-    static let openFavoriteNotification = Notification.Name("openFavoriteNotification")
+    static let openWindowNotification = Notification.Name("openWindowNotification")
+
     var openType = OpenType.history
     
     
@@ -57,15 +60,47 @@ class HotkeyHandler {
         var keyCombo = getKeyComboFromString(hotKeyString!)
         openHistoryHotkey = HotKey(keyCombo: keyCombo, keyDownHandler: {
             self.openType = .history
-            NotificationCenter.default.post(name: HotkeyHandler.openHistoryNotification, object: nil)
+            NotificationCenter.default.post(name: HotkeyHandler.openWindowNotification, object: nil)
         }, keyUpHandler: nil)
         
         hotKeyString = UserDefaults.standard.string(forKey: "favoriteHotKey")
         keyCombo = getKeyComboFromString(hotKeyString!)
         openFavoriteHotkey = HotKey(keyCombo: keyCombo, keyDownHandler: {
             self.openType = .favorite
-            NotificationCenter.default.post(name: HotkeyHandler.openFavoriteNotification, object: nil)
+            NotificationCenter.default.post(name: HotkeyHandler.openWindowNotification, object: nil)
         }, keyUpHandler: nil)
+        
+        hotKeyString = UserDefaults.standard.string(forKey: "activeHotKey")
+        keyCombo = getKeyComboFromString(hotKeyString!)
+        openFavoriteHotkey = HotKey(keyCombo: keyCombo, keyDownHandler: {
+            self.openType = .order
+            PasteboardHandler.shared.orderedItems = []
+            NotificationCenter.default.post(name: HotkeyHandler.openWindowNotification, object: nil)
+        }, keyUpHandler: nil)
+        
+        pasteHotkey = HotKey(key: .v, modifiers: .command, keyDownHandler: {
+            let pasteboard = PasteboardHandler.shared
+            if let objectId = pasteboard.orderedItems.first {
+                let managedContext = (NSApp.delegate as! AppDelegate).persistentContainer.viewContext
+                let pasteItem = managedContext.object(with: objectId) as! PasteItem
+                pasteboard.ignoreNextItems = true
+                PasteboardHandler.shared.paste(pasteItem: pasteItem)
+                pasteboard.orderedItems.removeFirst()
+                Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (timer) in
+                    if let nextId = pasteboard.orderedItems.first {
+                        let pasteItem = managedContext.object(with: nextId) as! PasteItem
+                        NSPasteboard.general.setString(pasteItem.value!, forType: .string)
+                        Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { (timer) in
+                            pasteboard.ignoreNextItems = false
+                        }
+                    } else {
+                        pasteboard.ignoreNextItems = false
+                        NotificationCenter.default.post(name: PasteboardHandler.pastedNotification, object: nil)
+                        self.openType = .history
+                    }
+                }
+            }
+        })
     }
     
     static let shared = HotkeyHandler()

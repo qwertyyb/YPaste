@@ -16,6 +16,17 @@ class PasteItemsController: NSArrayController {
         super.init(content: content)
     }
     
+    override var arrangedObjects: Any {
+        get {
+            if (HotkeyHandler.shared.openType == .order) {
+                return PasteboardHandler.shared.orderedItems.map { (objectId) -> PasteItem in
+                    return self.managedObjectContext?.object(with: objectId) as! PasteItem
+                }
+            }
+            return super.arrangedObjects
+        }
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         NotificationCenter.default.addObserver(self, selector: #selector(fetchNextPage), name: Notification.Name(rawValue: "scrollerview-ToReachBottom"), object: nil)

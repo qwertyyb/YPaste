@@ -48,6 +48,7 @@ class TimeTransformer: ValueTransformer {
             return output + "前"
         }
         if s > 0 { output += "\(s)秒" }
+        if s <= 0 { return "此刻" }
         return output + "前"
     }
 }
