@@ -11,7 +11,7 @@ import HotKey
 
 class MainWindow: NSPanel {
     override var canBecomeKey: Bool {
-        get { return true }
+        get { return HotkeyHandler.shared.openType != .order }
     }
     
     override func performKeyEquivalent(with event: NSEvent) -> Bool {

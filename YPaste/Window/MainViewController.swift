@@ -24,6 +24,7 @@ class MainViewController: NSViewController {
         arrayController.resetPage()
         tableView.scrollRowToVisible(0)
         arrayController.setSelectionIndex(0)
+        self.view.alphaValue = HotkeyHandler.shared.openType == .order ? 0.4 : 1
     }
 //    
     override func viewDidDisappear() {
