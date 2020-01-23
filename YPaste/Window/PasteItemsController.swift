@@ -105,16 +105,14 @@ class PasteItemsController: NSArrayController {
         self.managedObjectContext?.mergePolicy = NSMergePolicy.overwrite
         pasteItem.favorite = favorite!
         try! self.managedObjectContext?.save()
-        page -= 1
-        fetchNextPage()
+        fetch(nil)
     }
     
     func deleteItem(pasteItem: PasteItem) {
         self.managedObjectContext?.mergePolicy = NSMergePolicy.overwrite
         self.managedObjectContext?.delete(pasteItem)
         try! self.managedObjectContext?.save()
-        page -= 1
-        fetchNextPage()
+        fetch(nil)
     }
     
     static let shared = PasteItemsController()

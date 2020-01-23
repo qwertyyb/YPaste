@@ -25,13 +25,13 @@ class MainViewController: NSViewController {
         mainView.alphaValue = HotkeyHandler.shared.openType == .order ? 0.4 : 1
         mainView.updateFooter(string: HotkeyHandler.shared.openType == .favorite ? "YPaste - 收藏" : "YPaste - 历史")
         if HotkeyHandler.shared.openType == .order { mainView.removeSearchView() }
+        PasteItemsController.shared.resetPage()
+        PasteItemsController.shared.setSelectionIndex(0)
         view = mainView
     }
     override func viewDidDisappear() {
-        view = NSView()
         PasteItemsController.shared.fetchPredicate = nil
-        PasteItemsController.shared.resetPage()
-        PasteItemsController.shared.setSelectionIndex(0)
+        view = NSView()
     }
 
 }

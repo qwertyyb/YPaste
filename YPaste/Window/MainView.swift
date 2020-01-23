@@ -11,9 +11,9 @@ import Cocoa
 class MainView: NSStackView {
     
     let searchField = NSSearchField(string: "")
-    let listView = ListView()
-    var scrollView = ScrollView()
-    var footerView = NSTextField(string: "YPaste")
+    let scrollView = ScrollView()
+    let footerView = NSTextField(string: "YPaste")
+    
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -31,7 +31,7 @@ class MainView: NSStackView {
         scrollView.hasVerticalScroller = true
         scrollView.verticalScroller?.isHidden = true
         scrollView.drawsBackground = false
-        scrollView.documentView = listView
+        scrollView.documentView = ListView()
         scrollView.verticalScroller?.controlSize = .mini
         addView(scrollView, in: .center)
         
