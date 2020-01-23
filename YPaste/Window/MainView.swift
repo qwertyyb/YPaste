@@ -10,7 +10,7 @@ import Cocoa
 
 class MainView: NSStackView {
     
-    let searchField = NSSearchField(string: "")
+    let searchField = SearchField(string: "")
     let scrollView = ScrollView()
     let footerView = NSTextField(string: "YPaste")
     

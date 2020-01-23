@@ -9,7 +9,7 @@
 import Cocoa
 import HotKey
 
-class SearchField: NSSearchField, NSSearchFieldDelegate {
+class SearchField: NSSearchField {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -17,7 +17,10 @@ class SearchField: NSSearchField, NSSearchFieldDelegate {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        isBordered = false
-        wantsLayer = true
+    }
+    
+    override func keyUp(with event: NSEvent) {
+        if event.keyCode == Key.downArrow.carbonKeyCode {            self.window?.makeFirstResponder(self.nextKeyView)
+        }
     }
 }

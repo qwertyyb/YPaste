@@ -18,7 +18,8 @@ class ListView: NSStackView {
     }
     @objc var selectionIndex: Int = 0 {
         didSet {
-//            print(oldValue, self.selectionIndex)
+            print(oldValue, self.selectionIndex)
+            if self.selectionIndex >= 100000 { return }
             let views = self.views(in: .leading)
             guard views.count > self.selectionIndex else { return }
             
@@ -97,15 +98,17 @@ class ListView: NSStackView {
     }
     
     func update() {
+        print(selectionIndex)
         var index = 0
         let views = (PasteItemsController.shared.arrangedObjects as! [PasteItem]).map({ (pasteItem) -> ListItemView in
             let itemView = ListItemView(pasteItem: pasteItem,
                                         itemIndex: index,
                                         enableActions: HotkeyHandler.shared.openType != .order)
-            index += 1
             if (index == selectionIndex) {
                 itemView.active()
             }
+        
+            index += 1
             return itemView
         })
         setViews(views, in: .leading)
@@ -117,6 +120,9 @@ class ListView: NSStackView {
             PasteItemsController.shared.selectNext(self)
         } else if event.keyCode == Key.upArrow.carbonKeyCode {
             PasteItemsController.shared.selectPrevious(self)
+            if PasteItemsController.shared.selectionIndex == 0 {
+                self.window?.makeFirstResponder(self.superview?.superview?.previousKeyView)
+            }
         } else if event.keyCode == Key.delete.carbonKeyCode {
             PasteItemsController.shared.remove(self)
         } else if event.keyCode == Key.return.carbonKeyCode {

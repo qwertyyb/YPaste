@@ -58,6 +58,7 @@ class MainViewController: NSViewController, NSTabViewDelegate {
         let stackView = NSStackView()
         stackView.addView(tab, in: .center)
         view = stackView
+        self.mainView.scrollView.becomeFirstResponder()
     }
     override func viewDidDisappear() {
         PasteItemsController.shared.fetchPredicate = nil
@@ -73,6 +74,7 @@ class MainViewController: NSViewController, NSTabViewDelegate {
             HotkeyHandler.shared.openType = .favorite
         }
         PasteItemsController.shared.fetch(self)
+        PasteItemsController.shared.setSelectionIndex(0)
     }
 }
 
