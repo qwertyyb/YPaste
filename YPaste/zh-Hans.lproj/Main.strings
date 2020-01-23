@@ -2,6 +2,10 @@
 /* Class = "NSMenuItem"; title = "YPaste"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "YPaste";
 
+"ALr-Op-fe2.title" = "打开窗口";
+
+"sbk-CD-1W0.title" = "打开连续粘贴";
+
 /* Class = "NSMenuItem"; title = "Quit YPaste"; ObjectID = "4sb-4s-VLi"; */
 "4sb-4s-VLi.title" = "退出YPaste";
 

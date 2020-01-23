@@ -18,5 +18,6 @@ class SearchField: NSSearchField, NSSearchFieldDelegate {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         isBordered = false
+        wantsLayer = true
     }
 }

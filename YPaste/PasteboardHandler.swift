@@ -86,7 +86,6 @@ class PasteboardHandler {
     
     
     func paste(pasteItem: PasteItem){
-        print(NSWorkspace.shared.frontmostApplication)
         self.pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         self.pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)
         DispatchQueue.main.async {

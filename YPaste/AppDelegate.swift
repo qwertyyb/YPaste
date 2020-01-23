@@ -78,6 +78,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         preferencesWindowController.showWindow(self)
     }
     
+    @IBAction func openMainWindow(_ sender: AnyObject?) {
+        HotkeyHandler.shared.openType = .history
+        app?.mainWindowController.openWindow()
+    }
+    @IBAction func openOrderPaste(_ sender: AnyObject?) {
+        HotkeyHandler.shared.openType = .order
+        PasteboardHandler.shared.orderedItems = []
+        app?.mainWindowController.openWindow()
+    }
+    
     // MARK: - Core Data Saving and Undo support
 
     @IBAction func saveAction(_ sender: AnyObject?) {

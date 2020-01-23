@@ -32,7 +32,6 @@ class PasteItemsController: NSArrayController {
     override var arrangedObjects: Any {
         get {
             if (HotkeyHandler.shared.openType == .order) {
-                print("order item")
                 return PasteboardHandler.shared.orderedItems.map { (objectId) -> PasteItem in
                     return self.managedObjectContext?.object(with: objectId) as! PasteItem
                 }

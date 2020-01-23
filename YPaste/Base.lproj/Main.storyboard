@@ -22,10 +22,16 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="YPaste" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About YPaste" id="5kV-Vb-QxS">
+                                        <menuItem title="Open" id="ALr-Op-fe2" userLabel="Open">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <action selector="openMainWindow:" target="Voe-Tx-rLC" id="BTT-sZ-Pc5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Order Paste" id="sbk-CD-1W0" userLabel="Order Paste">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openOrderPaste:" target="Voe-Tx-rLC" id="FDF-xs-Rbf"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -38,6 +44,12 @@
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
                                                 <action selector="openPreferences:" target="Voe-Tx-rLC" id="EMF-mG-p7S"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="About YPaste" id="5kV-Vb-QxS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>

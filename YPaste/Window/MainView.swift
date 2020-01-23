@@ -18,14 +18,15 @@ class MainView: NSStackView {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         orientation = .vertical
-        
-        edgeInsets = NSEdgeInsets.init(top: 20, left: 12, bottom: 20, right: 12)
-        
+        edgeInsets = NSEdgeInsets.init(top: 20, left: 6, bottom: 20, right: 6)
         translatesAutoresizingMaskIntoConstraints = false
-
         alignment = .left
         
         addView(searchField, in: .top)
+        NSLayoutConstraint.activate([
+            searchField.leftAnchor.constraint(equalTo: leftAnchor),
+            searchField.rightAnchor.constraint(equalTo: rightAnchor, constant: -18)
+        ])
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.hasVerticalScroller = true
@@ -36,12 +37,11 @@ class MainView: NSStackView {
         addView(scrollView, in: .center)
         
         NSLayoutConstraint.activate([
-          scrollView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
+          scrollView.leftAnchor.constraint(equalTo: leftAnchor),
           scrollView.rightAnchor.constraint(equalTo: rightAnchor),
           scrollView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 20),
           scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -(NSScreen.main?.visibleFrame.origin.y ?? 100)),
         ])
-        
         
         footerView.alignment = .center
         footerView.backgroundColor = .clear
@@ -65,5 +65,9 @@ class MainView: NSStackView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    func update() {
+        (scrollView.documentView as! ListView).update()
     }
 }

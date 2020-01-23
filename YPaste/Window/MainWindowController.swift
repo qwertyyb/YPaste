@@ -60,6 +60,9 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     
     @objc func openWindow() {
         guard let win = self.window else { return }
+        if win.isVisible {
+            self.close()
+        }
         win.ignoresMouseEvents = HotkeyHandler.shared.openType == .order
         clearMonitor()
         
@@ -70,7 +73,6 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
         win.setFrame(NSMakeRect(0, 0, 400, 1080), display: true)
         
         if (HotkeyHandler.shared.openType != .order) {
-//            NSApp.activate(ignoringOtherApps: true)
             win.makeKeyAndOrderFront(nil)
             win.isOpaque = true
             win.backgroundColor = .init(red: 0.88, green: 0.88, blue: 0.88, alpha: 1)

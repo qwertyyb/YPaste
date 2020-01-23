@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ListItemView: NSStackView {
+class ListItemView: NSStackView, NSStackViewDelegate {
     required init?(coder: NSCoder) {
         index = -1
         super.init(coder: coder)
@@ -42,13 +42,14 @@ class ListItemView: NSStackView {
         wantsLayer = true
         layer?.masksToBounds = true
         layer?.cornerRadius = 4
+        delegate = self
         
         self.pasteItem = pasteItem
         
         
         NSLayoutConstraint.activate([
             topView.heightAnchor.constraint(equalToConstant: 24),
-            topView.widthAnchor.constraint(equalToConstant: (self.window?.frame.width ?? 400) - 30)
+            topView.widthAnchor.constraint(equalToConstant: (self.window?.frame.width ?? 400) - 48)
         ])
         
         topView.orientation = .horizontal
@@ -128,5 +129,9 @@ class ListItemView: NSStackView {
     func deactive () {
         titleView.textColor = .init(red: 0, green: 0, blue: 0, alpha: 0.4)
         topView.layer?.backgroundColor = .init(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
+    }
+    
+    override func viewWillDraw() {
+        
     }
 }
