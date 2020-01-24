@@ -14,6 +14,19 @@ class PasteItemsController: NSArrayController {
     
     override init(content: Any?) {
         super.init(content: content)
+
+        managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
+        sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
+        entityName = "PasteItem"
+        
+        self.addObserver(self, forKeyPath: "fetchPredicate", options: [.new], context: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(remove(_:)), name: TableView.rowRemovedNotification, object: nil)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchNextPage), name: ScrollView.reachBottomNotification, object: nil)
+        NotificationCenter.default.addObserver(forName: PasteboardHandler.changeNotification, object: nil, queue: nil) { (notification) in
+            self.resetPage()
+        }
     }
     
     override var arrangedObjects: Any {
@@ -29,19 +42,10 @@ class PasteItemsController: NSArrayController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        NotificationCenter.default.addObserver(self, selector: #selector(fetchNextPage), name: Notification.Name(rawValue: "scrollerview-ToReachBottom"), object: nil)
-        self.addObserver(self, forKeyPath: "fetchPredicate", options: [.new], context: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(remove(_:)), name: TableView.rowRemovedNotification, object: nil)
-        NotificationCenter.default.addObserver(forName: PasteboardHandler.changeNotification, object: nil, queue: nil) { (notification) in
-            self.resetPage()
-        }
-        
-        managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.viewContext
-        sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
     }
     
     var page = 1
-    var total: Int {
+    @objc var total: Int {
         get {
             return try! (managedObjectContext?.count(for: defaultFetchRequest()))!
         }
@@ -95,4 +99,20 @@ class PasteItemsController: NSArrayController {
             self.setSelectionIndex(selectedIndex)
         }
     }
+    
+    func favoriteItem(pasteItem: PasteItem, favorite: Bool? = true) {
+        self.managedObjectContext?.mergePolicy = NSMergePolicy.overwrite
+        pasteItem.favorite = favorite!
+        try! self.managedObjectContext?.save()
+        fetch(nil)
+    }
+    
+    func deleteItem(pasteItem: PasteItem) {
+        self.managedObjectContext?.mergePolicy = NSMergePolicy.overwrite
+        self.managedObjectContext?.delete(pasteItem)
+        try! self.managedObjectContext?.save()
+        fetch(nil)
+    }
+    
+    static let shared = PasteItemsController()
 }

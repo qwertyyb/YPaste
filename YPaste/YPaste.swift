@@ -14,6 +14,7 @@ class YPaste {
     
     let pasteboardHandler = PasteboardHandler.shared
     let hotkeyHandler = HotkeyHandler.shared
+    let mainWindowController: MainWindowController = MainWindowController(window: MainWindow())
     
     init() {
         hotkeyHandler.register()

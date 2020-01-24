@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -23,10 +22,16 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="YPaste" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About YPaste" id="5kV-Vb-QxS">
+                                        <menuItem title="Open" id="ALr-Op-fe2" userLabel="Open">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <action selector="openMainWindow:" target="Voe-Tx-rLC" id="BTT-sZ-Pc5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Order Paste" id="sbk-CD-1W0" userLabel="Order Paste">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openOrderPaste:" target="Voe-Tx-rLC" id="FDF-xs-Rbf"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -39,6 +44,12 @@
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
                                                 <action selector="openPreferences:" target="Voe-Tx-rLC" id="EMF-mG-p7S"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="About YPaste" id="5kV-Vb-QxS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -59,187 +70,6 @@
                 <customObject id="HvN-ei-pjE" customClass="SUUpdater"/>
             </objects>
             <point key="canvasLocation" x="753" y="-175"/>
-        </scene>
-        <!--Main Window Controller-->
-        <scene sceneID="R2V-B0-nI4">
-            <objects>
-                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" userLabel="Main Window Controller" customClass="MainWindowController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="YPaste" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="none" titlebarAppearsTransparent="YES" id="IQv-IB-iLA" customClass="MainWindow" customModule="YPaste" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" closable="YES" nonactivatingPanel="YES"/>
-                        <rect key="contentRect" x="502" y="405" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <connections>
-                            <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
-                    </connections>
-                </windowController>
-                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="TB0-0k-jHf"/>
-            </objects>
-            <point key="canvasLocation" x="75" y="250"/>
-        </scene>
-        <!--Main View Controller-->
-        <scene sceneID="hIz-AP-VOD">
-            <objects>
-                <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="YPaste" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" alphaValue="0.59999999999999998" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hah-LV-MYL" customClass="SearchField" customModule="YPaste" customModuleProvider="target">
-                                <rect key="frame" x="-2" y="251" width="484" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" usesSingleLineMode="YES" bezelStyle="round" id="5lS-pC-S4h">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                                <connections>
-                                    <binding destination="YWq-Kq-AiD" name="predicate" keyPath="fetchPredicate" id="oEg-4y-qRo">
-                                        <dictionary key="options">
-                                            <string key="NSDisplayName">predicate</string>
-                                            <string key="NSPredicateFormat">self.value contains[cd] $value</string>
-                                        </dictionary>
-                                    </binding>
-                                    <outlet property="nextKeyView" destination="R8r-dv-iTb" id="Scd-zc-cmO"/>
-                                </connections>
-                            </searchField>
-                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8r-dv-iTb" customClass="ScrollView" customModule="YPaste" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="251"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="BQc-S7-5MY">
-                                    <rect key="frame" x="0.0" y="0.0" width="480" height="251"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <tableView verticalHuggingPriority="750" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" viewBased="YES" id="IWK-h8-GX2" customClass="TableView" customModule="YPaste" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="480" height="251"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="gridColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                            <tableColumns>
-                                                <tableColumn width="387" minWidth="40" maxWidth="1000" id="8xv-qV-Qfd">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="92q-C9-B8o">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                    <prototypeCellViews>
-                                                        <tableCellView id="AVZ-OU-ox4">
-                                                            <rect key="frame" x="1" y="1" width="387" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AGZ-HH-ijD">
-                                                                    <rect key="frame" x="-2" y="1" width="388" height="16"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="sih-Tj-WrW">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        <connections>
-                                                                            <binding destination="AVZ-OU-ox4" name="value" keyPath="objectValue.value" id="OXo-hF-Y5F">
-                                                                                <dictionary key="options">
-                                                                                    <string key="NSValueTransformerName">SummaryTransformer</string>
-                                                                                </dictionary>
-                                                                            </binding>
-                                                                        </connections>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="AGZ-HH-ijD" firstAttribute="leading" secondItem="AVZ-OU-ox4" secondAttribute="leading" id="TZL-SV-h0H"/>
-                                                                <constraint firstItem="AGZ-HH-ijD" firstAttribute="top" secondItem="AVZ-OU-ox4" secondAttribute="top" id="l8c-hk-aBt"/>
-                                                                <constraint firstAttribute="trailing" secondItem="AGZ-HH-ijD" secondAttribute="trailing" constant="3" id="xpp-pD-dEm"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <outlet property="textField" destination="AGZ-HH-ijD" id="WPi-wh-Nnt"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                    </prototypeCellViews>
-                                                </tableColumn>
-                                                <tableColumn width="85" minWidth="40" maxWidth="1000" id="yX1-kQ-pUb">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="I37-gj-KWi">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                    <prototypeCellViews>
-                                                        <tableCellView id="vFT-GW-ujY">
-                                                            <rect key="frame" x="391" y="1" width="85" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ew2-hw-lNE">
-                                                                    <rect key="frame" x="0.0" y="1" width="85" height="16"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" title="Time" id="dSS-b1-vUc">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        <connections>
-                                                                            <binding destination="vFT-GW-ujY" name="value" keyPath="objectValue.updated_at" id="rMS-Qg-xZy">
-                                                                                <dictionary key="options">
-                                                                                    <string key="NSValueTransformerName">TimeTransformer</string>
-                                                                                </dictionary>
-                                                                            </binding>
-                                                                        </connections>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="Ew2-hw-lNE" firstAttribute="centerX" secondItem="vFT-GW-ujY" secondAttribute="centerX" id="AmT-pt-HUq"/>
-                                                                <constraint firstItem="Ew2-hw-lNE" firstAttribute="centerY" secondItem="vFT-GW-ujY" secondAttribute="centerY" id="YYw-kA-9vP"/>
-                                                                <constraint firstItem="Ew2-hw-lNE" firstAttribute="leading" secondItem="vFT-GW-ujY" secondAttribute="leading" constant="2" id="o3p-Zj-e4J"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <outlet property="textField" destination="Ew2-hw-lNE" id="Xbu-IE-0Ok"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                    </prototypeCellViews>
-                                                </tableColumn>
-                                            </tableColumns>
-                                            <connections>
-                                                <binding destination="YWq-Kq-AiD" name="content" keyPath="arrangedObjects" id="NwS-HZ-pRV"/>
-                                                <binding destination="YWq-Kq-AiD" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="NwS-HZ-pRV" id="hLE-Vn-CHh"/>
-                                                <outlet property="arrayController" destination="YWq-Kq-AiD" id="ovM-zN-cTw"/>
-                                            </connections>
-                                        </tableView>
-                                    </subviews>
-                                    <nil key="backgroundColor"/>
-                                </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GXx-bY-2zG">
-                                    <rect key="frame" x="1" y="233" width="478" height="16"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="t62-zk-YBk">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                        </subviews>
-                    </view>
-                    <connections>
-                        <outlet property="arrayController" destination="YWq-Kq-AiD" id="KfK-ON-wde"/>
-                        <outlet property="tableView" destination="IWK-h8-GX2" id="s6h-pB-Nh8"/>
-                    </connections>
-                </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController mode="entity" entityName="PasteItem" usesLazyFetching="YES" fetchPredicateFormat="" editable="NO" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="YWq-Kq-AiD" customClass="PasteItemsController" customModule="YPaste" customModuleProvider="target"/>
-                <userDefaultsController representsSharedInstance="YES" id="mFB-8f-Zdr"/>
-            </objects>
-            <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
 </document>

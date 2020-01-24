@@ -38,4 +38,6 @@ class Popover: NSPopover {
         let view = NSTextField()
         self.contentViewController!.view = view
     }
+    
+    static let shared = Popover()
 }
