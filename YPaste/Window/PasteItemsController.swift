@@ -11,6 +11,7 @@ import Cocoa
 class PasteItemsController: NSArrayController {
     
     static let selectionChange = Notification.Name(rawValue: "selectionChange")
+    static let totalChange = Notification.Name(rawValue: "totalChange")
     
     override init(content: Any?) {
         super.init(content: content)
@@ -18,10 +19,6 @@ class PasteItemsController: NSArrayController {
         managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
         sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
         entityName = "PasteItem"
-        
-        self.addObserver(self, forKeyPath: "fetchPredicate", options: [.new], context: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(remove(_:)), name: TableView.rowRemovedNotification, object: nil)
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(fetchNextPage), name: ScrollView.reachBottomNotification, object: nil)
         NotificationCenter.default.addObserver(forName: PasteboardHandler.changeNotification, object: nil, queue: nil) { (notification) in
@@ -55,6 +52,7 @@ class PasteItemsController: NSArrayController {
         fetchRequest?.fetchOffset = 0
         fetchRequest?.fetchLimit = page * 30
         try! super.fetch(with: fetchRequest, merge: merge)
+        NotificationCenter.default.post(name: PasteItemsController.totalChange, object: nil)
     }
     func resetPage () {
         page = 1
@@ -66,13 +64,6 @@ class PasteItemsController: NSArrayController {
         }
         page += 1
         self.fetch(nil)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if (keyPath == "fetchPredicate") {
-            self.resetPage()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fetchPredicateChanged"), object: nil)
-        }
     }
     
     override func defaultFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {

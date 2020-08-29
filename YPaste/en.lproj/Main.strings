@@ -14,11 +14,14 @@
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
 "BOF-NM-1cW.title" = "Preferences…";
 
-/* Class = "NSWindow"; title = "YPaste"; ObjectID = "IQv-IB-iLA"; */
-"IQv-IB-iLA.title" = "YPaste";
-
 /* Class = "NSMenu"; title = "YPaste"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "YPaste";
 
 /* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "yaf-RW-gyC"; */
 "yaf-RW-gyC.title" = "Check for Updates...";
+
+/* Class = "NSMenuItem"; title = "Open"; ObjectID = "ALr-Op-fe2"; */
+"ALr-Op-fe2.title" = "";
+
+/* Class = "NSMenuItem"; title = "Order Paste"; ObjectID = "sbk-CD-1W0"; */
+"sbk-CD-1W0.title" = "";
