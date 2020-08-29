@@ -50,6 +50,13 @@ class MainView: NSStackView {
         addView(footerView, in: .bottom)
         
         searchField.bind(.predicate, to: PasteItemsController.shared, withKeyPath: "fetchPredicate", options: [NSBindingOption.predicateFormat: "self.value contains[cd] $value"])
+        
+        NotificationCenter.default.addObserver(
+            forName: PasteItemsController.totalChange,
+            object: nil,
+            queue: nil) { (notification) in
+                self.updateCount()
+        }
     }
     
     func removeSearchView () {
@@ -61,6 +68,11 @@ class MainView: NSStackView {
     
     func updateFooter (string: String = "") {
         footerView.stringValue = string
+    }
+    
+    func updateCount () {
+        let str = "共有\(String(PasteItemsController.shared.total))条数据"
+        footerView.stringValue = str
     }
     
     required init?(coder: NSCoder) {

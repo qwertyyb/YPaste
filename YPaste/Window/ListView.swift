@@ -98,7 +98,6 @@ class ListView: NSStackView {
     }
     
     func update() {
-        print(selectionIndex)
         var index = 0
         let views = (PasteItemsController.shared.arrangedObjects as! [PasteItem]).map({ (pasteItem) -> ListItemView in
             let itemView = ListItemView(pasteItem: pasteItem,
