@@ -70,7 +70,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
         let y = NSScreen.main?.frame.minY ?? 0
         let menuBarHeight = NSMenu.menuBarVisible() ? NSApplication.shared.mainMenu?.menuBarHeight ?? 24 : 0
         let height = (NSScreen.main?.frame.height ?? NSScreen.screens.first!.frame.height) - menuBarHeight
-        win.setFrame(NSMakeRect(0, 0, 400, 1080), display: true)
+//        win.setFrame(NSMakeRect(0, 0, 400, 1080), display: true)
         
         if (HotkeyHandler.shared.openType != .order) {
             win.makeKeyAndOrderFront(nil)
@@ -95,11 +95,13 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
             }
             monitors.append(event)
             
+            NSApp.activate(ignoringOtherApps: true)
         } else {
-            win.orderFrontRegardless()
+//            win.orderFrontRegardless()
             win.isOpaque = false
             win.backgroundColor = .init(white: 0, alpha: 0.2)
         }
+//        win.setFrame(NSMakeRect(x, y, 400, height), display: true)
         let anim = NSViewAnimation(duration: 0.25, animationCurve: .easeOut)
         anim.viewAnimations = [
             [
