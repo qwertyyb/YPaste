@@ -1,9 +1,15 @@
 PODS:
   - HotKey (0.1.2)
+  - Realm (10.1.1):
+    - Realm/Headers (= 10.1.1)
+  - Realm/Headers (10.1.1)
+  - RealmSwift (10.1.1):
+    - Realm (= 10.1.1)
   - Sparkle (1.22.0)
 
 DEPENDENCIES:
   - HotKey
+  - RealmSwift
   - Sparkle
 
 SPEC REPOS:
@@ -11,11 +17,15 @@ SPEC REPOS:
     - Sparkle
   trunk:
     - HotKey
+    - Realm
+    - RealmSwift
 
 SPEC CHECKSUMS:
   HotKey: ad59450195936c10992438c4210f673de5aee43e
+  Realm: 784ca1da1453e31a9c9adc14445421a81f316119
+  RealmSwift: cc52fe0dcea56387274dff36e19219e055a3bb84
   Sparkle: 593ac2e677c07bcb6c3b22d621240e7cbedaab57
 
-PODFILE CHECKSUM: b863336650077d91184235d1730e4258ff89affc
+PODFILE CHECKSUM: 42457a3984f2c9a122d95bd0759aac1e3d4d5674
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

@@ -14,11 +14,11 @@ import Combine
 
 class MainWindow: NSPanel {
     
-    private let publisher = PassthroughSubject<NSEvent, Never>() // private
+//    private let publisher = PassthroughSubject<NSEvent, Never>() // private
 
-    var keyEventPublisher: AnyPublisher<NSEvent, Never> { // public
-        publisher.eraseToAnyPublisher()
-    }
+//    var keyEventPublisher: AnyPublisher<NSEvent, Never> { // public
+//        publisher.eraseToAnyPublisher()
+//    }
     
     override var canBecomeKey: Bool {
         get { return true }
@@ -41,7 +41,8 @@ class MainWindow: NSPanel {
         let hostingView = NSHostingView(
             rootView: PasteListView()
                 .environment(\.managedObjectContext, (NSApp.delegate as! AppDelegate).persistentContainer.viewContext)
-                .environment(\.keyPublisher, keyEventPublisher)
+                .environment(\.keyPublisher, GlobalPublisher.shared.keyEventPublisher)
+//                .environmentObject(Store.shared)
         )
         contentView = hostingView
         isFloatingPanel = true
@@ -49,6 +50,6 @@ class MainWindow: NSPanel {
     
     override func keyDown(with event: NSEvent) {
         print("window key:")
-        publisher.send(event)
+//        keyEventPubliser.send(<#T##input: NSEvent##NSEvent#>)
     }
 }

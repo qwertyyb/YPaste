@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import RealmSwift
 
 class PasteboardHandler {
     var orderedItems: [NSManagedObjectID] = []
@@ -32,39 +33,52 @@ class PasteboardHandler {
         guard pasteboard.changeCount != lastChangeCount else {
             return
         }
-        if let curItem = pasteboard.string(forType: NSPasteboard.PasteboardType.string) {
-            if ignoreNextItems {
-                lastChangeCount = pasteboard.changeCount
-                NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: nil)
-                return
+        guard let curItem = pasteboard.string(forType: NSPasteboard.PasteboardType.string) else {
+            lastChangeCount = pasteboard.changeCount
+            return
+        }
+        if ignoreNextItems {
+            lastChangeCount = pasteboard.changeCount
+            NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: nil)
+            return
+        }
+        let isFavorite = self.isFavorite(string: curItem)
+        lastItem = curItem
+        lastTime = Date()
+        
+        let realm = try! Realm()
+        
+        let predicate = NSPredicate(format: "value = %@ and type = %@", curItem, "text")
+        
+        let pasteItems = realm.objects(MPasteItem.self).filter(predicate)
+//        let saveContext = (NSApp.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
+//        let fetchRequest: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
+//        fetchRequest.predicate = predicate
+//        fetchRequest.returnsObjectsAsFaults = false
+//        let pasteItems = try? saveContext.fetch(fetchRequest);
+        // 已存在,只更新时间,不存在时,添加一条记录
+        if pasteItems.count == 0 {
+            
+            let pasteItem = MPasteItem(value: ["type": "text", "value": curItem])
+            try! realm.write {
+                realm.add(pasteItem)
             }
-            let isFavorite = self.isFavorite(string: curItem)
-            lastItem = curItem
-            lastTime = Date()
-            let predicate = NSPredicate(format: "value = %@ and type = %@", curItem, "text")
-            let saveContext = (NSApp.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
-            let fetchRequest: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
-            fetchRequest.predicate = predicate
-            fetchRequest.returnsObjectsAsFaults = false
-            let pasteItems = try? saveContext.fetch(fetchRequest);
-            // 已存在,只更新时间,不存在时,添加一条记录
-            if pasteItems == nil || pasteItems?.count == 0 {
-                let pasteItem = NSEntityDescription.insertNewObject(forEntityName: "PasteItem", into: saveContext) as! PasteItem
-                pasteItem.type = "text"
-                pasteItem.value = curItem
-                pasteItem.favorite = isFavorite
-                pasteItem.updated_at = Date()
-                try? saveContext.save()
-                self.orderedItems.append(pasteItem.objectID)
-                NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItem])
-            } else if (pasteItems != nil && pasteItems!.count > 0) {
-                let existItem = pasteItems![0]
+//            pasteItem.type = "text"
+//            pasteItem.value = curItem
+//            pasteItem.favorite = isFavorite
+//            pasteItem.updated_at = Date()
+//            try? saveContext.save()
+//            self.orderedItems.append(pasteItem.objectID)
+//            NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItem])
+        } else if (pasteItems.count > 0) {
+            let existItem = pasteItems[0]
+            try! realm.write {
                 existItem.updated_at = Date()
                 existItem.favorite = existItem.favorite ? true : isFavorite
-                NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItems![0]])
-                self.orderedItems.append(pasteItems![0].objectID)
-                try? saveContext.save()
             }
+            NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItems[0]])
+//            self.orderedItems.append(pasteItems![0].objectID)
+//            try? saveContext.save()
         }
         
         lastChangeCount = pasteboard.changeCount

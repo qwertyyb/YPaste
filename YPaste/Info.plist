@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>Explosion v1.0.0－alpha</string>
 	<key>CFBundleVersion</key>
-	<string>102180</string>
+	<string>102304</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -31,7 +31,7 @@
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>YPaste.Application</string>
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/qwertyyb/YPaste/master/appcast.xml</string>
 	<key>SUPublicEDKey</key>

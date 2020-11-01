@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4513EC4C254D75B400829700 /* PasteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513EC4A254D75B400829700 /* PasteItemView.swift */; };
 		4513EC4D254D75B400829700 /* PasteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513EC4B254D75B400829700 /* PasteListView.swift */; };
+		4513F363254ED75100829700 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513F362254ED75100829700 /* Application.swift */; };
+		4513F367254ED84400829700 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513F366254ED84400829700 /* Store.swift */; };
+		4513F36C254F02CD00829700 /* MPasteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513F36B254F02CD00829700 /* MPasteItem.swift */; };
 		4541BB0023C76D1300204946 /* PasteboardHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */; };
 		4541BB0223C78A1C00204946 /* HotkeyHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */; };
 		456001E4236C8950002086DE /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456001E3236C8950002086DE /* Popover.swift */; };
@@ -26,6 +29,7 @@
 		670CAF2423D580D6005B070A /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670CAF2323D580D6005B070A /* ListItemView.swift */; };
 		670CAF2623D59574005B070A /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670CAF2523D59574005B070A /* ListView.swift */; };
 		67136E302359E04F00EFB448 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67136E322359E04F00EFB448 /* Preferences.xib */; };
+		6715AA54D1312F6405AE1AEA /* Pods_YPaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764AFBAEB59FEA93DE0448EA /* Pods_YPaste.framework */; };
 		6734CC5A236C60B40008F7E3 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6734CC59236C60B40008F7E3 /* MainWindow.swift */; };
 		67446E7A235F3EAE0050AB96 /* HotkeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */; };
 		67784476235F376800970786 /* PasteboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67784475235F376800970786 /* PasteboardHandler.swift */; };
@@ -34,8 +38,7 @@
 		67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3262B2359D86300248CDE /* PreferencesWindowController.swift */; };
 		67C640E2235DE41D00649FD3 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C640E1235DE41D00649FD3 /* ScrollView.swift */; };
 		67CFA4872351F4FB0058CF29 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 67CFA4862351F4FB0058CF29 /* README.md */; };
-		89E4606D59274DC83FCCFEB8 /* libPods-YPasteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */; };
-		90659D2688F1F0D071B53FBE /* libPods-YPaste.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5798607827522D99BA309E4B /* libPods-YPaste.a */; };
+		D61063B13B8F2FFB19E520BF /* Pods_YPasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3A976BA4C7EB94F6C0BBC8 /* Pods_YPasteTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 /* Begin PBXFileReference section */
 		4513EC4A254D75B400829700 /* PasteItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteItemView.swift; sourceTree = "<group>"; };
 		4513EC4B254D75B400829700 /* PasteListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteListView.swift; sourceTree = "<group>"; };
+		4513F362254ED75100829700 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		4513F366254ED84400829700 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		4513F36B254F02CD00829700 /* MPasteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPasteItem.swift; sourceTree = "<group>"; };
 		4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardHandlerTests.swift; sourceTree = "<group>"; };
 		4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyHandlerTests.swift; sourceTree = "<group>"; };
 		456001E3236C8950002086DE /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
@@ -68,7 +74,6 @@
 		4596AE6A23216E6C00F63EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4596AE702322B5CB00F63EBF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4596AE722323CF5800F63EBF /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
-		5798607827522D99BA309E4B /* libPods-YPaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67096212235EC0D7009068B9 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		670CAF2123D579CB005B070A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		670CAF2323D580D6005B070A /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
@@ -84,11 +89,12 @@
 		67C640E1235DE41D00649FD3 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		67CFA4862351F4FB0058CF29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		67F313B62355F66B008BAEB7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		764AFBAEB59FEA93DE0448EA /* Pods_YPaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YPaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D203870767222ECB87119A1 /* Pods-YPaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.release.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.release.xcconfig"; sourceTree = "<group>"; };
 		8ED30E47D4ECAA18EAC756F3 /* Pods-YPasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.debug.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9F3A976BA4C7EB94F6C0BBC8 /* Pods_YPasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YPasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF976CA97E1092109B6B6ED /* Pods-YPasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPasteTests.release.xcconfig"; path = "Target Support Files/Pods-YPasteTests/Pods-YPasteTests.release.xcconfig"; sourceTree = "<group>"; };
 		D8C0DCABD4ABBD4A765E9914 /* Pods-YPaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YPaste.debug.xcconfig"; path = "Target Support Files/Pods-YPaste/Pods-YPaste.debug.xcconfig"; sourceTree = "<group>"; };
-		FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPasteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90659D2688F1F0D071B53FBE /* libPods-YPaste.a in Frameworks */,
+				6715AA54D1312F6405AE1AEA /* Pods_YPaste.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89E4606D59274DC83FCCFEB8 /* libPods-YPasteTests.a in Frameworks */,
+				D61063B13B8F2FFB19E520BF /* Pods_YPasteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +137,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4513F36A254F02AF00829700 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4513F36B254F02CD00829700 /* MPasteItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		4596AE3B232025A700F63EBF = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +169,7 @@
 		4596AE46232025A700F63EBF /* YPaste */ = {
 			isa = PBXGroup;
 			children = (
+				4513F36A254F02AF00829700 /* Models */,
 				4513EC49254D75B400829700 /* Views */,
 				678C62B123680DB10036A81A /* Localizable.strings */,
 				67096211235EC0B0009068B9 /* Window */,
@@ -169,6 +184,8 @@
 				67C3262B2359D86300248CDE /* PreferencesWindowController.swift */,
 				67784475235F376800970786 /* PasteboardHandler.swift */,
 				67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */,
+				4513F362254ED75100829700 /* Application.swift */,
+				4513F366254ED84400829700 /* Store.swift */,
 			);
 			path = YPaste;
 			sourceTree = "<group>";
@@ -205,8 +222,8 @@
 		F8B5BBE6526EC7D03DBE8BD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5798607827522D99BA309E4B /* libPods-YPaste.a */,
-				FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */,
+				764AFBAEB59FEA93DE0448EA /* Pods_YPaste.framework */,
+				9F3A976BA4C7EB94F6C0BBC8 /* Pods_YPasteTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -427,6 +444,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4513F367254ED84400829700 /* Store.swift in Sources */,
+				4513F363254ED75100829700 /* Application.swift in Sources */,
+				4513F36C254F02CD00829700 /* MPasteItem.swift in Sources */,
 				67904080235D8C1D00B0C74E /* PasteItemsController.swift in Sources */,
 				670CAF2423D580D6005B070A /* ListItemView.swift in Sources */,
 				67784476235F376800970786 /* PasteboardHandler.swift in Sources */,

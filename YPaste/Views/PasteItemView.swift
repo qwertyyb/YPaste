@@ -11,7 +11,7 @@ import HotKey
 
 struct PasteItemView: View {
     @State var selected = false
-    @ObservedObject var pasteItem: PasteItem = PasteItem()
+    @ObservedObject var pasteItem: MPasteItem = MPasteItem()
     
     private let normalColor = Color(red: 0.28, green: 0.79, blue: 0.69)
     private let selectedColor = Color(red: 0.078, green: 0.56, blue: 0.467)
@@ -37,7 +37,7 @@ struct PasteItemView: View {
                     .colorInvert()
                     .onTapGesture {
                         withAnimation { () -> Void in
-                            pasteItem.managedObjectContext?.delete(pasteItem)
+//                            pasteItem.managedObjectContext?.delete(pasteItem)
                         }
                     }
             }
@@ -64,7 +64,7 @@ struct PasteItemView: View {
             )
             .background(Color(red: 0.83, green: 0.83, blue: 0.83, opacity: 1))
             .onTapGesture {
-                PasteboardHandler.shared.paste(pasteItem: pasteItem)
+//                PasteboardHandler.shared.paste(pasteItem: pasteItem)
             }
         }
         .clipped()

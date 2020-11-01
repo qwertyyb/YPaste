@@ -9,6 +9,7 @@
 import SwiftUI
 import Combine
 import Carbon
+import RealmSwift
 
 extension NSTextField {
     open override var focusRingType: NSFocusRingType {
@@ -17,22 +18,17 @@ extension NSTextField {
     }
 }
 
-class KeyboardInput: ObservableObject {
-    @Published var keyEvent: NSEvent = NSEvent()
-}
-
 // Environment key to hold even publisher
-struct WindowEventPublisherKey: EnvironmentKey {
-    static let defaultValue: AnyPublisher<NSEvent, Never> =
-        Just(NSEvent()).eraseToAnyPublisher() // just default stub
+struct keyEventPublisherKey: EnvironmentKey {
+    static let defaultValue: PassthroughSubject<NSEvent, Never> = PassthroughSubject<NSEvent, Never>() // just default stub
 }
 
 
 // Environment value for keyPublisher access
 extension EnvironmentValues {
-    var keyPublisher: AnyPublisher<NSEvent, Never> {
-        get { self[WindowEventPublisherKey.self] }
-        set { self[WindowEventPublisherKey.self] = newValue }
+    var keyPublisher: PassthroughSubject<NSEvent, Never> {
+        get { self[keyEventPublisherKey.self] }
+        set { self[keyEventPublisherKey.self] = newValue }
     }
 }
 struct DelayedAnimation: ViewModifier {
@@ -109,15 +105,48 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     }
 }
 
+struct SearchView: View {
+    @EnvironmentObject private var store: Store
+    
+    private let placeholderColor = Color.gray
+    private let inputColor = Color.primary
+    var body: some View {
+        let isInput = store.keyword.count > 0
+        return VStack(alignment: .center) {
+            Text(isInput ? store.keyword : "enter keyword")
+                .frame(
+                    minWidth: 0,
+                    maxWidth: 360,
+                    minHeight: 28,
+                    maxHeight: 28,
+                    alignment: .leading
+                )
+                .padding(12)
+                .foregroundColor(isInput ? inputColor : placeholderColor)
+        }
+        .frame(
+            minWidth: 0,
+            minHeight: 28,
+            maxHeight: 28,
+            alignment: .leading
+        )
+        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gray))
+    }
+}
+
 
 struct PasteListView: View {
     @State var selectedIndex = 0
     
+    @State private var predicate: NSPredicate = NSPredicate(format: "type != 'aaaa'")
+    
     @State private var keyword = ""
     
-    @State private var predicate: NSPredicate?
+    private let realm = try! Realm()
     
-    @Environment(\.keyPublisher) private var keyEventPublisher
+//    @Environment(\.keyPublisher) private var keyEventPublisher
+    
+//    @EnvironmentObject private var store: Store
 
     // MARK: Core Data性能太差，后面建议弃用
     var body: some View {
@@ -131,34 +160,35 @@ struct PasteListView: View {
             .padding([.top, .bottom], 8)
             .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
             .padding([.leading, .trailing], 24)
-//                .onReceive(
-//                    Just(keyword)
-//                        .throttle(for: .seconds(5), scheduler: DispatchQueue.main, latest: true)
-//                        .removeDuplicates()
-//                ) { (val) in
-//                    updatePredicate()
-//                }
             
-            FilteredList<PasteItem, PasteItemView>(
-                predicate: predicate,
-                sortDescriptors: [NSSortDescriptor(key: "updated_at", ascending: false)]
-            ) { (index, pasteItem) in
-                PasteItemView(selected: index == selectedIndex, pasteItem: pasteItem)
+            List(realm.objects(MPasteItem.self).filter(predicate), id: \.self) { (pasteItem) in
+                PasteItemView(selected: false, pasteItem: pasteItem)
             }
+            
+//            FilteredList<PasteItem, PasteItemView>(
+//                predicate: predicate,
+//                sortDescriptors: [NSSortDescriptor(key: "updated_at", ascending: false)]
+//            ) { (index, pasteItem) in
+//                PasteItemView(selected: index == selectedIndex, pasteItem: pasteItem)
+//            }
+//            .onReceive(
+//                GlobalPublisher.shared.keywordPublisher
+//                    .debounce(for: 0.4, scheduler: DispatchQueue.main)
+//                    .removeDuplicates()
+//            ) { (keyword) in
+//                updatePredicate(keyword)
+//            }
         }
-        .onReceive(keyEventPublisher) { event in // << listen to events
+        .onReceive(GlobalPublisher.shared.keyEventPublisher) { event in // << listen to events
             keyDown(event)
         }
         .background(Color.white)
-//        .background(
-//            KeyboardEvent($keyboardInput.keyEvent)
-//        )
     }
     
     func updatePredicate() {
-        predicate = keyword.count > 0
-            ? NSPredicate(format: "value contains[cd] %@", self.$keyword.wrappedValue)
-            : nil
+        predicate = self.keyword.count > 0
+            ? NSPredicate(format: "value contains[cd] %@", self.keyword)
+            : NSPredicate(format: "type != 'aaaaa'")
     }
     
     func keyDown(_ event: NSEvent) {
