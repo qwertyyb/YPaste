@@ -10,13 +10,19 @@ import Cocoa
 import HotKey
 import SwiftUI
 import Carbon
+import Combine
 
 class MainWindow: NSPanel {
+    
+    private let publisher = PassthroughSubject<NSEvent, Never>() // private
+
+    var keyEventPublisher: AnyPublisher<NSEvent, Never> { // public
+        publisher.eraseToAnyPublisher()
+    }
+    
     override var canBecomeKey: Bool {
         get { return true }
     }
-    
-//    var hostingView: NSHostingView<PasteListView>
     
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         let key = Key(carbonKeyCode: UInt32(event.keyCode))
@@ -28,29 +34,21 @@ class MainWindow: NSPanel {
 
     
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
-        
-        let hostingView = NSHostingView(
-            rootView: PasteListView()
-                    .environment(\.managedObjectContext, (NSApp.delegate as! AppDelegate).persistentContainer.viewContext)
-        )
         super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
         
         self.styleMask = .init(arrayLiteral: .fullSizeContentView, .borderless)
 //        contentViewController = MainViewController()
+        let hostingView = NSHostingView(
+            rootView: PasteListView()
+                .environment(\.managedObjectContext, (NSApp.delegate as! AppDelegate).persistentContainer.viewContext)
+                .environment(\.keyPublisher, keyEventPublisher)
+        )
         contentView = hostingView
         isFloatingPanel = true
     }
     
     override func keyDown(with event: NSEvent) {
-        print(event)
-        if (event.keyCode == kVK_DownArrow) {
-            print("arrow-down")
-            (self.contentView as! NSHostingView<PasteListView>).rootView.selectNext()
-//            (hostingView.rootView as! PasteListView).selectNext()
-        }
-        if (event.keyCode == kVK_UpArrow) {
-            print("arrow-up")
-//            (hostingView.rootView as! PasteListView).selectPrev()
-        }
+        print("window key:")
+        publisher.send(event)
     }
 }
