@@ -56,81 +56,26 @@ extension View {
   }
 }
 
-//struct KeyboardEvent: NSViewRepresentable {
-//    @Binding private var event: NSEvent
-//    init(_ event: Binding<NSEvent>) {
-//        self._event = event
-//    }
-//    class KeyView: NSView {
-//        var owner: KeyboardEvent?   // << view holder
-//        override var acceptsFirstResponder: Bool { true }
-//        override func keyDown(with event: NSEvent) {
-//            super.keyDown(with: event)
-//            print(">> key \(event)")
-//            owner?.event = event
-//        }
-//    }
-//
-//    func makeNSView(context: Context) -> NSView {
-//        let view = KeyView()
-//        view.owner = self
-//        DispatchQueue.main.async { // wait till next event cycle
-//            view.window?.makeFirstResponder(view)
-//        }
-//        return view
-//    }
-//
-//    func updateNSView(_ nsView: NSView, context: Context) {
-//    }
-//}
+final class PasteItemListSource: ObservableObject {
+    @Published var list: [MPasteItem] = []
 
-struct FilteredList<T: NSManagedObject, Content: View>: View {
-    var fetchRequest: FetchRequest<T>
-    var items: FetchedResults<T> { fetchRequest.wrappedValue }
-
-    let content: (Int, T) -> Content
-
-    var body: some View {
-        let list = items.count >= 100 ? items[0...100] : items[0...]
-        return List(Array(list.enumerated()), id: \.element) { (index, item) in
-            self.content(index, item)
-        }
-        .delayedAnimation(delay: 0.2, animation: .easeInOut)
-        .id(UUID())
+    private var cancellable: AnyCancellable?
+    init() {
+        cancellable = try! Realm().objects(MPasteItem.self).sorted(byKeyPath: "updated_at", ascending: false)
+            .collectionPublisher
+//            .subscribe(on: DispatchQueue(label: "background queue"))
+            .freeze()
+            .map { pasteItems in
+//                print(pasteItems)
+                return Array(pasteItems)
+//                Dictionary(grouping: dogs, by: { $0.age }).map { DogGroup(label: "\($0)", dogs: $1) }
+            }
+            .receive(on: DispatchQueue.main)
+            .assertNoFailure()
+            .assign(to: \.list, on: self)
     }
-
-    init(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor] = [], @ViewBuilder content: @escaping (Int, T) -> Content) {
-        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: sortDescriptors, predicate: predicate)
-        self.content = content
-    }
-}
-
-struct SearchView: View {
-    @EnvironmentObject private var store: Store
-    
-    private let placeholderColor = Color.gray
-    private let inputColor = Color.primary
-    var body: some View {
-        let isInput = store.keyword.count > 0
-        return VStack(alignment: .center) {
-            Text(isInput ? store.keyword : "enter keyword")
-                .frame(
-                    minWidth: 0,
-                    maxWidth: 360,
-                    minHeight: 28,
-                    maxHeight: 28,
-                    alignment: .leading
-                )
-                .padding(12)
-                .foregroundColor(isInput ? inputColor : placeholderColor)
-        }
-        .frame(
-            minWidth: 0,
-            minHeight: 28,
-            maxHeight: 28,
-            alignment: .leading
-        )
-        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gray))
+    deinit {
+        cancellable?.cancel()
     }
 }
 
@@ -142,9 +87,9 @@ struct PasteListView: View {
     
     @State private var keyword = ""
     
-    private let realm = try! Realm()
-    
-//    @Environment(\.keyPublisher) private var keyEventPublisher
+    private var filteredList: Results<MPasteItem> {
+        try! Realm().objects(MPasteItem.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
+    }
     
 //    @EnvironmentObject private var store: Store
 
@@ -161,26 +106,17 @@ struct PasteListView: View {
             .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
             .padding([.leading, .trailing], 24)
             
-            List(realm.objects(MPasteItem.self).filter(predicate), id: \.self) { (pasteItem) in
+            // MARK: 大数组性能太差，后面应该使用lazyVStack
+            List(
+                filteredList.prefix(15),
+                id: \.self
+            ) { (pasteItem) in
                 PasteItemView(selected: false, pasteItem: pasteItem)
             }
-            
-//            FilteredList<PasteItem, PasteItemView>(
-//                predicate: predicate,
-//                sortDescriptors: [NSSortDescriptor(key: "updated_at", ascending: false)]
-//            ) { (index, pasteItem) in
-//                PasteItemView(selected: index == selectedIndex, pasteItem: pasteItem)
-//            }
-//            .onReceive(
-//                GlobalPublisher.shared.keywordPublisher
-//                    .debounce(for: 0.4, scheduler: DispatchQueue.main)
-//                    .removeDuplicates()
-//            ) { (keyword) in
-//                updatePredicate(keyword)
-//            }
-        }
-        .onReceive(GlobalPublisher.shared.keyEventPublisher) { event in // << listen to events
-            keyDown(event)
+            .onReceive(GlobalPublisher.shared.keyEventPublisher) { event in // << listen to events
+                keyDown(event)
+            }
+            .id(UUID())
         }
         .background(Color.white)
     }

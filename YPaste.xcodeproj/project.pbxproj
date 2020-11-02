@@ -10,7 +10,6 @@
 		4513EC4C254D75B400829700 /* PasteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513EC4A254D75B400829700 /* PasteItemView.swift */; };
 		4513EC4D254D75B400829700 /* PasteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513EC4B254D75B400829700 /* PasteListView.swift */; };
 		4513F363254ED75100829700 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513F362254ED75100829700 /* Application.swift */; };
-		4513F367254ED84400829700 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513F366254ED84400829700 /* Store.swift */; };
 		4513F36C254F02CD00829700 /* MPasteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513F36B254F02CD00829700 /* MPasteItem.swift */; };
 		4541BB0023C76D1300204946 /* PasteboardHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */; };
 		4541BB0223C78A1C00204946 /* HotkeyHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */; };
@@ -55,7 +54,6 @@
 		4513EC4A254D75B400829700 /* PasteItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteItemView.swift; sourceTree = "<group>"; };
 		4513EC4B254D75B400829700 /* PasteListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteListView.swift; sourceTree = "<group>"; };
 		4513F362254ED75100829700 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		4513F366254ED84400829700 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		4513F36B254F02CD00829700 /* MPasteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPasteItem.swift; sourceTree = "<group>"; };
 		4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardHandlerTests.swift; sourceTree = "<group>"; };
 		4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyHandlerTests.swift; sourceTree = "<group>"; };
@@ -185,7 +183,6 @@
 				67784475235F376800970786 /* PasteboardHandler.swift */,
 				67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */,
 				4513F362254ED75100829700 /* Application.swift */,
-				4513F366254ED84400829700 /* Store.swift */,
 			);
 			path = YPaste;
 			sourceTree = "<group>";
@@ -444,7 +441,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4513F367254ED84400829700 /* Store.swift in Sources */,
 				4513F363254ED75100829700 /* Application.swift in Sources */,
 				4513F36C254F02CD00829700 /* MPasteItem.swift in Sources */,
 				67904080235D8C1D00B0C74E /* PasteItemsController.swift in Sources */,

@@ -125,7 +125,7 @@ class ListView: NSStackView {
         } else if event.keyCode == Key.delete.carbonKeyCode {
             PasteItemsController.shared.remove(self)
         } else if event.keyCode == Key.return.carbonKeyCode {
-            PasteboardHandler.shared.paste(pasteItem: list[self.selectionIndex])
+//            PasteboardHandler.shared.paste(pasteItem: list[self.selectionIndex])
             self.window?.windowController?.close()
         }
     }

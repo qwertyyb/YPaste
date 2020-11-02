@@ -19,7 +19,7 @@ class ListItemView: NSStackView, NSStackViewDelegate {
     }
     
     override func mouseDown(with event: NSEvent) {
-        PasteboardHandler.shared.paste(pasteItem: pasteItem!)
+//        PasteboardHandler.shared.paste(pasteItem: pasteItem!)
         self.window?.windowController?.close()
     }
     

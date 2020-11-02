@@ -17,6 +17,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem :NSStatusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let preferencesWindowController = PreferencesWindowController.init(windowNibName: NSNib.Name(NSString("Preferences")))
     
+    func coreData2Realm() {
+        let realm = try! Realm()
+        
+        let saveContext = self.persistentContainer.newBackgroundContext()
+        let fetchRequest: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
+        fetchRequest.returnsObjectsAsFaults = false
+        let pasteItems = try! saveContext.fetch(fetchRequest);
+        print(pasteItems.count)
+        let mItems = pasteItems.map { (pasteItem) -> MPasteItem in
+            return MPasteItem(value: [
+                "type": pasteItem.type ?? "text",
+                "value": pasteItem.value ?? "value",
+                "favorite": pasteItem.favorite,
+                "updated_at": pasteItem.updated_at ?? Date()
+            ])
+        }
+        try! realm.write({ () -> Void in
+            realm.deleteAll()
+            realm.add(mItems)
+        })
+    }
+    
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem?.button!.image = NSImage(named: "statusImage")
@@ -63,9 +85,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Now that we've told Realm how to handle the schema change, opening the file
         // will automatically perform the migration
-        let realm = try! Realm()
+        _ = try! Realm()
         
-            app = YPaste.shared
+//        coreData2Realm()
+        
+        app = YPaste.shared
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

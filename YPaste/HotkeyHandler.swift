@@ -101,7 +101,7 @@ class HotkeyHandler {
                 let managedContext = (NSApp.delegate as! AppDelegate).persistentContainer.viewContext
                 let pasteItem = managedContext.object(with: objectId) as! PasteItem
                 pasteboard.ignoreNextItems = true
-                PasteboardHandler.shared.paste(pasteItem: pasteItem)
+//                PasteboardHandler.shared.paste(pasteItem: pasteItem)
                 pasteboard.orderedItems.removeFirst()
                 Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (timer) in
                     if let nextId = pasteboard.orderedItems.first {

@@ -51,11 +51,6 @@ class PasteboardHandler {
         let predicate = NSPredicate(format: "value = %@ and type = %@", curItem, "text")
         
         let pasteItems = realm.objects(MPasteItem.self).filter(predicate)
-//        let saveContext = (NSApp.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
-//        let fetchRequest: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
-//        fetchRequest.predicate = predicate
-//        fetchRequest.returnsObjectsAsFaults = false
-//        let pasteItems = try? saveContext.fetch(fetchRequest);
         // 已存在,只更新时间,不存在时,添加一条记录
         if pasteItems.count == 0 {
             
@@ -63,11 +58,6 @@ class PasteboardHandler {
             try! realm.write {
                 realm.add(pasteItem)
             }
-//            pasteItem.type = "text"
-//            pasteItem.value = curItem
-//            pasteItem.favorite = isFavorite
-//            pasteItem.updated_at = Date()
-//            try? saveContext.save()
 //            self.orderedItems.append(pasteItem.objectID)
 //            NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItem])
         } else if (pasteItems.count > 0) {
@@ -78,7 +68,6 @@ class PasteboardHandler {
             }
             NotificationCenter.default.post(name: PasteboardHandler.changeNotification, object: nil, userInfo: ["pasteItem": pasteItems[0]])
 //            self.orderedItems.append(pasteItems![0].objectID)
-//            try? saveContext.save()
         }
         
         lastChangeCount = pasteboard.changeCount
@@ -99,9 +88,9 @@ class PasteboardHandler {
     }
     
     
-    func paste(pasteItem: PasteItem){
+    func paste(pasteItem: MPasteItem){
         self.pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        self.pasteboard.setString(pasteItem.value!, forType: NSPasteboard.PasteboardType.string)
+        self.pasteboard.setString(pasteItem.value, forType: NSPasteboard.PasteboardType.string)
         DispatchQueue.main.async {
             if !self.checkAccess() {
                 let _ = self.checkAccess(prompt: true)

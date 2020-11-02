@@ -40,8 +40,6 @@ class MainWindow: NSPanel {
 //        contentViewController = MainViewController()
         let hostingView = NSHostingView(
             rootView: PasteListView()
-                .environment(\.managedObjectContext, (NSApp.delegate as! AppDelegate).persistentContainer.viewContext)
-                .environment(\.keyPublisher, GlobalPublisher.shared.keyEventPublisher)
 //                .environmentObject(Store.shared)
         )
         contentView = hostingView
