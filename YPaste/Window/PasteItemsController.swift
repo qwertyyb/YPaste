@@ -16,24 +16,21 @@ class PasteItemsController: NSArrayController {
     override init(content: Any?) {
         super.init(content: content)
 
-        managedObjectContext = (NSApp.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
+        managedObjectContext = CoreDataManager.shared.viewContext
         sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
         entityName = "PasteItem"
         
-        NotificationCenter.default.addObserver(self, selector: #selector(fetchNextPage), name: ScrollView.reachBottomNotification, object: nil)
-        NotificationCenter.default.addObserver(forName: PasteboardHandler.changeNotification, object: nil, queue: nil) { (notification) in
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(fetchNextPage),
+            name: MainView.reachBottomNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            forName: PasteboardHandler.historyUpdateNotification,
+            object: nil,
+            queue: nil) { (notification) in
             self.resetPage()
-        }
-    }
-    
-    override var arrangedObjects: Any {
-        get {
-            if (HotkeyHandler.shared.openType == .order) {
-                return PasteboardHandler.shared.orderedItems.map { (objectId) -> PasteItem in
-                    return self.managedObjectContext?.object(with: objectId) as! PasteItem
-                }
-            }
-            return super.arrangedObjects
         }
     }
     
@@ -66,20 +63,6 @@ class PasteItemsController: NSArrayController {
         self.fetch(nil)
     }
     
-    override func defaultFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = super.defaultFetchRequest()
-        if HotkeyHandler.shared.openType == .favorite {
-            var predicate = fetchRequest.predicate
-            if predicate != nil {
-                let origin = predicate!.predicateFormat
-                predicate = NSPredicate(format: "\(origin) and favorite = 1")
-            } else {
-                predicate = NSPredicate(format: "favorite = 1")
-            }
-            fetchRequest.predicate = predicate
-        }
-        return fetchRequest
-    }
     override func remove(_ sender: Any?) {
         let selectedIndex = self.selectionIndex
         if selectedObjects != nil  && selectedObjects!.count > 0 {

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Carbon
 import HotKey
 
 class ListView: NSStackView {
@@ -18,9 +19,8 @@ class ListView: NSStackView {
     }
     @objc var selectionIndex: Int = 0 {
         didSet {
-            print(oldValue, self.selectionIndex)
             if self.selectionIndex >= 100000 { return }
-            let views = self.views(in: .leading)
+            let views = self.views(in: .center)
             guard views.count > self.selectionIndex else { return }
             
             let selected = views[self.selectionIndex]
@@ -46,9 +46,6 @@ class ListView: NSStackView {
     }
     
     override func mouseMoved(with event: NSEvent) {
-        if HotkeyHandler.shared.openType == .order {
-            return
-        }
         var point = event.locationInWindow
         let bounds = self.enclosingScrollView?.contentView.bounds ?? self.bounds
         let originY = self.enclosingScrollView?.frame.origin.y ?? 100
@@ -88,45 +85,70 @@ class ListView: NSStackView {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         orientation = .vertical
-        alignment = .leading
+        alignment = .centerX
         spacing = 8
+        edgeInsets = NSEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        bind(.init("list"), to: PasteItemsController.shared, withKeyPath: "arrangedObjects", options: nil)
-        bind(.init("selectionIndex"), to: PasteItemsController.shared, withKeyPath: "selectionIndex", options: nil)
+        bind(
+            NSBindingName("list"),
+            to: PasteItemsController.shared,
+            withKeyPath: "arrangedObjects",
+            options: nil
+        )
+        bind(
+            NSBindingName("selectionIndex"),
+            to: PasteItemsController.shared,
+            withKeyPath: "selectionIndex",
+            options: nil
+        )
     }
     
     func update() {
-        var index = 0
-        let views = (PasteItemsController.shared.arrangedObjects as! [PasteItem]).map({ (pasteItem) -> ListItemView in
-            let itemView = ListItemView(pasteItem: pasteItem,
-                                        itemIndex: index,
-                                        enableActions: HotkeyHandler.shared.openType != .order)
-            if (index == selectionIndex) {
-                itemView.active()
+        let views = (PasteItemsController.shared.arrangedObjects as! [PasteItem])
+            .enumerated()
+            .map { (index, pasteItem) -> ListItemView in
+                let itemView = ListItemView(
+                    pasteItem: pasteItem,
+                    itemIndex: index,
+                    enableActions: true
+                )
+                if (index == selectionIndex) {
+                    itemView.active()
+                }
+                return itemView
             }
-        
-            index += 1
-            return itemView
-        })
-        setViews(views, in: .leading)
+        setViews(views, in: .center)
     }
     
     
     override func keyDown(with event: NSEvent) {
-        if event.keyCode == Key.downArrow.carbonKeyCode {
-            PasteItemsController.shared.selectNext(self)
-        } else if event.keyCode == Key.upArrow.carbonKeyCode {
-            PasteItemsController.shared.selectPrevious(self)
-            if PasteItemsController.shared.selectionIndex == 0 {
-                self.window?.makeFirstResponder(self.superview?.superview?.previousKeyView)
+        let controller = PasteItemsController.shared
+
+        switch Int(event.keyCode) {
+        case kVK_DownArrow:
+            controller.selectNext(self)
+            break;
+
+        case kVK_UpArrow:
+            controller.selectPrevious(self)
+            if controller.selectionIndex == 0 {
+                let pv = superview?.superview?.previousValidKeyView?.previousValidKeyView?.previousValidKeyView
+                self.window?.makeFirstResponder(pv)
             }
-        } else if event.keyCode == Key.delete.carbonKeyCode {
-            PasteItemsController.shared.remove(self)
-        } else if event.keyCode == Key.return.carbonKeyCode {
+            break;
+            
+        case kVK_Delete:
+            controller.remove(self)
+            break;
+            
+        case kVK_Return:
             PasteboardHandler.shared.paste(pasteItem: list[self.selectionIndex])
             self.window?.windowController?.close()
+
+        default:
+            print("default")
         }
     }
 }

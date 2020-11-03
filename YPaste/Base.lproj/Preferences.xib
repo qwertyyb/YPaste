@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,14 +17,14 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="246" height="229"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="contentRect" x="196" y="240" width="279" height="291"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="246" height="229"/>
+                <rect key="frame" x="0.0" y="0.0" width="279" height="291"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" id="VWY-d8-NZM">
-                        <rect key="frame" x="30" y="193" width="119" height="18"/>
+                        <rect key="frame" x="28" y="255" width="119" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LeK-Xa-5ej">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -35,71 +35,8 @@
                             <binding destination="xQO-e6-7gF" name="value" keyPath="values.launchAtLogin" id="O8W-43-Un1"/>
                         </connections>
                     </button>
-                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="0re-vj-j39">
-                        <rect key="frame" x="32" y="110" width="142" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pn9-3U-yqA">
-                                <rect key="frame" x="-2" y="3" width="52" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Hot Key" id="50p-6v-7SJ">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fpl-NK-Zox">
-                                <rect key="frame" x="50" y="-7" width="98" height="32"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nxD-fc-hgi">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="hotKeyClicked:" target="-2" id="mbr-J5-3v1"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <visibilityPriorities>
-                            <integer value="1000"/>
-                            <integer value="1000"/>
-                        </visibilityPriorities>
-                        <customSpacing>
-                            <real value="3.4028234663852886e+38"/>
-                            <real value="3.4028234663852886e+38"/>
-                        </customSpacing>
-                    </stackView>
-                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLM-rR-dFA">
-                        <rect key="frame" x="32" y="70" width="194" height="21"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-PF-6eu" userLabel="Favorite Hot Key">
-                                <rect key="frame" x="-2" y="5" width="104" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Favorite Hot Key" id="Md5-LI-tBD">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BdC-eq-jkS" userLabel="Favorite Hot Key Button">
-                                <rect key="frame" x="102" y="-7" width="98" height="32"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="trailing" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="be5-qF-ZfL">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="favoriteHotKeyClicked:" target="-2" id="cDr-WC-Y3J"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <visibilityPriorities>
-                            <integer value="1000"/>
-                            <integer value="1000"/>
-                        </visibilityPriorities>
-                        <customSpacing>
-                            <real value="3.4028234663852886e+38"/>
-                            <real value="3.4028234663852886e+38"/>
-                        </customSpacing>
-                    </stackView>
                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="Jyb-Dr-tW1">
-                        <rect key="frame" x="32" y="31" width="177" height="21"/>
+                        <rect key="frame" x="30" y="219" width="177" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LPe-gb-72a" userLabel="Check Update">
@@ -149,20 +86,142 @@
                             <real value="3.4028234663852886e+38"/>
                         </customSpacing>
                     </stackView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKJ-Sm-MIt">
-                        <rect key="frame" x="30" y="152" width="146" height="18"/>
+                    <box fixedFrame="YES" title="Hotkey" translatesAutoresizingMaskIntoConstraints="NO" id="Ic4-Rd-zAp" userLabel="BoxHotkey">
+                        <rect key="frame" x="6" y="114" width="266" height="97"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Popover" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oJw-7C-ZNt">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="xQO-e6-7gF" name="value" keyPath="values.popover" id="r45-V1-XtN"/>
-                        </connections>
-                    </button>
+                        <view key="contentView" id="Mly-jF-oMq">
+                            <rect key="frame" x="3" y="3" width="260" height="79"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="0re-vj-j39">
+                                    <rect key="frame" x="20" y="47" width="142" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pn9-3U-yqA">
+                                            <rect key="frame" x="-2" y="3" width="52" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Hot Key" id="50p-6v-7SJ">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fpl-NK-Zox">
+                                            <rect key="frame" x="50" y="-7" width="98" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nxD-fc-hgi">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="hotKeyClicked:" target="-2" id="mbr-J5-3v1"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLM-rR-dFA">
+                                    <rect key="frame" x="20" y="12" width="194" height="21"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-PF-6eu" userLabel="Favorite Hot Key">
+                                            <rect key="frame" x="-2" y="3" width="104" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Favorite Hot Key" id="Md5-LI-tBD">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BdC-eq-jkS" userLabel="Favorite Hot Key Button">
+                                            <rect key="frame" x="102" y="-7" width="98" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="trailing" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="be5-qF-ZfL">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="favoriteHotKeyClicked:" target="-2" id="cDr-WC-Y3J"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                        </view>
+                    </box>
+                    <box fixedFrame="YES" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="1ek-wf-yZe" userLabel="BoxGeneral">
+                        <rect key="frame" x="6" y="16" width="266" height="88"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="x0K-gL-8vO">
+                            <rect key="frame" x="3" y="3" width="260" height="70"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUx-NE-6xP">
+                                    <rect key="frame" x="20" y="10" width="176" height="21"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RqM-Bb-wp8">
+                                            <rect key="frame" x="-2" y="3" width="95" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Popup position" id="NgQ-BV-ByQ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-dL-w7K">
+                                            <rect key="frame" x="97" y="-3" width="82" height="25"/>
+                                            <popUpButtonCell key="cell" type="push" title="top" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tkt-vC-lic" id="nO4-gZ-YOz">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="gWf-vs-MGj">
+                                                    <items>
+                                                        <menuItem title="top" state="on" id="tkt-vC-lic"/>
+                                                        <menuItem title="bottom" tag="1" id="dNY-Sf-VR4"/>
+                                                        <menuItem title="left" tag="2" id="wrZ-Yq-a7p"/>
+                                                        <menuItem title="right" tag="3" id="yD1-kc-A4p"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <binding destination="xQO-e6-7gF" name="selectedTag" keyPath="values.popupPosition" id="tRK-ao-b3B"/>
+                                            </connections>
+                                        </popUpButton>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKJ-Sm-MIt">
+                                    <rect key="frame" x="18" y="43" width="180" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Popover" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oJw-7C-ZNt">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="xQO-e6-7gF" name="value" keyPath="values.popover" id="r45-V1-XtN"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                    </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="22" y="126.5"/>
+            <point key="canvasLocation" x="38.5" y="157.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="xQO-e6-7gF"/>
         <customObject id="59d-5C-RD8" customClass="SUUpdater"/>
