@@ -54,9 +54,9 @@ class ListItemView: NSView {
         
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: 328),
-            heightAnchor.constraint(equalToConstant: 188),
+            heightAnchor.constraint(equalToConstant: 228),
             wrapper.widthAnchor.constraint(equalToConstant: 320),
-            wrapper.heightAnchor.constraint(equalToConstant: 180),
+            wrapper.heightAnchor.constraint(equalToConstant: 220),
             wrapper.centerXAnchor.constraint(equalTo: centerXAnchor),
             wrapper.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
@@ -161,10 +161,6 @@ class ListItemView: NSView {
             contentView!.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: 16),
             contentView!.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -16)
         ])
-        
-//        if enableActions {
-//            addActionView()
-//        }
     }
     
     private func addActionView () {

@@ -16,16 +16,16 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="279" height="226"/>
+            <rect key="contentRect" x="196" y="240" width="279" height="224"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1792" height="1097"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="279" height="226"/>
+                <rect key="frame" x="0.0" y="0.0" width="279" height="224"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" id="VWY-d8-NZM">
-                        <rect key="frame" x="28" y="190" width="119" height="18"/>
+                        <rect key="frame" x="28" y="188" width="76" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LeK-Xa-5ej">
+                        <buttonCell key="cell" type="check" title="开机启动" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LeK-Xa-5ej">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -34,91 +34,38 @@
                             <binding destination="xQO-e6-7gF" name="value" keyPath="values.launchAtLogin" id="O8W-43-Un1"/>
                         </connections>
                     </button>
-                    <box fixedFrame="YES" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="1ek-wf-yZe" userLabel="BoxGeneral">
-                        <rect key="frame" x="6" y="81" width="266" height="59"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <view key="contentView" id="x0K-gL-8vO">
-                            <rect key="frame" x="3" y="3" width="260" height="41"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUx-NE-6xP">
-                                    <rect key="frame" x="20" y="14" width="176" height="21"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RqM-Bb-wp8">
-                                            <rect key="frame" x="-2" y="3" width="95" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Popup position" id="NgQ-BV-ByQ">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-dL-w7K">
-                                            <rect key="frame" x="97" y="-3" width="82" height="25"/>
-                                            <popUpButtonCell key="cell" type="push" title="top" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tkt-vC-lic" id="nO4-gZ-YOz">
-                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
-                                                <menu key="menu" id="gWf-vs-MGj">
-                                                    <items>
-                                                        <menuItem title="top" state="on" id="tkt-vC-lic"/>
-                                                        <menuItem title="bottom" tag="1" id="dNY-Sf-VR4"/>
-                                                        <menuItem title="left" tag="2" id="wrZ-Yq-a7p"/>
-                                                        <menuItem title="right" tag="3" id="yD1-kc-A4p"/>
-                                                    </items>
-                                                </menu>
-                                            </popUpButtonCell>
-                                            <connections>
-                                                <binding destination="xQO-e6-7gF" name="selectedTag" keyPath="values.popupPosition" id="zWi-SU-fAf">
-                                                    <dictionary key="options">
-                                                        <bool key="NSValidatesImmediately" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                            </connections>
-                                        </popUpButton>
-                                    </subviews>
-                                    <visibilityPriorities>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                    </visibilityPriorities>
-                                    <customSpacing>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                    </customSpacing>
-                                </stackView>
-                            </subviews>
-                        </view>
-                    </box>
                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="Jyb-Dr-tW1">
-                        <rect key="frame" x="30" y="154" width="177" height="21"/>
+                        <rect key="frame" x="30" y="152" width="177" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LPe-gb-72a" userLabel="Check Update">
-                                <rect key="frame" x="-2" y="3" width="91" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Check Update" id="dWG-eZ-o58">
+                                <rect key="frame" x="-2" y="3" width="58" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="检查更新" id="dWG-eZ-o58">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KvF-RK-Ded" userLabel="UpdateInterval">
-                                <rect key="frame" x="93" y="-3" width="87" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Hourly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="3600" imageScaling="proportionallyDown" inset="2" selectedItem="EE6-Ss-Gw7" id="IA7-J9-2tC">
+                                <rect key="frame" x="60" y="-3" width="120" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="每小时" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="3600" imageScaling="proportionallyDown" inset="2" selectedItem="EE6-Ss-Gw7" id="IA7-J9-2tC">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="g77-xz-TFH">
                                         <items>
-                                            <menuItem title="Hourly" state="on" tag="3600" id="EE6-Ss-Gw7">
+                                            <menuItem title="每小时" state="on" tag="3600" id="EE6-Ss-Gw7">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Daily" tag="86400" id="eEf-BQ-9PH">
+                                            <menuItem title="每天" tag="86400" id="eEf-BQ-9PH">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Weekly" tag="604800" id="fcM-sZ-IDB">
+                                            <menuItem title="每周" tag="604800" id="fcM-sZ-IDB">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Monthly" tag="2629800" id="Lew-rN-naA">
+                                            <menuItem title="每月" tag="2629800" id="Lew-rN-naA">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Never" id="3TG-ts-gEq">
+                                            <menuItem title="从不" id="3TG-ts-gEq">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
@@ -138,20 +85,70 @@
                             <real value="3.4028234663852886e+38"/>
                         </customSpacing>
                     </stackView>
-                    <box fixedFrame="YES" title="Hotkey" translatesAutoresizingMaskIntoConstraints="NO" id="Ic4-Rd-zAp" userLabel="BoxHotkey">
-                        <rect key="frame" x="6" y="16" width="266" height="61"/>
+                    <box fixedFrame="YES" title="基本" translatesAutoresizingMaskIntoConstraints="NO" id="1ek-wf-yZe" userLabel="BoxGeneral">
+                        <rect key="frame" x="6" y="85" width="266" height="53"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="x0K-gL-8vO">
+                            <rect key="frame" x="3" y="3" width="260" height="35"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUx-NE-6xP">
+                                    <rect key="frame" x="20" y="7" width="149" height="21"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RqM-Bb-wp8">
+                                            <rect key="frame" x="-2" y="3" width="58" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="弹窗位置" id="NgQ-BV-ByQ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-dL-w7K">
+                                            <rect key="frame" x="60" y="-3" width="92" height="25"/>
+                                            <popUpButtonCell key="cell" type="push" title="屏幕顶部" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tkt-vC-lic" id="nO4-gZ-YOz">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="gWf-vs-MGj">
+                                                    <items>
+                                                        <menuItem title="屏幕顶部" state="on" id="tkt-vC-lic"/>
+                                                        <menuItem title="屏幕底部" tag="1" id="dNY-Sf-VR4"/>
+                                                        <menuItem title="屏幕左侧" tag="2" id="wrZ-Yq-a7p"/>
+                                                        <menuItem title="屏幕右侧" tag="3" id="yD1-kc-A4p"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <binding destination="xQO-e6-7gF" name="selectedTag" keyPath="values.popupPosition" id="VhB-uw-IE9"/>
+                                            </connections>
+                                        </popUpButton>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                        </view>
+                    </box>
+                    <box fixedFrame="YES" title="快捷键" translatesAutoresizingMaskIntoConstraints="NO" id="Ic4-Rd-zAp" userLabel="BoxHotkey">
+                        <rect key="frame" x="6" y="16" width="266" height="65"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="Mly-jF-oMq">
-                            <rect key="frame" x="3" y="3" width="260" height="43"/>
+                            <rect key="frame" x="3" y="3" width="260" height="47"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="0re-vj-j39">
-                                    <rect key="frame" x="20" y="11" width="142" height="21"/>
+                                    <rect key="frame" x="20" y="15" width="142" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pn9-3U-yqA">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pn9-3U-yqA">
                                             <rect key="frame" x="-2" y="3" width="52" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Hot Key" id="50p-6v-7SJ">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" title="打开历史" usesSingleLineMode="YES" id="50p-6v-7SJ">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -182,7 +179,7 @@
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="38.5" y="125"/>
+            <point key="canvasLocation" x="38.5" y="124"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="xQO-e6-7gF"/>
         <customObject id="59d-5C-RD8" customClass="SUUpdater"/>

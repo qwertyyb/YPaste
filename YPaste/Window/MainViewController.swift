@@ -18,44 +18,35 @@ class MainViewController: NSViewController {
     let mainView = MainView()
     let container = NSView()
     
-    private var leftContraint: NSLayoutConstraint?
+    private var constraint: NSLayoutConstraint?
     
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
-        container.addSubview(mainView)
         container.wantsLayer = true
         container.layer?.backgroundColor = .clear
+        container.translatesAutoresizingMaskIntoConstraints = false
         mainView.wantsLayer = true
-        mainView.layer?.backgroundColor = .init(red: 0.88, green: 0.88, blue: 0.88, alpha: 1)
+        mainView.layer?.backgroundColor = .clear
         mainView.translatesAutoresizingMaskIntoConstraints = false
-
-        leftContraint = mainView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: -400)
+        
+        container.addSubview(mainView)
+        constraint = Config.shared.getInitialConstraint(mainView: mainView, containerView: container)
         NSLayoutConstraint.activate([
-            leftContraint!,
+            constraint!,
             mainView.widthAnchor.constraint(equalTo: container.widthAnchor),
-            mainView.topAnchor.constraint(equalTo: container.topAnchor),
-            mainView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            mainView.heightAnchor.constraint(equalTo: container.heightAnchor)
         ])
         view = container
     }
     
     func slideOut() {
-        NSAnimationContext.runAnimationGroup { (ctx) in
-            ctx.duration = 0.2
-            ctx.timingFunction = .init(name: .easeIn)
-            leftContraint?.animator().constant = 0
-        }
+        Config.shared.applyShowAnimateConstraint(constraint: constraint!)
         view.becomeFirstResponder()
     }
     func slideIn(callback: @escaping () -> Void) {
-        NSAnimationContext.runAnimationGroup { (ctx) in
-            ctx.duration = 0.2
-            ctx.timingFunction = .init(name: .easeOut)
-            leftContraint?.animator().constant = -400
-        } completionHandler: {
-            callback()
-        }
+        print(self.view.frame)
+        Config.shared.applyHideAnimateConstraint(constraint: constraint!, callback: callback)
     }
     
     override func viewWillAppear() {

@@ -12,6 +12,8 @@ import HotKey
 
 class ListView: NSStackView {
     
+    static let reachTopNotification = NSNotification.Name("listview:reachtop")
+    
     @objc var list: [PasteItem] = [] {
         didSet {
             update()
@@ -34,8 +36,6 @@ class ListView: NSStackView {
             guard UserDefaults.standard.bool(forKey: "popover") else { return }
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in
                 guard views[self.selectionIndex].window != nil else { return }
-                Popover.shared.updateContent(pasteItem: self.list[self.selectionIndex])
-                Popover.shared.show(relativeTo: .zero, of: views[self.selectionIndex], preferredEdge: .maxX)
             }
         }
     }
@@ -84,10 +84,10 @@ class ListView: NSStackView {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        orientation = .vertical
-        alignment = .centerX
+        orientation = Config.shared.scrollDirection
+        alignment = orientation == .horizontal ? .centerY : .centerX
         spacing = 8
-        edgeInsets = NSEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        edgeInsets = NSEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -127,18 +127,6 @@ class ListView: NSStackView {
         let controller = PasteItemsController.shared
 
         switch Int(event.keyCode) {
-        case kVK_DownArrow:
-            controller.selectNext(self)
-            break;
-
-        case kVK_UpArrow:
-            controller.selectPrevious(self)
-            if controller.selectionIndex == 0 {
-                let pv = superview?.superview?.previousValidKeyView?.previousValidKeyView?.previousValidKeyView
-                self.window?.makeFirstResponder(pv)
-            }
-            break;
-            
         case kVK_Delete:
             controller.remove(self)
             break;
@@ -146,6 +134,41 @@ class ListView: NSStackView {
         case kVK_Return:
             PasteboardHandler.shared.paste(pasteItem: list[self.selectionIndex])
             self.window?.windowController?.close()
+            
+        case kVK_LeftArrow:
+            if Config.shared.scrollDirection == .horizontal {
+                controller.selectPrevious(self)
+            }
+            break;
+        
+        case kVK_RightArrow:
+            if Config.shared.scrollDirection == .horizontal {
+                controller.selectNext(self)
+            }
+            break;
+
+        case kVK_DownArrow:
+            if Config.shared.scrollDirection == .vertical {
+                controller.selectNext(self)
+            }
+            break;
+
+        case kVK_UpArrow:
+            if Config.shared.scrollDirection == .vertical {
+                controller.selectPrevious(self)
+                if controller.selectionIndex == 0 {
+                    NotificationCenter.default.post(
+                        name: ListView.reachTopNotification,
+                        object: self
+                    )
+                }
+            } else {
+                NotificationCenter.default.post(
+                    name: ListView.reachTopNotification,
+                    object: self
+                )
+            }
+            break;
 
         default:
             print("default")

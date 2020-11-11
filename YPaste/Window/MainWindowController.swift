@@ -39,12 +39,10 @@ class MainWindowController: NSWindowController {
         if win.isVisible {
             self.close()
         }
-
-        let x = NSScreen.main?.frame.minX ?? 0
-        let y = NSScreen.main?.frame.minY ?? 0
-        let menuBarHeight = NSMenu.menuBarVisible() ? NSApplication.shared.mainMenu?.menuBarHeight ?? 24 : 0
-        let height = (NSScreen.main?.frame.height ?? NSScreen.screens.first!.frame.height) - menuBarHeight
-        win.setFrame(NSMakeRect(x, y, 360, height), display: true)
+        win.setFrame(
+            NSRect(origin: Config.shared.windowOrigin, size: Config.shared.windowSize),
+            display: true
+        )
         
         // shouldnt activate this app, will cause current active app blur, then cant paste
 //            NSApp.activate(ignoringOtherApps: true)
@@ -57,8 +55,6 @@ class MainWindowController: NSWindowController {
         if let viewController = window?.contentViewController as? MainViewController {
             viewController.slideIn(callback: super.close)
         }
-        Popover.shared.clear()
-        Popover.shared.close()
     }
     
 }

@@ -11,6 +11,8 @@ import HotKey
 
 class SearchField: NSSearchField {
     
+    static let arrowDownKeyDownNotification = NSNotification.Name("searchField:arrow-down-key-down")
+    
     override var focusRingType: NSFocusRingType {
         get { .none }
         set {}
@@ -23,14 +25,14 @@ class SearchField: NSSearchField {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         wantsLayer = true
-        layer?.borderColor = NSColor(red:204.0/255.0, green:204.0/255.0, blue:204.0/255.0, alpha:1.0).cgColor
-        layer?.borderWidth = 1.0
+        layer?.borderColor = .clear
+        layer?.borderWidth = 0
         layer?.cornerRadius = 10
     }
     
     override func keyUp(with event: NSEvent) {
         if event.keyCode == Key.downArrow.carbonKeyCode {
-            self.window?.makeFirstResponder(nextValidKeyView?.nextValidKeyView?.nextValidKeyView)
+            NotificationCenter.default.post(name: SearchField.arrowDownKeyDownNotification, object: self)
         }
     }
 }

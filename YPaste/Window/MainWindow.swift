@@ -16,7 +16,7 @@ class MainWindow: NSPanel {
     
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         let key = Key(carbonKeyCode: UInt32(event.keyCode))
-        if [Key.upArrow, Key.downArrow].contains(key) {
+        if [Key.upArrow, Key.downArrow, Key.leftArrow, Key.rightArrow].contains(key) {
             return false
         }
         return true
@@ -25,12 +25,13 @@ class MainWindow: NSPanel {
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
         super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
         
-        self.styleMask = .init(arrayLiteral: .fullSizeContentView, .nonactivatingPanel)
+        self.styleMask = .init(arrayLiteral: .fullSizeContentView, .nonactivatingPanel, .borderless)
         contentViewController = MainViewController()
         isOpaque = false
         backgroundColor = .clear
         level = .popUpMenu
-        isFloatingPanel = true
+//        collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+//        isFloatingPanel = true
         isReleasedWhenClosed = false
         hidesOnDeactivate = false
     }

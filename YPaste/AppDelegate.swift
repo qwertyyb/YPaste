@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        NSApp.appearance = NSAppearance(named: .aqua)
 //        app = YPaste.shared
         statusItem?.button!.image = NSImage(named: "statusImage")
         statusItem?.menu = menu
@@ -43,9 +44,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openMainWindow(_ sender: AnyObject?) {
-        app.mainWindowController.openWindow()
-    }
-    @IBAction func openOrderPaste(_ sender: AnyObject?) {
         app.mainWindowController.openWindow()
     }
 
