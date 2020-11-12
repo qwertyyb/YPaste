@@ -1,5 +1,6 @@
 #  YPaste
 ![](https://github.com/qwertyyb/YPaste/workflows/CI/badge.svg)
+[![codebeat badge](https://codebeat.co/badges/edfb8229-45c6-45f7-8a7c-cf81b01047d0)](https://codebeat.co/projects/github-com-qwertyyb-ypaste-master)
 
 Macos 粘贴板管理应用
 
