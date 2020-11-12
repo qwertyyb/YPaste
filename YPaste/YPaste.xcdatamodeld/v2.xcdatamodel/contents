@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="PasteItem" representedClassName="PasteItem" syncable="YES" codeGenerationType="class">
+        <attribute name="data" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -11,6 +12,6 @@
     </entity>
     <fetchRequest name="FetchFavoriteList" entity="PasteItem" predicateString="favorite == 0"/>
     <elements>
-        <element name="PasteItem" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="PasteItem" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

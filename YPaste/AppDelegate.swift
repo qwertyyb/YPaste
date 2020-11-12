@@ -11,14 +11,17 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var app: YPaste?
+    lazy var app = YPaste.shared
+    
+    lazy var coreDataManager = CoreDataManager()
 
     private var statusItem :NSStatusItem? = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let preferencesWindowController = PreferencesWindowController.init(windowNibName: NSNib.Name(NSString("Preferences")))
     
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        app = YPaste.shared
+        NSApp.appearance = NSAppearance(named: .aqua)
+//        app = YPaste.shared
         statusItem?.button!.image = NSImage(named: "statusImage")
         statusItem?.menu = menu
         
@@ -32,90 +35,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
-            app?.autoLaunch(active: true)
+            app.autoLaunch(active: true)
         }
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-        
-    }
-    
-    func applicationWillResignActive(_ notification: Notification) {
-        NSApp.keyWindow?.close()
-    }
-
-    // MARK: - Core Data stack
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
-        let container = NSPersistentContainer(name: "YPaste")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error)")
-            }
-        })
-        return container
-    }()
     
     @IBAction func openPreferences(_ sender: AnyObject?) {
         preferencesWindowController.showWindow(self)
     }
     
     @IBAction func openMainWindow(_ sender: AnyObject?) {
-        HotkeyHandler.shared.openType = .history
-        app?.mainWindowController.openWindow()
-    }
-    @IBAction func openOrderPaste(_ sender: AnyObject?) {
-        HotkeyHandler.shared.openType = .order
-        PasteboardHandler.shared.orderedItems = []
-        app?.mainWindowController.openWindow()
-    }
-    
-    // MARK: - Core Data Saving and Undo support
-
-    @IBAction func saveAction(_ sender: AnyObject?) {
-        // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
-        let context = persistentContainer.viewContext
-
-        if !context.commitEditing() {
-            NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing before saving")
-        }
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Customize this code block to include application-specific recovery steps.
-                let nserror = error as NSError
-                NSApplication.shared.presentError(nserror)
-            }
-        }
-    }
-
-    func windowWillReturnUndoManager(window: NSWindow) -> UndoManager? {
-        // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
-        return persistentContainer.viewContext.undoManager
+        app.mainWindowController.openWindow()
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
-        let context = persistentContainer.viewContext
+        let context = CoreDataManager.shared.viewContext
         
         if !context.commitEditing() {
             NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing to terminate")

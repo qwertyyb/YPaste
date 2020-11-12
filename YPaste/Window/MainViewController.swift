@@ -9,72 +9,55 @@
 import Cocoa
 import HotKey
 
-class MainViewController: NSViewController, NSTabViewDelegate {
+class MainViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    let tab = NSTabView()
 
     let mainView = MainView()
+    let container = NSView()
+    
+    private var constraint: NSLayoutConstraint?
     
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
+        container.wantsLayer = true
+        container.layer?.backgroundColor = .clear
+        container.translatesAutoresizingMaskIntoConstraints = false
+        mainView.wantsLayer = true
+        mainView.layer?.backgroundColor = .clear
+        mainView.translatesAutoresizingMaskIntoConstraints = false
         
-        tab.tabPosition = .left
-        tab.focusRingType = .none
-        
-        let historyItem = NSTabViewItem()
-        historyItem.label = "历史"
-        historyItem.view = mainView
-        tab.addTabViewItem(historyItem)
-        
-        let favoriteItem = NSTabViewItem()
-        favoriteItem.label = "收藏"
-        favoriteItem.view = mainView
-        tab.addTabViewItem(favoriteItem)
-        
-        tab.delegate = self
-        view = NSView()
+        container.addSubview(mainView)
+        constraint = Config.shared.getInitialConstraint(mainView: mainView, containerView: container)
+        NSLayoutConstraint.activate([
+            constraint!,
+            mainView.widthAnchor.constraint(equalTo: container.widthAnchor),
+            mainView.heightAnchor.constraint(equalTo: container.heightAnchor)
+        ])
+        view = container
+    }
+    
+    func slideOut() {
+        Config.shared.applyShowAnimateConstraint(constraint: constraint!)
+        view.becomeFirstResponder()
+    }
+    func slideIn(callback: @escaping () -> Void) {
+        print(self.view.frame)
+        Config.shared.applyHideAnimateConstraint(constraint: constraint!, callback: callback)
     }
     
     override func viewWillAppear() {
-        mainView.alphaValue = HotkeyHandler.shared.openType == .order ? 0.4 : 1
-        mainView.updateFooter(string: HotkeyHandler.shared.openType == .favorite ? "YPaste - 收藏" : "YPaste - 历史")
-        if HotkeyHandler.shared.openType == .order {
-            mainView.removeSearchView()
-            mainView.update()
-        } else {
-            mainView.addSearchView()
-        }
-        
+        mainView.addSearchView()
         PasteItemsController.shared.resetPage()
         PasteItemsController.shared.setSelectionIndex(0)
         
-        tab.tabViewType = HotkeyHandler.shared.openType == .order ? .noTabsNoBorder : .leftTabsBezelBorder
-        tab.selectTabViewItem(at: HotkeyHandler.shared.openType == .favorite ? 1 : 0)
-        
-        let stackView = NSStackView()
-        stackView.addView(tab, in: .center)
-        view = stackView
         self.mainView.scrollView.becomeFirstResponder()
     }
     override func viewDidDisappear() {
         PasteItemsController.shared.fetchPredicate = nil
-        view = NSView()
-    }
-    
-    func tabView(_ tabView: NSTabView, willSelect tabViewItem: NSTabViewItem?) {
-        guard tabViewItem != nil else { return }
-        let index = tabView.tabViewItems.firstIndex(of: tabViewItem!)
-        if index == 0 {
-            HotkeyHandler.shared.openType = .history
-        } else {
-            HotkeyHandler.shared.openType = .favorite
-        }
-        PasteItemsController.shared.fetch(self)
-        PasteItemsController.shared.setSelectionIndex(0)
     }
 }
 

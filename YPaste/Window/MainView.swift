@@ -7,63 +7,147 @@
 //
 
 import Cocoa
+import Carbon
 
-class MainView: NSStackView {
+class MainView: NSVisualEffectView {
+    
+    static let reachBottomNotification = Notification.Name("reachBottomNotification")
     
     let searchField = SearchField(string: "")
-    let scrollView = ScrollView()
+    let scrollView = NSScrollView()
+    let titleView = NSStackView()
     let footerView = NSTextField(string: "YPaste")
     
+    private var observers: [NSObjectProtocol] = []
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        orientation = .vertical
-        edgeInsets = NSEdgeInsets.init(top: 20, left: 6, bottom: 20, right: 6)
         translatesAutoresizingMaskIntoConstraints = false
-        alignment = .left
+        wantsLayer = true
+        layer?.backgroundColor = .clear
         
-        addView(searchField, in: .top)
-        NSLayoutConstraint.activate([
-            searchField.leftAnchor.constraint(equalTo: leftAnchor),
-            searchField.rightAnchor.constraint(equalTo: rightAnchor, constant: -18)
-        ])
+        addSearchView()
+
+//        addTitleView()
+
+        addScrollView()
+
+        addFooterView()
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.hasVerticalScroller = true
-        scrollView.verticalScroller?.isHidden = true
-        scrollView.drawsBackground = false
-        scrollView.documentView = ListView()
-        scrollView.verticalScroller?.controlSize = .mini
-        addView(scrollView, in: .center)
-        
-        NSLayoutConstraint.activate([
-          scrollView.leftAnchor.constraint(equalTo: leftAnchor),
-          scrollView.rightAnchor.constraint(equalTo: rightAnchor),
-          scrollView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 20),
-          scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -(NSScreen.main?.visibleFrame.origin.y ?? 100)),
-        ])
-        
-        footerView.alignment = .center
-        footerView.backgroundColor = .clear
-        footerView.isBordered = false
-        footerView.alphaValue = 0.3
-        addView(footerView, in: .bottom)
-        
-        searchField.bind(.predicate, to: PasteItemsController.shared, withKeyPath: "fetchPredicate", options: [NSBindingOption.predicateFormat: "self.value contains[cd] $value"])
-        
-        NotificationCenter.default.addObserver(
+        searchField.bind(
+            .predicate,
+            to: PasteItemsController.shared,
+            withKeyPath: "fetchPredicate",
+            options: [NSBindingOption.predicateFormat: "self.value contains[cd] $value"]
+        )
+
+        let observer = NotificationCenter.default.addObserver(
             forName: PasteItemsController.totalChange,
             object: nil,
             queue: nil) { (notification) in
                 self.updateCount()
         }
+        observers.append(observer)
+
+        observers.append(NotificationCenter.default.addObserver(
+            forName: ListView.reachTopNotification,
+            object: nil,
+            queue: nil) { (notification) in
+            print(notification)
+            self.window?.makeFirstResponder(self.searchField)
+        })
+
+        observers.append(NotificationCenter.default.addObserver(
+            forName: SearchField.arrowDownKeyDownNotification,
+            object: nil,
+            queue: nil) { (notification) in
+            self.window?.makeFirstResponder(self.scrollView)
+            PasteItemsController.shared.setSelectionIndex(0)
+        })
+    }
+
+    func addSearchView () {
+        searchField.translatesAutoresizingMaskIntoConstraints = false
+        searchField.centersPlaceholder = true
+        addSubview(searchField)
+        NSLayoutConstraint.activate([
+            searchField.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            searchField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            searchField.widthAnchor.constraint(lessThanOrEqualToConstant: 320),
+        ])
     }
     
-    func removeSearchView () {
-        setViews([], in: .top)
+    func addTitleView () {
+        let title = NSTextView()
+        title.string = "历史记录"
+        title.font = .boldSystemFont(ofSize: 20)
+        title.backgroundColor = .clear
+        title.isEditable = false
+        
+        let clear = NSButton(
+            image: NSImage(named: "NSStopProgressFreestandingTemplate")!,
+            target: PasteboardHandler.shared,
+            action: #selector(PasteboardHandler.shared.clearHistory)
+        )
+        clear.isBordered = false
+
+        titleView.orientation = .horizontal
+        titleView.addView(title, in: .leading)
+        titleView.addView(clear, in: .trailing)
+        titleView.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(titleView)
+        NSLayoutConstraint.activate([
+            titleView.leftAnchor.constraint(equalTo: leftAnchor, constant: 18),
+            titleView.rightAnchor.constraint(equalTo: rightAnchor, constant: -18),
+            titleView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 12),
+            titleView.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
-    func addSearchView () {
-        setViews([searchField], in: .top)
+    
+    func addScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.hasVerticalScroller = false
+        scrollView.drawsBackground = false
+        scrollView.verticalScroller = nil
+        scrollView.documentView = ListView()
+        // 到底时，加载下一页
+        scrollView.contentView.postsBoundsChangedNotifications = true
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollViewBoundsHandler),
+            name: NSView.boundsDidChangeNotification,
+            object: nil
+        )
+        scrollView.contentView.automaticallyAdjustsContentInsets = false
+        scrollView.contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentView.contentInsets = NSEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        addSubview(scrollView)
+        
+        NSLayoutConstraint.activate([
+            scrollView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            scrollView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 6),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -28),
+            scrollView.widthAnchor.constraint(equalTo: widthAnchor, constant: -24),
+            scrollView.contentView.widthAnchor.constraint(equalTo: widthAnchor, constant: -24),
+            scrollView.contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+        ])
+    }
+    
+    func addFooterView() {
+        footerView.alignment = .center
+        footerView.backgroundColor = .clear
+        footerView.isBordered = false
+        footerView.alphaValue = 0.3
+        footerView.isEditable = false
+        footerView.font = .labelFont(ofSize: 12)
+        addSubview(footerView)
+        footerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            footerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            footerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6)
+        ])
     }
     
     func updateFooter (string: String = "") {
@@ -71,7 +155,7 @@ class MainView: NSStackView {
     }
     
     func updateCount () {
-        let str = "共有\(String(PasteItemsController.shared.total))条数据"
+        let str = "共有\(String(PasteItemsController.shared.total))条历史"
         footerView.stringValue = str
     }
     
@@ -79,7 +163,17 @@ class MainView: NSStackView {
         super.init(coder: coder)
     }
     
-    func update() {
-        (scrollView.documentView as! ListView).update()
+    @objc private func scrollViewBoundsHandler(_ notification: Notification) {
+        guard let documentView = scrollView.documentView else { return }
+
+        let clipView = scrollView.contentView
+        let bottomDistance = documentView.bounds.height - (clipView.bounds.origin.y + clipView.bounds.height)
+        if bottomDistance == 0 {
+            let notification = Notification(
+                name: MainView.reachBottomNotification,
+                object: nil)
+            NotificationCenter.default.post(notification)
+
+        }
     }
 }

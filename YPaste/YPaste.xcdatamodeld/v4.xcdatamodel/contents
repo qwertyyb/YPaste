@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="PasteItem" representedClassName="PasteItem" syncable="YES" codeGenerationType="class">
+        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="data_hash" optional="YES" attributeType="String"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="value" optional="YES" attributeType="String"/>
+        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PasteItemContent" inverseName="owner" inverseEntity="PasteItemContent"/>
         <fetchIndex name="updated_at">
             <fetchIndexElement property="updated_at" type="Binary" order="descending"/>
         </fetchIndex>
     </entity>
+    <entity name="PasteItemContent" representedClassName="PasteItemContent" syncable="YES" codeGenerationType="class">
+        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="owner" maxCount="1" deletionRule="Nullify" destinationEntity="PasteItem" inverseName="contents" inverseEntity="PasteItem"/>
+    </entity>
     <fetchRequest name="FetchFavoriteList" entity="PasteItem" predicateString="favorite == 0"/>
     <elements>
-        <element name="PasteItem" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="PasteItem" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="PasteItemContent" positionX="-63" positionY="27" width="128" height="88"/>
     </elements>
 </model>
