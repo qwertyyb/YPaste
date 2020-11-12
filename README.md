@@ -4,7 +4,7 @@
 Macos 粘贴板管理应用
 
 ## 截图
-![](https://vfiles.gtimg.cn/vupload/20201109/2992921605180368898.png)
+![](https://vfiles.gtimg.cn/vupload/20201109/dd4abf1605183811847.jpg)
 
 ## 特性
 - 无限记录的粘贴历史
