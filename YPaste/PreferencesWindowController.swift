@@ -80,7 +80,6 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     }
 
     @IBOutlet weak var hotKey: NSButton!
-    @IBOutlet weak var favoriteHotkeyButton: NSButton!
     
     private var curHotKey = HotKeyType.history
     @IBAction func onLaunchAtLogin(_ sender: NSButton) {
@@ -97,21 +96,12 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
         curHotKey = .history
         eventHandler = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: self.handleKeyEvent)
     }
-    @IBAction func favoriteHotKeyClicked(_ sender: NSButton) {
-        clearKeyEvent()
-        sender.title = "输入快捷键"
-        curHotKey = .favorite
-        eventHandler = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: self.handleKeyEvent)
-    }
     private func handleKeyEvent(with event: NSEvent) -> NSEvent? {
         if event.modifierFlags.description == "" { return event }
         let keyName = event.modifierFlags.description + event.charactersIgnoringModifiers!.uppercased()
         if curHotKey == .history {
             hotKey.title = keyName
             UserDefaults.standard.setValue(convertToKeyName(keyName), forKey: "hotKey")
-        } else if curHotKey == .favorite {
-            favoriteHotkeyButton.title = keyName
-            UserDefaults.standard.setValue(convertToKeyName(keyName), forKey: "favoriteHotKey")
         }
         HotkeyHandler.shared.register()
         clearKeyEvent()
