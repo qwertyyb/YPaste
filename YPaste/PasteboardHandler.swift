@@ -31,13 +31,9 @@ extension PasteItem {
         if pType == .string {
             return NSAttributedString(string: String(data: data, encoding: .utf8) ?? "[error data]")
         }
-        if pType == .html {
-            // html使用nsattributedstring有渲染性能问题，先特殊处理
-            let str = NSAttributedString(html: data, documentAttributes: nil)
-            return NSAttributedString(string: str?.string ?? "［empty html data]")
-        }
+        // NSAttributedString 会有性能问题，导致应用卡死
         if let str = NSAttributedString(pasteboardPropertyList: data, ofType: pType) {
-            return str
+            return NSAttributedString(string: str.string)
         }
         if let url = URL(dataRepresentation: data, relativeTo: nil) {
             return NSAttributedString(string: url.absoluteString)

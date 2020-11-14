@@ -164,16 +164,19 @@ class MainView: NSVisualEffectView {
     }
     
     @objc private func scrollViewBoundsHandler(_ notification: Notification) {
-        guard let documentView = scrollView.documentView else { return }
+        guard let documentBounds = scrollView.documentView?.frame else { return }
+        let insets = scrollView.contentView.contentInsets
+        
+        let clipBounds = scrollView.contentView.bounds
+        
+        let bottomDistance = Config.shared.scrollDirection == .vertical
+                ? documentBounds.height - (clipBounds.origin.y + clipBounds.height) + insets.bottom
+                : documentBounds.width - (clipBounds.origin.x + clipBounds.width) + insets.right
+        if bottomDistance != 0 { return }
 
-        let clipView = scrollView.contentView
-        let bottomDistance = documentView.bounds.height - (clipView.bounds.origin.y + clipView.bounds.height)
-        if bottomDistance == 0 {
-            let notification = Notification(
-                name: MainView.reachBottomNotification,
-                object: nil)
-            NotificationCenter.default.post(notification)
-
-        }
+        let notification = Notification(
+            name: MainView.reachBottomNotification,
+            object: nil)
+        NotificationCenter.default.post(notification)
     }
 }
