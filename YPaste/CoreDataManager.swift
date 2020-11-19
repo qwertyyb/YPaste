@@ -40,4 +40,6 @@ class CoreDataManager {
     }()
     
     lazy var viewContext = persistentContainer.viewContext
+    
+    lazy var bgContext = persistentContainer.newBackgroundContext()
 }

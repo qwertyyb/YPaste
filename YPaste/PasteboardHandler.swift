@@ -18,37 +18,11 @@ extension Digest {
 typealias SimplePasteItemData = (type: NSPasteboard.PasteboardType, data: Data)
 
 extension PasteItem {
-    func getString() -> NSAttributedString? {
-        if (type == "text") {
-            return NSAttributedString(string: value ?? "[空]")
-        }
-        
-        guard let data = data,
-              let type = type else {
-            return NSAttributedString(string: "[空]")
-        }
-        let pType = NSPasteboard.PasteboardType(rawValue: type)
-        if pType == .string {
-            return NSAttributedString(string: String(data: data, encoding: .utf8) ?? "[error data]")
-        }
-        // NSAttributedString 会有性能问题，导致应用卡死
-        if let str = NSAttributedString(pasteboardPropertyList: data, ofType: pType) {
-            return NSAttributedString(string: str.string)
-        }
-        if let url = URL(dataRepresentation: data, relativeTo: nil) {
-            return NSAttributedString(string: url.absoluteString)
-        }
-        return nil
-    }
-    
     func getImage() -> NSImage? {
         guard let data = data else {
             return nil
         }
         return NSImage(data: data)
-    }
-    var content: NSPasteboardWriting? {
-        getImage() ?? getString()
     }
 }
 
@@ -145,7 +119,7 @@ class PasteboardHandler {
             return nil
         }
         let predicate = NSPredicate(format: "data_hash = %@", itemHash)
-        let saveContext = CoreDataManager.shared.viewContext
+        let saveContext = CoreDataManager.shared.bgContext
         let fetchRequest: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
         fetchRequest.predicate = predicate
         fetchRequest.returnsObjectsAsFaults = false
@@ -159,7 +133,7 @@ class PasteboardHandler {
      * @returns {PasteItem} 返回新创建的历史记录，不支持则返回nil
      */
     private func createNewHistoryItem(_ item: NSPasteboardItem) -> PasteItem? {
-        let ctx = CoreDataManager.shared.viewContext
+        let ctx = CoreDataManager.shared.bgContext
         guard let typeData = getShownTypeData(item),
               let itemHash = getPasteItemHash(item) else {
             return nil
@@ -171,7 +145,7 @@ class PasteboardHandler {
         pasteItem.data = typeData.data
         pasteItem.type = typeData.type.rawValue
         if item.types.contains(.string) {
-            pasteItem.value = item.string(forType: .string)
+            pasteItem.value = item.string(forType: .string)!
         }
         item.types.forEach { (type) in
             guard let data = item.data(forType: type) else {
@@ -196,6 +170,7 @@ class PasteboardHandler {
     
     private func changeHandler() {
         pasteboard.pasteboardItems?.forEach({ (item) in
+            print(item.types)
             itemHandler(item)
         })
     }
@@ -278,7 +253,7 @@ class PasteboardHandler {
     @objc
     func clearHistory(_ sender: Any?) {
         print("clear")
-        let ctx = CoreDataManager.shared.viewContext
+        let ctx = CoreDataManager.shared.bgContext
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PasteItem")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         try! ctx.execute(deleteRequest)

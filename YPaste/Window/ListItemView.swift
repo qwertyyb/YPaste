@@ -137,8 +137,8 @@ class ListItemView: NSView {
             textview.cell?.truncatesLastVisibleLine = true
             textview.attributedStringValue = NSAttributedString(string: SummaryTransformer().transformedValue(pasteItem.value ?? "") as! String)
         
-            if let text = pasteItem.getString() {
-                textview.attributedStringValue = text
+            if let text = pasteItem.value {
+                textview.stringValue = text
                 headerBgLayer.contents = NSImage(named: "item-text")
                 headerView.layer?.addSublayer(headerBgLayer)
                 headerView.layer?.backgroundColor = .init(red: 68/255.0, green: 211/255.0, blue: 156/255.0, alpha: 1)

@@ -16,7 +16,7 @@ class PasteItemsController: NSArrayController {
     override init(content: Any?) {
         super.init(content: content)
 
-        managedObjectContext = CoreDataManager.shared.viewContext
+        managedObjectContext = CoreDataManager.shared.bgContext
         sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
         entityName = "PasteItem"
         
