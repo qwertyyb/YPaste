@@ -28,7 +28,11 @@ class ListItemView: NSView {
     
     private let headerView = NSStackView()
     
-    private let deleteView = NSButton(image: NSImage(named: "NSStopProgressFreestandingTemplate")!, target: nil, action: #selector(delete))
+    private let deleteView = NSButton(
+        image: NSImage(named: "NSStopProgressFreestandingTemplate")!,
+        target: nil,
+        action: #selector(delete)
+    )
     
     private let wrapper = NSView()
     
@@ -170,6 +174,7 @@ class ListItemView: NSView {
         deleteView.image?.size = .init(width: 20, height: 20)
         deleteView.toolTip = "删除"
         deleteView.target = self
+        deleteView.appearance = NSAppearance(named: .aqua)
         
         NSLayoutConstraint.activate([
             deleteView.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -16),
