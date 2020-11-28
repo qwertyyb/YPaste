@@ -7,14 +7,11 @@
 //
 
 import Cocoa
-import HotKey
 
 class MainWindowController: NSWindowController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        NotificationCenter.default.addObserver(self, selector: #selector(openWindow), name: HotkeyHandler.openWindowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(close), name: PasteboardHandler.pastedNotification, object: nil)
     }
     override init(window: NSWindow?) {
         super.init(window: window)

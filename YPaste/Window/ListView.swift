@@ -8,7 +8,6 @@
 
 import Cocoa
 import Carbon
-import HotKey
 
 class ListView: NSStackView {
     
@@ -45,33 +44,20 @@ class ListView: NSStackView {
         get { return true }
     }
     
-    override func mouseMoved(with event: NSEvent) {
-        var point = event.locationInWindow
-        let bounds = self.enclosingScrollView?.contentView.bounds ?? self.bounds
-        let originY = self.enclosingScrollView?.frame.origin.y ?? 100
-        point.y = visibleRect.origin.y + bounds.height + originY - point.y
-        var view = self.hitTest(point)
-        if view?.className == "YPaste.ListItemView" {
-        } else if view?.superview?.className == "YPaste.ListItemView"  {
-            view = view?.superview
-        } else {
-            return
+    func getItemView(innerView: NSView) -> ListItemView? {
+        var curView: NSView? = innerView
+        while (curView != nil && curView?.className != "YPaste.ListItemView") {
+            curView = curView?.superview
         }
-        let itemView = view as! ListItemView
-        PasteItemsController.shared.setSelectionIndex(itemView.index)
+        return curView as? ListItemView
     }
     
-    private var trackingArea: NSTrackingArea?
-    override func updateTrackingAreas() {
-        super.updateTrackingAreas()
-
-        if let trackingArea = self.trackingArea {
-            self.removeTrackingArea(trackingArea)
+    override func mouseMoved(with event: NSEvent) {
+        let targetView = self.window?.contentView?.hitTest(event.locationInWindow)
+        guard let view = targetView else { return }
+        if let itemView = getItemView(innerView: view) {
+            PasteItemsController.shared.setSelectionIndex(itemView.index)
         }
-
-        let options: NSTrackingArea.Options = [.mouseMoved, .activeAlways]
-        let trackingArea = NSTrackingArea(rect: self.enclosingScrollView?.contentView.bounds ?? self.bounds, options: options, owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea)
     }
     
     override var acceptsFirstResponder: Bool {
@@ -82,14 +68,23 @@ class ListView: NSStackView {
         super.init(coder: coder)
     }
     
+    override var spacing: CGFloat {
+        get { 8 }
+        set { }
+    }
+    
+    override var edgeInsets: NSEdgeInsets {
+        get { NSEdgeInsets(top: 8, left: 0, bottom: 0, right: 0) }
+        set { }
+    }
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         orientation = Config.shared.scrollDirection
         alignment = orientation == .horizontal ? .centerY : .centerX
-        spacing = 8
-        edgeInsets = NSEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
-        
         translatesAutoresizingMaskIntoConstraints = false
+        
+        NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved, handler: self.mouseMoved(with:))
         
         bind(
             NSBindingName("list"),

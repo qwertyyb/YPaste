@@ -28,7 +28,11 @@ class ListItemView: NSView {
     
     private let headerView = NSStackView()
     
-    private let deleteView = NSButton(image: NSImage(named: "NSStopProgressFreestandingTemplate")!, target: nil, action: #selector(delete))
+    private let deleteView = NSButton(
+        image: NSImage(named: "NSStopProgressFreestandingTemplate")!,
+        target: nil,
+        action: #selector(delete)
+    )
     
     private let wrapper = NSView()
     
@@ -137,8 +141,8 @@ class ListItemView: NSView {
             textview.cell?.truncatesLastVisibleLine = true
             textview.attributedStringValue = NSAttributedString(string: SummaryTransformer().transformedValue(pasteItem.value ?? "") as! String)
         
-            if let text = pasteItem.getString() {
-                textview.attributedStringValue = text
+            if let text = pasteItem.value {
+                textview.stringValue = text
                 headerBgLayer.contents = NSImage(named: "item-text")
                 headerView.layer?.addSublayer(headerBgLayer)
                 headerView.layer?.backgroundColor = .init(red: 68/255.0, green: 211/255.0, blue: 156/255.0, alpha: 1)
@@ -170,6 +174,7 @@ class ListItemView: NSView {
         deleteView.image?.size = .init(width: 20, height: 20)
         deleteView.toolTip = "删除"
         deleteView.target = self
+        deleteView.appearance = NSAppearance(named: .aqua)
         
         NSLayoutConstraint.activate([
             deleteView.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -16),
