@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import HotKey
 
 class MainViewController: NSViewController {
     
@@ -41,12 +40,12 @@ class MainViewController: NSViewController {
     }
     
     func slideOut() {
-        Config.shared.applyShowAnimateConstraint(constraint: constraint!)
+        Config.shared.applyShowAnimateConstraint(constraint: self.constraint!)
         view.becomeFirstResponder()
     }
     func slideIn(callback: @escaping () -> Void) {
-        print(self.view.frame)
-        Config.shared.applyHideAnimateConstraint(constraint: constraint!, callback: callback)
+        self.view.window?.hasShadow = false
+        Config.shared.applyHideAnimateConstraint(constraint: self.constraint!, callback: callback)
     }
     
     override func viewWillAppear() {
