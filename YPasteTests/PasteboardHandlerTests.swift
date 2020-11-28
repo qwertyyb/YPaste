@@ -50,7 +50,7 @@ class PasteboardHandlerTests: XCTestCase {
         let fetch: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
         fetch.fetchLimit = 1
         fetch.sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
-        let ctx = CoreDataManager.shared.viewContext
+        let ctx = CoreDataManager.shared.bgContext
         let results = try? ctx.fetch(fetch)
         print(results![0].value)
         
@@ -70,7 +70,7 @@ class PasteboardHandlerTests: XCTestCase {
         let fetch: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
         fetch.fetchLimit = 1
         fetch.sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
-        let ctx = CoreDataManager.shared.viewContext
+        let ctx = CoreDataManager.shared.bgContext
         let results = try? ctx.fetch(fetch)
         
         XCTAssertTrue(results != nil && results!.count > 0 && results![0].value == "hello" && results![0].favorite == true, "测试监听剪切板写入历史记录中")
@@ -86,7 +86,7 @@ class PasteboardHandlerTests: XCTestCase {
         let fetch: NSFetchRequest<PasteItem> = PasteItem.fetchRequest()
         fetch.fetchLimit = 1
         fetch.sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
-        let ctx = CoreDataManager.shared.viewContext
+        let ctx = CoreDataManager.shared.bgContext
         let results = try? ctx.fetch(fetch)
         
         PasteboardHandler.shared.paste(pasteItem: results![0])
