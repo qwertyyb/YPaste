@@ -79,15 +79,15 @@ class Config {
     
     func applyShowAnimateConstraint (constraint: NSLayoutConstraint) {
         NSAnimationContext.runAnimationGroup { (ctx) in
-            ctx.duration = 0.2
-            ctx.timingFunction = .init(name: .easeIn)
+            ctx.duration = 0.3
+            ctx.timingFunction = .init(name: .easeOut)
             constraint.animator().constant = 0
         }
     }
     
     func applyHideAnimateConstraint (constraint: NSLayoutConstraint, callback: @escaping () -> Void) {
         NSAnimationContext.runAnimationGroup { (ctx) in
-            ctx.duration = 0.2
+            ctx.duration = 0.3
             ctx.timingFunction = .init(name: .easeIn)
             ctx.completionHandler = callback
             var val: CGFloat = -400

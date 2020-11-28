@@ -8,7 +8,6 @@
 
 import Cocoa
 import Carbon
-import HotKey
 
 class ListView: NSStackView {
     
@@ -61,19 +60,6 @@ class ListView: NSStackView {
         PasteItemsController.shared.setSelectionIndex(itemView.index)
     }
     
-    private var trackingArea: NSTrackingArea?
-    override func updateTrackingAreas() {
-        super.updateTrackingAreas()
-
-        if let trackingArea = self.trackingArea {
-            self.removeTrackingArea(trackingArea)
-        }
-
-        let options: NSTrackingArea.Options = [.mouseMoved, .activeAlways]
-        let trackingArea = NSTrackingArea(rect: self.enclosingScrollView?.contentView.bounds ?? self.bounds, options: options, owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea)
-    }
-    
     override var acceptsFirstResponder: Bool {
         get { return true }
     }
@@ -90,6 +76,8 @@ class ListView: NSStackView {
         edgeInsets = NSEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         
         translatesAutoresizingMaskIntoConstraints = false
+        
+        NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved, handler: self.mouseMoved(with:))
         
         bind(
             NSBindingName("list"),
