@@ -28,7 +28,7 @@ class MainView: NSVisualEffectView {
         
         addSearchView()
 
-//        addTitleView()
+        addTitleView()
 
         addScrollView()
 
@@ -73,7 +73,8 @@ class MainView: NSVisualEffectView {
         NSLayoutConstraint.activate([
             searchField.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             searchField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            searchField.widthAnchor.constraint(lessThanOrEqualToConstant: 320),
+            searchField.widthAnchor.constraint(greaterThanOrEqualToConstant: 320),
+            searchField.heightAnchor.constraint(greaterThanOrEqualToConstant: 24),
         ])
     }
     
@@ -127,7 +128,7 @@ class MainView: NSVisualEffectView {
         
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            scrollView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 6),
+            scrollView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 6),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -28),
             scrollView.widthAnchor.constraint(equalTo: widthAnchor, constant: -24),
             scrollView.contentView.widthAnchor.constraint(equalTo: widthAnchor, constant: -24),
