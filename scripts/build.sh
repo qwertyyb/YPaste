@@ -1,8 +1,8 @@
 # altool credentials.
 # AC_PASSWORD is the name of the keychain item with App Connect password
 # Grant access to Xcode if prompted by Xcode.
-AC_USERNAME="$APPLEID"
-AC_PASSWORD="$APPLE_PASSWORD"
+AC_USERNAME="$apple_id"
+AC_PASSWORD="$apple_id_password"
 
 if [[ $AC_USERNAME == "" ]]; then
   echo "error: no username"
