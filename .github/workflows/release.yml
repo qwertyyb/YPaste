@@ -28,6 +28,8 @@ jobs:
     - name: build
       env:
         sparkle_key: ${{ secrets.sparkle_key }}
+        apple_id: ${{ secrets.APPLEID }}
+        apple_id_password: ${{ secrets.APPLE_PASSWORD }}
       run: ./scripts/build.sh
     - name: generate YPaste.zip
       run: |
