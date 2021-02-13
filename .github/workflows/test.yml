@@ -19,9 +19,9 @@ jobs:
       run: pod install
     - name: archive
       run: |
-      xcodebuild archive -workspace YPaste.xcworkspace -scheme YPaste -archivePath ./archive-YPaste -configuration Release
-      echo "export archive"
-      /usr/bin/xcodebuild -exportArchive -archivePath ./archive-YPaste.xcarchive -exportOptionsPlist "./scripts/ExportOptions.plist" -exportPath ./apps/ || { echo "Export Archive Failed : xcodebuild exportArchive action failed"; exit 1; }
+        xcodebuild archive -workspace YPaste.xcworkspace -scheme YPaste -archivePath ./archive-YPaste -configuration Release
+        echo "export archive"
+        /usr/bin/xcodebuild -exportArchive -archivePath ./archive-YPaste.xcarchive -exportOptionsPlist "./scripts/ExportOptions.plist" -exportPath ./apps/ || { echo "Export Archive Failed : xcodebuild exportArchive action failed"; exit 1; }
     - name: copy app && zip app && generate appcast
       env:
         sparkle_key: ${{ secrets.sparkle_key }}
