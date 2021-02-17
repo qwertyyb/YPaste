@@ -3,10 +3,10 @@
     <channel>
         <title>YPaste</title>
         <item>
-            <title>v1.1.0</title>
-            <pubDate>Sat, 13 Feb 2021 07:50:26 +0000</pubDate>
+            <title>v1.1.1</title>
+            <pubDate>Wed, 17 Feb 2021 10:32:57 +0000</pubDate>
             <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/qwertyyb/YPaste/releases/latest/download/YPaste.dmg" sparkle:version="103143" sparkle:shortVersionString="v1.1.0" length="1044000" type="application/octet-stream" sparkle:edSignature="EPVB3lGlzhjZJxPLHNXfMlWpGYI9W1t6vmuyB5t5kUG2TExXJ75bCr+fWzmfR6erIGvI/WZeq8sfCeOT7LHTDg=="/>
+            <enclosure url="https://github.com/qwertyyb/YPaste/releases/latest/download/YPaste.dmg" sparkle:version="103150" sparkle:shortVersionString="v1.1.1" length="1043102" type="application/octet-stream" sparkle:edSignature="FNcLtkXi5girfSB01fQKZTJup2toifIIcG8PJddrIO17XVvl9I6czNKhocu46px/dRlM3lkmZOx6xZIAy+rWAg=="/>
         </item>
     </channel>
 </rss>
