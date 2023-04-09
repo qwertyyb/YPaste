@@ -19,11 +19,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>Explosion v1.0.0－alpha</string>
 	<key>CFBundleVersion</key>
-	<string>103322</string>
+	<string>103323</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 qwertyyb. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
