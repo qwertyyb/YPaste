@@ -21,7 +21,7 @@ fi
 PRODUCT_NAME="YPaste"
 SCRIPTROOT=$(cd "$(dirname "$0")";pwd)
 SRCROOT=$(dirname "$SCRIPTROOT")
-ARCHIVE_PATH="$SRCROOT/archive-YPaste.xcarchive"
+ARCHIVE_PATH="$SRCROOT/archive-$PRODUCT_NAME.xcarchive"
 EXPORT_PATH="$SRCROOT/apps"
 APP_PATH="$EXPORT_PATH/$PRODUCT_NAME.app"
 DMG_ROOT="$EXPORT_PATH/dmg"
@@ -34,7 +34,7 @@ echo "clean build fold"
 rm -rf "$EXPORT_PATH"
 
 echo "build archive"
-xcodebuild archive -workspace YPaste.xcworkspace -scheme YPaste -archivePath "$SRCROOT/archive-YPaste" -configuration Release || { echo "Archive and Notarization Failed : xcodebuild archive action failed"; exit 1; }
+xcodebuild archive -workspace "$PRODUCT_NAME.xcworkspace" -scheme "$PRODUCT_NAME" -archivePath "$SRCROOT/archive-$PRODUCT_NAME" -configuration Release || { echo "Archive and Notarization Failed : xcodebuild archive action failed"; exit 1; }
 
 # Xcode doesn't show run script errors in build log.
 # Uncomment to save any messages aside.

@@ -25,23 +25,32 @@ public extension NSApplication {
 
 class YPaste {
     
-    let pasteboardHandler = PasteboardHandler.shared
+    let pasteboardHandler = PasteboardAction.shared
     let hotkeyHandler = HotkeyHandler.shared
-    let mainWindowController: MainWindowController = MainWindowController(window: MainWindow())
-    
-    
-    private var observation: NSKeyValueObservation?
+    var mainWindow: MainWindow = MainWindow()
+    let listener: PasteboardListener
 
     init() {
-        hotkeyHandler.register()
-        pasteboardHandler.startListener()
-        observation = UserDefaults.standard.observe(\.popupPosition) { (userDefaults, changes) in
-//            self.mainWindowController.contentViewController = MainViewController()
-            let alert = NSAlert()
-            alert.messageText = "need restart to apply changes"
-            alert.runModal()
-            NSApp.relaunch()
-        }
+        listener = PasteboardListener(onNewData: { data in
+            Store.shared.addOrUpdateRecord(data)
+        })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showWindow), name: HotkeyHandler.requestOpenWindowNotification, object: nil)
+        
+        showWindow()
+    }
+    
+    @objc
+    func showWindow() {
+        NSApp.activate(ignoringOtherApps: true)
+        // 等待当前应用激活后再拉起窗口
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false, block: { timer in
+            self.mainWindow.setFrame(
+                NSRect(origin: Config.shared.windowOrigin, size: Config.shared.windowSize),
+                display: true
+            )
+            self.mainWindow.makeKeyAndOrderFront(self)
+        })
     }
     
     func autoLaunch(active: Bool = true) {

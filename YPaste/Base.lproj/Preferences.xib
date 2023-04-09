@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,14 +16,14 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="279" height="226"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1792" height="1097"/>
+            <rect key="contentRect" x="196" y="240" width="279" height="183"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="279" height="226"/>
+                <rect key="frame" x="0.0" y="0.0" width="279" height="183"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" id="VWY-d8-NZM">
-                        <rect key="frame" x="28" y="190" width="119" height="18"/>
+                        <rect key="frame" x="28" y="147" width="119" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LeK-Xa-5ej">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -38,22 +38,22 @@
                         <rect key="frame" x="6" y="81" width="266" height="59"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="x0K-gL-8vO">
-                            <rect key="frame" x="3" y="3" width="260" height="41"/>
+                            <rect key="frame" x="4" y="5" width="258" height="39"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUx-NE-6xP">
-                                    <rect key="frame" x="20" y="14" width="176" height="21"/>
+                                    <rect key="frame" x="20" y="13" width="175" height="20"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RqM-Bb-wp8">
-                                            <rect key="frame" x="-2" y="3" width="95" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Popup position" id="NgQ-BV-ByQ">
+                                            <rect key="frame" x="-2" y="2" width="95" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Popup Position" id="NgQ-BV-ByQ">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-dL-w7K">
-                                            <rect key="frame" x="97" y="-3" width="82" height="25"/>
+                                            <rect key="frame" x="96" y="-4" width="83" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="top" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tkt-vC-lic" id="nO4-gZ-YOz">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
@@ -87,66 +87,15 @@
                             </subviews>
                         </view>
                     </box>
-                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="Jyb-Dr-tW1">
-                        <rect key="frame" x="30" y="154" width="177" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LPe-gb-72a" userLabel="Check Update">
-                                <rect key="frame" x="-2" y="3" width="91" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Check Update" id="dWG-eZ-o58">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KvF-RK-Ded" userLabel="UpdateInterval">
-                                <rect key="frame" x="93" y="-3" width="87" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Hourly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="3600" imageScaling="proportionallyDown" inset="2" selectedItem="EE6-Ss-Gw7" id="IA7-J9-2tC">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="g77-xz-TFH">
-                                        <items>
-                                            <menuItem title="Hourly" state="on" tag="3600" id="EE6-Ss-Gw7">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Daily" tag="86400" id="eEf-BQ-9PH">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Weekly" tag="604800" id="fcM-sZ-IDB">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Monthly" tag="2629800" id="Lew-rN-naA">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Never" id="3TG-ts-gEq">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <binding destination="59d-5C-RD8" name="selectedTag" keyPath="updateCheckInterval" id="SaA-sM-4dT"/>
-                                </connections>
-                            </popUpButton>
-                        </subviews>
-                        <visibilityPriorities>
-                            <integer value="1000"/>
-                            <integer value="1000"/>
-                        </visibilityPriorities>
-                        <customSpacing>
-                            <real value="3.4028234663852886e+38"/>
-                            <real value="3.4028234663852886e+38"/>
-                        </customSpacing>
-                    </stackView>
-                    <box fixedFrame="YES" title="Hotkey" translatesAutoresizingMaskIntoConstraints="NO" id="Ic4-Rd-zAp" userLabel="BoxHotkey">
+                    <box fixedFrame="YES" title="Hot Key" translatesAutoresizingMaskIntoConstraints="NO" id="Ic4-Rd-zAp" userLabel="BoxHotkey">
                         <rect key="frame" x="6" y="16" width="266" height="61"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="Mly-jF-oMq">
-                            <rect key="frame" x="3" y="3" width="260" height="43"/>
+                            <rect key="frame" x="4" y="5" width="258" height="41"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="0re-vj-j39">
-                                    <rect key="frame" x="20" y="11" width="142" height="21"/>
+                                    <rect key="frame" x="20" y="9" width="142" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pn9-3U-yqA">
@@ -158,7 +107,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fpl-NK-Zox">
-                                            <rect key="frame" x="50" y="-7" width="98" height="32"/>
+                                            <rect key="frame" x="49" y="-6" width="100" height="32"/>
                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nxD-fc-hgi">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -182,12 +131,11 @@
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="38.5" y="125"/>
+            <point key="canvasLocation" x="38.5" y="103.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="xQO-e6-7gF"/>
-        <customObject id="59d-5C-RD8" customClass="SUUpdater"/>
     </objects>
     <resources>
-        <image name="NSRefreshTemplate" width="11" height="15"/>
+        <image name="NSRefreshTemplate" width="18" height="21"/>
     </resources>
 </document>

@@ -33,23 +33,23 @@ class TimeTransformer: ValueTransformer {
         let h = Int(ts / 3600) % 24
         let d = Int(ts / 3600 / 24)
         var output = ""
-        if d > 0 { output += "\(d)天" }
+        if d > 0 { output += "\(d)\(NSLocalizedString("label.Day", comment: "天"))" }
         if d > 2 {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm MM-dd"
             return formatter.string(from: date)
         }
-        if h > 0 { output += "\(h)小时" }
+        if h > 0 { output += "\(h)\(NSLocalizedString("label.Hours", comment: "小时"))" }
         if d > 0 {
-            return output + "前"
+            return output + NSLocalizedString("label.Ago", comment: "前")
         }
-        if m > 0 { output += "\(m)分" }
+        if m > 0 { output += "\(m)\(NSLocalizedString("label.Minutes", comment: "分钟"))" }
         if h > 0 {
-            return output + "前"
+            return output + NSLocalizedString("label.Ago", comment: "前")
         }
-        if s > 0 { output += "\(s)秒" }
-        if s <= 0 { return "此刻" }
-        return output + "前"
+        if s > 0 { output += "\(s)\(NSLocalizedString("label.Seconds", comment: "秒"))" }
+        if s <= 0 { return NSLocalizedString("label.Now", comment: "此刻") }
+        return output + NSLocalizedString("label.Ago", comment: "前")
     }
 }
 

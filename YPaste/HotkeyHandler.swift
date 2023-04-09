@@ -14,9 +14,10 @@ class HotkeyHandler {
     
     init() {
         UserDefaults.standard.register(defaults: ["hotKey": "command+shift+v"])
+        register()
     }
     
-    static let openWindowNotification = Notification.Name("openWindowNotification")
+    static let requestOpenWindowNotification = Notification.Name("openWindowNotification")
     
     private func getKeyComboFromString(_ string: String) -> KeyCombo {
         var keysList = string.split(separator: "+")
@@ -46,7 +47,7 @@ class HotkeyHandler {
         openHistoryHotkey = HotKey(
             keyCombo: keyCombo,
             keyDownHandler: {
-                NotificationCenter.default.post(name: HotkeyHandler.openWindowNotification, object: nil)
+                NotificationCenter.default.post(name: HotkeyHandler.requestOpenWindowNotification, object: nil)
             },
             keyUpHandler: nil
         )

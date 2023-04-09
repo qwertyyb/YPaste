@@ -25,6 +25,7 @@ class MainView: NSVisualEffectView {
         translatesAutoresizingMaskIntoConstraints = false
         wantsLayer = true
         layer?.backgroundColor = .clear
+        translatesAutoresizingMaskIntoConstraints = false
         
         addSearchView()
 
@@ -34,20 +35,12 @@ class MainView: NSVisualEffectView {
 
         addFooterView()
         
-        searchField.bind(
-            .predicate,
-            to: PasteItemsController.shared,
-            withKeyPath: "fetchPredicate",
-            options: [NSBindingOption.predicateFormat: "self.value contains[cd] $value"]
-        )
-
-        let observer = NotificationCenter.default.addObserver(
-            forName: PasteItemsController.totalChange,
+        observers.append(NotificationCenter.default.addObserver(
+            forName: ViewStore.listChangedNotification,
             object: nil,
             queue: nil) { (notification) in
                 self.updateCount()
-        }
-        observers.append(observer)
+        })
 
         observers.append(NotificationCenter.default.addObserver(
             forName: ListView.reachTopNotification,
@@ -62,8 +55,15 @@ class MainView: NSVisualEffectView {
             object: nil,
             queue: nil) { (notification) in
             self.window?.makeFirstResponder(self.scrollView)
-            PasteItemsController.shared.setSelectionIndex(0)
+            ViewStore.shared.setSelectedIndex(0)
         })
+    }
+    
+    deinit {
+        observers.forEach { observer in
+            NotificationCenter.default.removeObserver(observer)
+        }
+        print("deinit")
     }
 
     func addSearchView () {
@@ -80,15 +80,15 @@ class MainView: NSVisualEffectView {
     
     func addTitleView () {
         let title = NSTextView()
-        title.string = "历史记录"
+        title.string = NSLocalizedString("label.History", comment: "History")
         title.font = .boldSystemFont(ofSize: 20)
         title.backgroundColor = .clear
         title.isEditable = false
         
         let clear = NSButton(
             image: NSImage(named: "NSStopProgressFreestandingTemplate")!,
-            target: PasteboardHandler.shared,
-            action: #selector(PasteboardHandler.shared.clearHistory)
+            target: PasteboardAction.shared,
+            action: #selector(Store.shared.clear)
         )
         clear.isBordered = false
 
@@ -123,7 +123,7 @@ class MainView: NSVisualEffectView {
         )
         scrollView.contentView.automaticallyAdjustsContentInsets = false
         scrollView.contentView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentView.contentInsets = NSEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        scrollView.contentView.contentInsets = NSEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
         addSubview(scrollView)
         
         NSLayoutConstraint.activate([
@@ -149,14 +149,11 @@ class MainView: NSVisualEffectView {
             footerView.centerXAnchor.constraint(equalTo: centerXAnchor),
             footerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6)
         ])
-    }
-    
-    func updateFooter (string: String = "") {
-        footerView.stringValue = string
+        self.updateCount()
     }
     
     func updateCount () {
-        let str = "共有\(String(PasteItemsController.shared.total))条历史"
+        let str = String(format: NSLocalizedString("label.Total %@ Records", comment: "共有N条记录"), "\(ViewStore.shared.total)")
         footerView.stringValue = str
     }
     
@@ -174,7 +171,7 @@ class MainView: NSVisualEffectView {
                 ? documentBounds.height - (clipBounds.origin.y + clipBounds.height) + insets.bottom
                 : documentBounds.width - (clipBounds.origin.x + clipBounds.width) + insets.right
         if bottomDistance != 0 { return }
-
+        
         let notification = Notification(
             name: MainView.reachBottomNotification,
             object: nil)

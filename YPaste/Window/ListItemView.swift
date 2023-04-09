@@ -19,12 +19,12 @@ class ListItemView: NSView {
     }
     
     override func mouseDown(with event: NSEvent) {
-        PasteboardHandler.shared.paste(pasteItem: pasteItem!)
+        PasteboardAction.shared.paste(pasteItem: pasteItem!)
         self.window?.windowController?.close()
     }
     
     private var pasteItem: PasteItem?
-    private let titleView = NSTextField(string: "hello")
+    private let titleView = NSTextField(string: "")
     
     private let headerView = NSStackView()
     
@@ -69,7 +69,7 @@ class ListItemView: NSView {
         headerView.wantsLayer = true
         headerView.spacing = 2
         headerView.edgeInsets = NSEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        headerView.layer?.backgroundColor = .init(red: 41/255, green: 128/255, blue: 185/255, alpha: 1)
+        headerView.layer?.backgroundColor = .init(red: CGFloat(41/255), green: CGFloat(128/255), blue: CGFloat(185/255), alpha: 1)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         wrapper.addSubview(headerView)
         
@@ -91,7 +91,7 @@ class ListItemView: NSView {
             headerLeftView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
         ])
         
-        let typeView = NSTextField(string: "文本")
+        let typeView = NSTextField(string: NSLocalizedString("label.Text", comment: "文本"))
         typeView.backgroundColor = .clear
         typeView.alignment = .left
         typeView.textColor = .white
@@ -120,10 +120,10 @@ class ListItemView: NSView {
         headerView.layer?.addSublayer(headerBgLayer)
         headerView.layer?.masksToBounds = true
         
-        typeView.stringValue = "文本"
+        typeView.stringValue = NSLocalizedString("label.Text", comment: "文本")
 
         if let image = pasteItem.getImage() {
-            typeView.stringValue = "图片"
+            typeView.stringValue = NSLocalizedString("label.Image", comment: "图片")
             headerBgLayer.contents = NSImage(named: "item-image")
             let imageView = NSImageView(image: image)
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -145,11 +145,11 @@ class ListItemView: NSView {
                 textview.stringValue = text
                 headerBgLayer.contents = NSImage(named: "item-text")
                 headerView.layer?.addSublayer(headerBgLayer)
-                headerView.layer?.backgroundColor = .init(red: 68/255.0, green: 211/255.0, blue: 156/255.0, alpha: 1)
+                headerView.layer?.backgroundColor = .init(red: CGFloat(68/255.0), green: CGFloat(211/255.0), blue: CGFloat(156/255.0), alpha: 1)
                 headerView.layer?.masksToBounds = true
              } else {
-                typeView.stringValue = "不支持的类型"
-                textview.stringValue = "\(String(describing: pasteItem.type)) 类型暂不支持"
+                typeView.stringValue = NSLocalizedString("label.Unsupport Type", comment: "不支持的类型")
+                 textview.stringValue = String(format: NSLocalizedString("label.Type %@ is unsupported", comment: "类型 %@ 暂不支持"), String(describing: pasteItem.type))
              }
 
             textview.isEditable = false
@@ -172,7 +172,7 @@ class ListItemView: NSView {
         
         deleteView.isBordered = false
         deleteView.image?.size = .init(width: 20, height: 20)
-        deleteView.toolTip = "删除"
+        deleteView.toolTip = NSLocalizedString("Action.Tip.Remove", comment: "删除此项目")
         deleteView.target = self
         deleteView.appearance = NSAppearance(named: .aqua)
         
@@ -183,7 +183,7 @@ class ListItemView: NSView {
     }
     
     @objc func delete() {
-        PasteItemsController.shared.deleteItem(pasteItem: pasteItem!)
+        ViewStore.shared.remove(index)
     }
     
     func active () {

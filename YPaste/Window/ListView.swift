@@ -13,33 +13,6 @@ class ListView: NSStackView {
     
     static let reachTopNotification = NSNotification.Name("listview:reachtop")
     
-    @objc var list: [PasteItem] = [] {
-        didSet {
-            update()
-        }
-    }
-    @objc var selectionIndex: Int = 0 {
-        didSet {
-            if self.selectionIndex >= 100000 { return }
-            let views = self.views(in: .center)
-            guard views.count > self.selectionIndex else { return }
-            
-            let selected = views[self.selectionIndex]
-            scrollToVisible(selected.frame)
-            views.forEach { (view) in
-                (view as! ListItemView).deactive()
-            }
-            (selected as! ListItemView).active()
-            
-            guard self.window != nil else { return }
-            guard UserDefaults.standard.bool(forKey: "popover") else { return }
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in
-                guard views[self.selectionIndex].window != nil else { return }
-            }
-        }
-    }
-    
-    
     override var isFlipped: Bool {
         get { return true }
     }
@@ -52,12 +25,13 @@ class ListView: NSStackView {
         return curView as? ListItemView
     }
     
-    override func mouseMoved(with event: NSEvent) {
+    func mouseMoved(with event: NSEvent) -> NSEvent {
         let targetView = self.window?.contentView?.hitTest(event.locationInWindow)
-        guard let view = targetView else { return }
+        guard let view = targetView else { return event }
         if let itemView = getItemView(innerView: view) {
-            PasteItemsController.shared.setSelectionIndex(itemView.index)
+            ViewStore.shared.setSelectedIndex(itemView.index)
         }
+        return event
     }
     
     override var acceptsFirstResponder: Bool {
@@ -68,40 +42,32 @@ class ListView: NSStackView {
         super.init(coder: coder)
     }
     
-    override var spacing: CGFloat {
-        get { 8 }
-        set { }
-    }
-    
-    override var edgeInsets: NSEdgeInsets {
-        get { NSEdgeInsets(top: 8, left: 0, bottom: 0, right: 0) }
-        set { }
-    }
-    
+    private var observers: [Any] = []
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        orientation = Config.shared.scrollDirection
-        alignment = orientation == .horizontal ? .centerY : .centerX
         translatesAutoresizingMaskIntoConstraints = false
+        spacing = 8
+        edgeInsets = NSEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         
-        NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved, handler: self.mouseMoved(with:))
+        NSEvent.addLocalMonitorForEvents(matching: .mouseMoved, handler: self.mouseMoved(with:))
         
-        bind(
-            NSBindingName("list"),
-            to: PasteItemsController.shared,
-            withKeyPath: "arrangedObjects",
-            options: nil
-        )
-        bind(
-            NSBindingName("selectionIndex"),
-            to: PasteItemsController.shared,
-            withKeyPath: "selectionIndex",
-            options: nil
-        )
+        updateListView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateListView), name: ViewStore.listChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedView), name: ViewStore.selectedChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadNextPage), name: MainView.reachBottomNotification, object: nil)
     }
     
-    func update() {
-        let views = (PasteItemsController.shared.arrangedObjects as! [PasteItem])
+    
+    
+    @objc
+    func loadNextPage() {
+        ViewStore.shared.nextPage()
+    }
+    
+    @objc
+    func updateListView() {
+        let views = ViewStore.shared.list
             .enumerated()
             .map { (index, pasteItem) -> ListItemView in
                 let itemView = ListItemView(
@@ -109,7 +75,7 @@ class ListView: NSStackView {
                     itemIndex: index,
                     enableActions: true
                 )
-                if (index == selectionIndex) {
+                if (index == ViewStore.shared.selectedIndex) {
                     itemView.active()
                 }
                 return itemView
@@ -117,41 +83,59 @@ class ListView: NSStackView {
         setViews(views, in: .center)
     }
     
+    @objc
+    func updateSelectedView() {
+        let selectedIndex = ViewStore.shared.selectedIndex
+        let views = self.views(in: .center)
+        
+        scrollToVisible(views[selectedIndex].frame)
+        views.forEach { (view) in
+            (view as! ListItemView).deactive()
+        }
+        (views[selectedIndex] as? ListItemView)?.active()
+        
+        guard self.window != nil else { return }
+        guard UserDefaults.standard.bool(forKey: "popover") else { return }
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in
+            guard views[selectedIndex].window != nil else { return }
+        }
+    }
     
     override func keyDown(with event: NSEvent) {
-        let controller = PasteItemsController.shared
-
         switch Int(event.keyCode) {
         case kVK_Delete:
-            controller.remove(self)
+            ViewStore.shared.removeSelected()
             break;
             
         case kVK_Return:
-            PasteboardHandler.shared.paste(pasteItem: list[self.selectionIndex])
-            self.window?.windowController?.close()
+            if let selected = ViewStore.shared.selected {
+                PasteboardAction.shared.paste(pasteItem: selected)
+                self.window?.windowController?.close()
+            }
+            break;
             
         case kVK_LeftArrow:
             if Config.shared.scrollDirection == .horizontal {
-                controller.selectPrevious(self)
+                ViewStore.shared.selectPrev()
             }
             break;
         
         case kVK_RightArrow:
             if Config.shared.scrollDirection == .horizontal {
-                controller.selectNext(self)
+                ViewStore.shared.selectNext()
             }
             break;
 
         case kVK_DownArrow:
             if Config.shared.scrollDirection == .vertical {
-                controller.selectNext(self)
+                ViewStore.shared.selectNext()
             }
             break;
 
         case kVK_UpArrow:
             if Config.shared.scrollDirection == .vertical {
-                controller.selectPrevious(self)
-                if controller.selectionIndex == 0 {
+                ViewStore.shared.selectPrev()
+                if ViewStore.shared.selectedIndex == 0 {
                     NotificationCenter.default.post(
                         name: ListView.reachTopNotification,
                         object: self

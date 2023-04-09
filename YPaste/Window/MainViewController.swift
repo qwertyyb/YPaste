@@ -18,6 +18,7 @@ class MainViewController: NSViewController {
     let container = NSView()
     
     private var constraint: NSLayoutConstraint?
+    private var popupPosition: PopupPosition = Config.shared.popupPosition
     
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -30,9 +31,7 @@ class MainViewController: NSViewController {
         mainView.translatesAutoresizingMaskIntoConstraints = false
         
         container.addSubview(mainView)
-        constraint = Config.shared.getInitialConstraint(mainView: mainView, containerView: container)
         NSLayoutConstraint.activate([
-            constraint!,
             mainView.widthAnchor.constraint(equalTo: container.widthAnchor),
             mainView.heightAnchor.constraint(equalTo: container.heightAnchor)
         ])
@@ -40,23 +39,57 @@ class MainViewController: NSViewController {
     }
     
     func slideOut() {
-        Config.shared.applyShowAnimateConstraint(constraint: self.constraint!)
+        mainView.frame = NSRect.zero
+        popupPosition = Config.shared.popupPosition
+        constraint = Config.shared.getInitialConstraint(mainView: mainView, containerView: container)
+        NSLayoutConstraint.activate([
+            constraint!,
+            mainView.widthAnchor.constraint(equalTo: container.widthAnchor),
+            mainView.heightAnchor.constraint(equalTo: container.heightAnchor)
+        ])
+        NSAnimationContext.runAnimationGroup { (ctx) in
+            ctx.duration = 0.3
+            ctx.timingFunction = .init(name: .easeOut)
+            self.constraint!.animator().constant = 0
+        }
         view.becomeFirstResponder()
     }
     func slideIn(callback: @escaping () -> Void) {
         self.view.window?.hasShadow = false
-        Config.shared.applyHideAnimateConstraint(constraint: self.constraint!, callback: callback)
+        NSAnimationContext.runAnimationGroup { (ctx) in
+            ctx.duration = 0.3
+            ctx.timingFunction = .init(name: .easeIn)
+            ctx.completionHandler = {
+                self.constraint?.constant = 0
+                NSLayoutConstraint.deactivate([self.constraint!])
+                callback()
+            }
+            var val: CGFloat = 0
+            let popupPosition = self.popupPosition
+            if popupPosition == .top || popupPosition == .bottom {
+                val = self.view.window?.frame.height ?? 0
+            } else {
+                val = self.view.window?.frame.width ?? 0
+            }
+            if (popupPosition == .top || popupPosition == .left) {
+                val = -val
+            }
+            self.constraint!.animator().constant = val
+        }
     }
     
     override func viewWillAppear() {
+        if let listView = mainView.scrollView.documentView as? ListView {
+            listView.orientation = Config.shared.scrollDirection
+            listView.alignment = listView.orientation == .horizontal ? .centerY : .centerX
+        }
         mainView.addSearchView()
-        PasteItemsController.shared.resetPage()
-        PasteItemsController.shared.setSelectionIndex(0)
+        ViewStore.shared.start()
         
         self.mainView.scrollView.becomeFirstResponder()
     }
     override func viewDidDisappear() {
-        PasteItemsController.shared.fetchPredicate = nil
+        ViewStore.shared.pause()
     }
 }
 

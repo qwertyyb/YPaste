@@ -7,11 +7,14 @@
 //
 
 import Cocoa
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    lazy var app = YPaste.shared
+    var app = YPaste.shared
+    
+    var updater = SUUpdater.shared()
     
     lazy var coreDataManager = CoreDataManager()
 
@@ -21,7 +24,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var menu: NSMenu!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         NSApp.appearance = NSAppearance(named: .aqua)
-//        app = YPaste.shared
         statusItem?.button!.image = NSImage(named: "statusImage")
         statusItem?.menu = menu
         
@@ -31,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let environments = ProcessInfo.processInfo.environment
         if environments["dont_check_permission_at_startup"] != "yes" {
             //  check permission
-            let _ = PasteboardHandler.shared.checkAccess(prompt: true)
+            let _ = PasteboardAction.shared.checkAccess(prompt: true)
         }
         
         if UserDefaults.standard.bool(forKey: "launchAtLogin") {
@@ -39,14 +41,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func openPreferences(_ sender: AnyObject?) {
+    @IBAction func showPreferences(_ sender: AnyObject?) {
         preferencesWindowController.showWindow(self)
     }
     
-    @IBAction func openMainWindow(_ sender: AnyObject?) {
-        app.mainWindowController.openWindow()
+    @IBAction func showMainWindow(_ sender: AnyObject?) {
+        app.showWindow()
     }
 
+    @IBAction func checkForUpdates(_ sender: Any) {
+        updater?.checkForUpdates(sender)
+    }
+    
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
         let context = CoreDataManager.shared.bgContext

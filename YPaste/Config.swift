@@ -26,10 +26,12 @@ extension UserDefaults {
 class Config {
     static let shared = Config()
     
-    init() {
+    private init() {
     }
     
-    var popupPosition: PopupPosition = PopupPosition(rawValue: UserDefaults.standard.integer(forKey: "popupPosition")) ?? .left
+    var popupPosition: PopupPosition {
+        return PopupPosition(rawValue: UserDefaults.standard.integer(forKey: "popupPosition")) ?? .left
+    }
     
     private var windowWidth: CGFloat {
         if (popupPosition == .bottom || popupPosition == .top) {
@@ -75,29 +77,6 @@ class Config {
             return mainView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: -400)
         }
         return mainView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 400)
-    }
-    
-    func applyShowAnimateConstraint (constraint: NSLayoutConstraint) {
-        NSAnimationContext.runAnimationGroup { (ctx) in
-            ctx.duration = 0.3
-            ctx.timingFunction = .init(name: .easeOut)
-            constraint.animator().constant = 0
-        }
-    }
-    
-    func applyHideAnimateConstraint (constraint: NSLayoutConstraint, callback: @escaping () -> Void) {
-        NSAnimationContext.runAnimationGroup { (ctx) in
-            ctx.duration = 0.3
-            ctx.timingFunction = .init(name: .easeIn)
-            ctx.completionHandler = callback
-            var val: CGFloat = -400
-            if (popupPosition == .bottom || popupPosition == .right) {
-                val = 400
-            } else if (popupPosition == .top || popupPosition == .left) {
-                val = -400
-            }
-            constraint.animator().constant = val
-        }
     }
     
     var scrollDirection: NSUserInterfaceLayoutOrientation {

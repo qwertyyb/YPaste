@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4513F38D2557E9BD00829700 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513F38C2557E9BD00829700 /* CoreDataManager.swift */; };
+		4540674729E2735C00F9658F /* PasteboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540674629E2735C00F9658F /* PasteboardListener.swift */; };
+		4540674929E282FF00F9658F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540674829E282FF00F9658F /* Store.swift */; };
+		4540674B29E29C1400F9658F /* ViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540674A29E29C1400F9658F /* ViewStore.swift */; };
 		4541BB0023C76D1300204946 /* PasteboardHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */; };
 		4541BB0223C78A1C00204946 /* HotkeyHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */; };
 		4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE47232025A700F63EBF /* AppDelegate.swift */; };
@@ -17,7 +20,6 @@
 		4596AE52232025A800F63EBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4596AE50232025A800F63EBF /* Main.storyboard */; };
 		4596AE6123216A8500F63EBF /* YPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6023216A8500F63EBF /* YPaste.swift */; };
 		4596AE6923216E6C00F63EBF /* YPasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE6823216E6C00F63EBF /* YPasteTests.swift */; };
-		4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE702322B5CB00F63EBF /* MainWindowController.swift */; };
 		4596AE732323CF5800F63EBF /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596AE722323CF5800F63EBF /* Transformers.swift */; };
 		67096213235EC0D7009068B9 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67096212235EC0D7009068B9 /* SearchField.swift */; };
 		670CAF2223D579CB005B070A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670CAF2123D579CB005B070A /* MainView.swift */; };
@@ -27,9 +29,8 @@
 		6734CC5A236C60B40008F7E3 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6734CC59236C60B40008F7E3 /* MainWindow.swift */; };
 		67446E7A235F3EAE0050AB96 /* HotkeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */; };
 		6753CD12255BBA5B00939DA7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6753CD11255BBA5B00939DA7 /* Config.swift */; };
-		67784476235F376800970786 /* PasteboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67784475235F376800970786 /* PasteboardHandler.swift */; };
+		67784476235F376800970786 /* PasteboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67784475235F376800970786 /* PasteboardAction.swift */; };
 		678C62AF23680DB10036A81A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 678C62B123680DB10036A81A /* Localizable.strings */; };
-		67904080235D8C1D00B0C74E /* PasteItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6790407F235D8C1D00B0C74E /* PasteItemsController.swift */; };
 		67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3262B2359D86300248CDE /* PreferencesWindowController.swift */; };
 		67CFA4872351F4FB0058CF29 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 67CFA4862351F4FB0058CF29 /* README.md */; };
 		89E4606D59274DC83FCCFEB8 /* libPods-YPasteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB920036F40D7A752C57AFCF /* libPods-YPasteTests.a */; };
@@ -49,6 +50,10 @@
 /* Begin PBXFileReference section */
 		4513F3892554415600829700 /* v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v5.xcdatamodel; sourceTree = "<group>"; };
 		4513F38C2557E9BD00829700 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		4540674629E2735C00F9658F /* PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardListener.swift; sourceTree = "<group>"; };
+		4540674829E282FF00F9658F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		4540674A29E29C1400F9658F /* ViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStore.swift; sourceTree = "<group>"; };
+		4540674D29E2D06900F9658F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.strings"; sourceTree = "<group>"; };
 		4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardHandlerTests.swift; sourceTree = "<group>"; };
 		4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyHandlerTests.swift; sourceTree = "<group>"; };
 		4596AE44232025A700F63EBF /* YPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +68,6 @@
 		4596AE6623216E6C00F63EBF /* YPasteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YPasteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4596AE6823216E6C00F63EBF /* YPasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPasteTests.swift; sourceTree = "<group>"; };
 		4596AE6A23216E6C00F63EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4596AE702322B5CB00F63EBF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4596AE722323CF5800F63EBF /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		5798607827522D99BA309E4B /* libPods-YPaste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YPaste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67096212235EC0D7009068B9 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
@@ -74,13 +78,11 @@
 		6734CC59236C60B40008F7E3 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyHandler.swift; sourceTree = "<group>"; };
 		6753CD11255BBA5B00939DA7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		6753CD18255CF26C00939DA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.xib"; sourceTree = "<group>"; };
-		67784475235F376800970786 /* PasteboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardHandler.swift; sourceTree = "<group>"; };
+		67784475235F376800970786 /* PasteboardAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardAction.swift; sourceTree = "<group>"; };
 		677C84262551308B00049D0C /* v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v2.xcdatamodel; sourceTree = "<group>"; };
 		677C842B25515A1700049D0C /* v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v3.xcdatamodel; sourceTree = "<group>"; };
 		677C843E2554112E00049D0C /* v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v4.xcdatamodel; sourceTree = "<group>"; };
 		678C62B023680DB10036A81A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		6790407F235D8C1D00B0C74E /* PasteItemsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteItemsController.swift; sourceTree = "<group>"; };
 		67C3262B2359D86300248CDE /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		67CFA4862351F4FB0058CF29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		67F313B62355F66B008BAEB7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -152,15 +154,17 @@
 				4596AE47232025A700F63EBF /* AppDelegate.swift */,
 				4596AE6023216A8500F63EBF /* YPaste.swift */,
 				67C3262B2359D86300248CDE /* PreferencesWindowController.swift */,
-				67784475235F376800970786 /* PasteboardHandler.swift */,
+				6753CD11255BBA5B00939DA7 /* Config.swift */,
+				4540674629E2735C00F9658F /* PasteboardListener.swift */,
+				67784475235F376800970786 /* PasteboardAction.swift */,
 				67446E79235F3EAE0050AB96 /* HotkeyHandler.swift */,
 				4513F38C2557E9BD00829700 /* CoreDataManager.swift */,
+				4540674829E282FF00F9658F /* Store.swift */,
 				4596AE4E232025A800F63EBF /* Assets.xcassets */,
 				4596AE54232025A800F63EBF /* YPaste.entitlements */,
 				67136E322359E04F00EFB448 /* Preferences.xib */,
 				4596AE4B232025A700F63EBF /* YPaste.xcdatamodeld */,
 				4596AE50232025A800F63EBF /* Main.storyboard */,
-				6753CD11255BBA5B00939DA7 /* Config.swift */,
 			);
 			path = YPaste;
 			sourceTree = "<group>";
@@ -179,8 +183,6 @@
 		67096211235EC0B0009068B9 /* Window */ = {
 			isa = PBXGroup;
 			children = (
-				6790407F235D8C1D00B0C74E /* PasteItemsController.swift */,
-				4596AE702322B5CB00F63EBF /* MainWindowController.swift */,
 				6734CC59236C60B40008F7E3 /* MainWindow.swift */,
 				4596AE49232025A700F63EBF /* MainViewController.swift */,
 				670CAF2123D579CB005B070A /* MainView.swift */,
@@ -188,6 +190,7 @@
 				670CAF2523D59574005B070A /* ListView.swift */,
 				670CAF2323D580D6005B070A /* ListItemView.swift */,
 				4596AE722323CF5800F63EBF /* Transformers.swift */,
+				4540674A29E29C1400F9658F /* ViewStore.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -398,9 +401,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67904080235D8C1D00B0C74E /* PasteItemsController.swift in Sources */,
 				670CAF2423D580D6005B070A /* ListItemView.swift in Sources */,
-				67784476235F376800970786 /* PasteboardHandler.swift in Sources */,
+				4540674B29E29C1400F9658F /* ViewStore.swift in Sources */,
+				67784476235F376800970786 /* PasteboardAction.swift in Sources */,
 				4596AE4D232025A700F63EBF /* YPaste.xcdatamodeld in Sources */,
 				4513F38D2557E9BD00829700 /* CoreDataManager.swift in Sources */,
 				4596AE6123216A8500F63EBF /* YPaste.swift in Sources */,
@@ -412,9 +415,10 @@
 				6753CD12255BBA5B00939DA7 /* Config.swift in Sources */,
 				670CAF2223D579CB005B070A /* MainView.swift in Sources */,
 				4596AE4A232025A700F63EBF /* MainViewController.swift in Sources */,
+				4540674929E282FF00F9658F /* Store.swift in Sources */,
+				4540674729E2735C00F9658F /* PasteboardListener.swift in Sources */,
 				4596AE48232025A700F63EBF /* AppDelegate.swift in Sources */,
 				67C3262C2359D86300248CDE /* PreferencesWindowController.swift in Sources */,
-				4596AE712322B5CB00F63EBF /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +456,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				67136E332359E05E00EFB448 /* Base */,
-				6753CD18255CF26C00939DA7 /* zh-Hans */,
+				4540674D29E2D06900F9658F /* zh-Hans */,
 			);
 			name = Preferences.xib;
 			sourceTree = "<group>";
