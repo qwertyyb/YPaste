@@ -1,0 +1,73 @@
+name: build sonic
+
+on:
+  workflow_dispatch:
+    inputs: 
+      ref:
+        description: 'ref'
+        required: true
+        default: 'v1.0.2'
+
+jobs: 
+  build:
+    name: ${{ matrix.build }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        build: [Linux, macOS, Windows]
+        include:
+          - build: Linux
+            os: ubuntu-latest
+            rust: nightly
+            target: x86_64-unknown-linux-gnu
+            archive-name: sonic-linux
+          - build: macOS
+            os: macos-latest
+            rust: nightly
+            target: x86_64-apple-darwin
+            archive-name: sonic-macos
+          - build: Windows
+            os: windows-latest
+            rust: nightly-x86_64-msvc
+            target: x86_64-pc-windows-msvc
+            archive-name: sonic-windows
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          repository: valeriansaliou/sonic
+          ref: ${{ inputs.ref }}
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          profile: minimal
+          override: true
+          components: rustfmt, clippy
+          target: ${{ matrix.target }}
+      - name: Clean Windows # Workaround to resolve link error with C:\msys64\mingw64\bin\libclang.dll
+        if: runner.os == 'Windows'
+        run: |
+          Remove-Item -LiteralPath "C:\msys64\" -Force -Recurse
+          choco install llvm -y
+      - name: Build binary
+        run: cargo build --verbose --release --target ${{ matrix.target }}
+        env:
+          RUST_BACKTRACE: 1
+      - name: Strip binary (Linux and macOS)
+        if: matrix.build == 'Linux' || matrix.build == 'macOS'
+        run: strip "target/${{ matrix.target }}/release/sonic"
+      - name: Build archive
+        shell: bash
+        run: |
+          mkdir archive
+          cd archive
+          if [ "${{ matrix.build }}" = "Windows" ]; then
+            cp "../target/${{ matrix.target }}/release/sonic.exe" ./
+          else
+            cp "../target/${{ matrix.target }}/release/sonic" ./
+          fi
+      - name: Upload archive
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.archive-name }}
+          path: archive/
