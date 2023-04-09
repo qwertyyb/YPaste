@@ -69,8 +69,8 @@ t=`echo "$notarize_response" | grep "status: Accepted"`
 f=`echo "$notarize_response" | grep "Invalid"`
 if [[ "$t" != "" ]]; then
     echo "notarization done!"
-    xcrun stapler staple "$EXPORT_APP"
-    xcrun stapler staple "$EXPORT_INSTALLER"
+    xcrun stapler staple "$APP_PATH"
+    xcrun stapler staple "$DMG_PATH"
     echo "stapler done!"
 fi
 if [[ "$f" != "" ]]; then
