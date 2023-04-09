@@ -54,6 +54,7 @@
 		4540674829E282FF00F9658F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		4540674A29E29C1400F9658F /* ViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStore.swift; sourceTree = "<group>"; };
 		4540674D29E2D06900F9658F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.strings"; sourceTree = "<group>"; };
+		4540674E29E2F58200F9658F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4541BAFF23C76D1300204946 /* PasteboardHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardHandlerTests.swift; sourceTree = "<group>"; };
 		4541BB0123C78A1C00204946 /* HotkeyHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyHandlerTests.swift; sourceTree = "<group>"; };
 		4596AE44232025A700F63EBF /* YPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -465,6 +466,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				678C62B023680DB10036A81A /* zh-Hans */,
+				4540674E29E2F58200F9658F /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

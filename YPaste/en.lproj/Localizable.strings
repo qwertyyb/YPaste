@@ -1,38 +1,38 @@
 
 /* Cancel button title */
-"Cancel" = "取消";
+"Cancel" = "Cancel";
 
 /* Quit without saves error question message */
-"Could not save changes while quitting. Quit anyway?" = "";
+"Could not save changes while quitting. Quit anyway?" = "Could not save changes while quitting. Quit anyway?";
 
 /* Quit anyway button title */
-"Quit anyway" = "强制退出";
+"Quit anyway" = "Quit anyway";
 
 /* Quit without saves error question info */
-"Quitting now will lose any changes you have made since the last successful save" = "";
+"Quitting now will lose any changes you have made since the last successful save" = "Quitting now will lose any changes you have made since the last successful save";
 
-"label.History" = "历史";
+"label.History" = "History";
 
-"label.Text" = "文本";
+"label.Text" = "Text";
 
-"label.Image" = "图片";
+"label.Image" = "Image";
 
-"label.Total %@ Records" = "共 %1$@ 条记录";
+"label.Total %@ Records" = "Total %1$@ Records";
 
-"label.Unsupport Type" = "不支持的类型";
+"label.Unsupport Type" = "Unsupport Type";
 
-"label.Type %@ is unsupported" = "类型 %1$@ 暂不支持";
+"label.Type %@ is unsupported" = "Type %1$@ is unsupported";
 
-"label.Day" = "天";
+"label.Day" = "Day";
 
-"label.Hours" = "小时";
+"label.Hours" = "Hours";
 
-"label.Minutes" = "分钟";
+"label.Minutes" = "Minutes";
 
-"label.Seconds" = "秒";
+"label.Seconds" = "Seconds";
 
-"label.Ago" = "前";
+"label.Ago" = "Ago";
 
-"label.Now" = "此刻";
+"label.Now" = "Now";
 
-"Action.Tip.Remove" = "删除";
+"Action.Tip.Remove" = "Remove";
