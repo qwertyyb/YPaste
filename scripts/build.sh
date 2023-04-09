@@ -3,6 +3,7 @@
 # Grant access to Xcode if prompted by Xcode.
 AC_USERNAME="$apple_id"
 AC_PASSWORD="$apple_id_password"
+TEAM_ID="$team_id"
 
 if [[ $AC_USERNAME == "" ]]; then
   echo "error: no username"
@@ -56,34 +57,26 @@ mkdir dmg
 echo "use appdmg create DMG file"
 appdmg "$SRCROOT/scripts/appdmg.json" "$DMG_PATH"
 
-# Submit the finished deliverables for notarization. The "--primary-bundle-id" 
-# argument is only used for the response email. 
 echo "notarize app"
-xcrun altool --notarize-app --primary-bundle-id ${PRODUCT_BUNDLE_IDENTIFIER}.dmg -u "$AC_USERNAME" -p "$AC_PASSWORD" -f "$DMG_PATH" > "NotarizationUUIDs.log"
 
-uuid=`cat $EXPORT_PATH/NotarizationUUIDs.log | grep -Eo '\w{8}-(\w{4}-){3}\w{12}$'`
-echo "uuid=$uuid"
-while true; do
-    echo "checking for notarization..."
- 
-    xcrun altool --notarization-info "$uuid" --username "$AC_USERNAME" --password "$AC_PASSWORD" &> check.log
-    r=`cat check.log`
-    t=`echo "$r" | grep "success"`
-    f=`echo "$r" | grep "invalid"`
-    if [[ "$t" != "" ]]; then
-        echo "notarization done!"
-        xcrun stapler staple "$APP_PATH"
-        xcrun stapler staple "$DMG_PATH"
-        echo "stapler done!"
-        break
-    fi
-    if [[ "$f" != "" ]]; then
-        echo "$r"
-        exit 1
-    fi
-    echo "not finish yet, sleep 2m then check again..."
-    sleep 120
-done
+notarize_response=`xcrun notarytool submit ${PRODUCT_BUNDLE_IDENTIFIER}.dmg --apple-id "$AC_USERNAME" --password "$AC_PASSWORD" --team-id "$TEAM_ID" --wait --progress`
+
+echo "$notarize_response"
+
+echo "check status"
+
+t=`echo "$notarize_response" | grep "status: Accepted"`
+f=`echo "$notarize_response" | grep "Invalid"`
+if [[ "$t" != "" ]]; then
+    echo "notarization done!"
+    xcrun stapler staple "$EXPORT_APP"
+    xcrun stapler staple "$EXPORT_INSTALLER"
+    echo "stapler done!"
+fi
+if [[ "$f" != "" ]]; then
+    echo "notarization failed"
+    exit 1
+fi
 
 APPCAST_PATH="$DMG_ROOT/appcast.xml"
 echo "generate appcast.xml"
