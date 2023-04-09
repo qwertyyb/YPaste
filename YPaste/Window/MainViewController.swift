@@ -50,6 +50,9 @@ class MainViewController: NSViewController {
         NSAnimationContext.runAnimationGroup { (ctx) in
             ctx.duration = 0.3
             ctx.timingFunction = .init(name: .easeOut)
+            ctx.completionHandler = {
+                self.view.window?.hasShadow = true
+            }
             self.constraint!.animator().constant = 0
         }
         view.becomeFirstResponder()
@@ -83,7 +86,6 @@ class MainViewController: NSViewController {
             listView.orientation = Config.shared.scrollDirection
             listView.alignment = listView.orientation == .horizontal ? .centerY : .centerX
         }
-        mainView.addSearchView()
         ViewStore.shared.start()
         
         self.mainView.scrollView.becomeFirstResponder()

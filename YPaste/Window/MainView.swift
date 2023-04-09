@@ -13,6 +13,7 @@ class MainView: NSVisualEffectView {
     
     static let reachBottomNotification = Notification.Name("reachBottomNotification")
     
+    let headerView = NSStackView()
     let searchField = SearchField(string: "")
     let scrollView = NSScrollView()
     let titleView = NSStackView()
@@ -28,8 +29,6 @@ class MainView: NSVisualEffectView {
         translatesAutoresizingMaskIntoConstraints = false
         
         addSearchView()
-
-        addTitleView()
 
         addScrollView()
 
@@ -63,18 +62,31 @@ class MainView: NSVisualEffectView {
         observers.forEach { observer in
             NotificationCenter.default.removeObserver(observer)
         }
-        print("deinit")
     }
 
     func addSearchView () {
+        headerView.orientation = .horizontal
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        
         searchField.translatesAutoresizingMaskIntoConstraints = false
         searchField.centersPlaceholder = true
-        addSubview(searchField)
+        headerView.addView(searchField, in: .trailing)
+        
+        let clearButton = NSButton(
+            image: NSImage(named: "NSStopProgressFreestandingTemplate")!,
+            target: PasteboardAction.shared,
+            action: #selector(Store.shared.clear)
+        )
+        clearButton.isBordered = false
+        headerView.addView(clearButton, in: .leading)
+        
+        addSubview(headerView)
+        
         NSLayoutConstraint.activate([
-            searchField.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            searchField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            searchField.widthAnchor.constraint(greaterThanOrEqualToConstant: 320),
-            searchField.heightAnchor.constraint(greaterThanOrEqualToConstant: 24),
+            headerView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            headerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            headerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 320),
+            headerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 24),
         ])
     }
     
@@ -123,12 +135,12 @@ class MainView: NSVisualEffectView {
         )
         scrollView.contentView.automaticallyAdjustsContentInsets = false
         scrollView.contentView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentView.contentInsets = NSEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        scrollView.contentView.contentInsets = NSEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         addSubview(scrollView)
         
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            scrollView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 6),
+            scrollView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 6),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -28),
             scrollView.widthAnchor.constraint(equalTo: widthAnchor, constant: -24),
             scrollView.contentView.widthAnchor.constraint(equalTo: widthAnchor, constant: -24),
