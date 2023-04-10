@@ -21,17 +21,12 @@ jobs:
       with: 
         p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
         p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
-    - name: update version
-      run: |
-        ls -al
-        PRODUCT_SETTINGS_PATH=./YPaste/Info.plist
-        version=$(git describe --tags `git rev-list --tags --max-count=1`)
-        /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" $PRODUCT_SETTINGS_PATH
 
     - name: install depencies
       run: |
         pod install
         npm install -g appdmg
+
     - name: build
       env:
         sparkle_key: ${{ secrets.sparkle_key }}

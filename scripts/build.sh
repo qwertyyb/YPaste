@@ -31,6 +31,15 @@ PRODUCT_BUNDLE_IDENTIFIER="com.qwertyyb.YPaste"
 
 echo $SRCROOT
 
+PRODUCT_SETTINGS_PATH="$SRCROOT/$PRODUCT_NAME/Info.plist"
+version=$(git describe --tags `git rev-list --tags --max-count=1`)
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" $PRODUCT_SETTINGS_PATH
+vv=`date "+%Y%m%d%H%M%S"`
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $vv" $PRODUCT_SETTINGS_PATH
+
+echo $version
+echo $vv
+
 echo "clean build fold"
 rm -rf "$EXPORT_PATH"
 
