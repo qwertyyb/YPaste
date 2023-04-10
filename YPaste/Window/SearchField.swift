@@ -26,6 +26,7 @@ class SearchField: NSSearchField, NSSearchFieldDelegate {
         sendsWholeSearchString = true
         sendsSearchStringImmediately = false
         delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(setStringValue), name: ViewStore.keywordChangedNotification, object: nil)
     }
     
     override func keyUp(with event: NSEvent) {
@@ -36,5 +37,10 @@ class SearchField: NSSearchField, NSSearchFieldDelegate {
     
     func controlTextDidEndEditing(_ obj: Notification) {
         ViewStore.shared.setKeyword(self.stringValue)
+    }
+    
+    @objc
+    func setStringValue() {
+        self.stringValue = ViewStore.shared.keyword
     }
 }

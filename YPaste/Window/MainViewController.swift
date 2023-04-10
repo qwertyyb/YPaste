@@ -49,7 +49,7 @@ class MainViewController: NSViewController {
         ])
         NSAnimationContext.runAnimationGroup { (ctx) in
             ctx.duration = 0.3
-            ctx.timingFunction = .init(name: .easeOut)
+            ctx.timingFunction = .init(name: .easeIn)
             ctx.completionHandler = {
                 self.view.window?.hasShadow = true
             }
@@ -61,7 +61,7 @@ class MainViewController: NSViewController {
         self.view.window?.hasShadow = false
         NSAnimationContext.runAnimationGroup { (ctx) in
             ctx.duration = 0.3
-            ctx.timingFunction = .init(name: .easeIn)
+            ctx.timingFunction = .init(name: .easeOut)
             ctx.completionHandler = {
                 self.constraint?.constant = 0
                 NSLayoutConstraint.deactivate([self.constraint!])
@@ -91,7 +91,10 @@ class MainViewController: NSViewController {
         self.mainView.scrollView.becomeFirstResponder()
     }
     override func viewDidDisappear() {
+        ViewStore.shared.reset()
         ViewStore.shared.pause()
+        // 多向前滚动一些距离，给选中框留下一些空间
+        mainView.scrollView.documentView?.scroll(NSPoint(x: -100, y: -100))
     }
 }
 

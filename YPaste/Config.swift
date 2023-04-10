@@ -42,7 +42,7 @@ class Config {
     
     private var windowHeight: CGFloat {
         if (popupPosition == .bottom || popupPosition == .top) {
-            return 300
+            return 312
         }
         let menuBarHeight = NSMenu.menuBarVisible() ? NSApplication.shared.mainMenu?.menuBarHeight ?? 24 : 0
         let height = (NSScreen.main?.frame.height ?? NSScreen.screens.first!.frame.height) - menuBarHeight

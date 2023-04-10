@@ -31,6 +31,7 @@ class ViewStore {
         keyword = value
         page = 1
         selectedIndex = 0
+        NotificationCenter.default.post(name: ViewStore.keywordChangedNotification, object: nil)
         refresh()
     }
     
@@ -101,10 +102,7 @@ class ViewStore {
     
     @objc
     func reset() {
-        page = 1
-        selectedIndex = 0
-        keyword = ""
-        refresh()
+        setKeyword("")
     }
     
     func start() {
@@ -127,4 +125,5 @@ class ViewStore {
     
     static let listChangedNotification = Notification.Name("ViewStore.listChangedNotification")
     static let selectedChangedNotification = Notification.Name("ViewStore.selectedChangedNotification")
+    static let keywordChangedNotification = Notification.Name("ViewStore.keywordChangedNotification")
 }
