@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>YPaste</title>
+        <item>
+            <title>v1.2.1</title>
+            <pubDate>Mon, 10 Apr 2023 05:04:31 +0000</pubDate>
+            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/qwertyyb/YPaste/releases/latest/download/YPaste.dmg" sparkle:version="103375" sparkle:shortVersionString="v1.2.1" length="1100530" type="application/octet-stream" sparkle:edSignature="kwkCaLyWffQt5LyLxWIzjofNrPT2dyY9V5BYNgaaDcEf72JrhcWn/MFL/L4t52/GS2poaKBU4HoBUi+FXhIHCA=="/>
+        </item>
+    </channel>
+</rss>
