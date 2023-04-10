@@ -68,7 +68,7 @@ appdmg "$SRCROOT/scripts/appdmg.json" "$DMG_PATH"
 
 echo "notarize app"
 
-notarize_response=`xcrun notarytool submit ${PRODUCT_BUNDLE_IDENTIFIER}.dmg --apple-id "$AC_USERNAME" --password "$AC_PASSWORD" --team-id "$TEAM_ID" --wait --progress`
+notarize_response=`xcrun notarytool submit ${DMG_PATH} --apple-id "$AC_USERNAME" --password "$AC_PASSWORD" --team-id "$TEAM_ID" --wait --progress`
 
 echo "$notarize_response"
 
