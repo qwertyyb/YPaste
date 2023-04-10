@@ -23,6 +23,7 @@ jobs:
         p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
     - name: update version
       run: |
+        ls -al
         PRODUCT_SETTINGS_PATH=./YPaste/Info.plist
         version=$(git describe --tags `git rev-list --tags --max-count=1`)
         /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" $PRODUCT_SETTINGS_PATH
