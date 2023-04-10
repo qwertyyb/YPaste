@@ -16,8 +16,8 @@ jobs:
     runs-on: macOS-latest
     
     steps:
-    - uses: actions/checkout@v1
-    - uses: apple-actions/import-codesign-certs@v1
+    - uses: actions/checkout@v3
+    - uses: apple-actions/import-codesign-certs@v2
       with: 
         p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
         p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
@@ -43,32 +43,32 @@ jobs:
         ditto -c -k --sequesterRsrc --keepParent apps/YPaste.app apps/YPaste.zip
         # rm -r ~/Library/Caches/Sparkle_generate_appcast/*
 
+    - uses: actions/upload-artifact@v3
+      with:
+        name: appcast
+        path: ./apps/appcast.xml
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: ./apps/dmg/YPaste.dmg
+
     - name: upload release file
       uses: AButler/upload-release-assets@v1.0
       with:
         files: 'apps/dmg/YPaste.dmg'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: actions/checkout@v3
-      with:
-        name: appcast
-        path: ./apps/appcast.xml
-
-    - uses: actions/checkout@v3
-      with:
-        name: app
-        path: ./apps/dmg/*.dmg
-
   commit:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: switch master branch
       run: git checkout master
 
-    - uses: actions/download-artifact@v1
+    - uses: actions/download-artifact@v3
       with:
         name: appcast
 
@@ -83,8 +83,5 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .
         git commit -m "update version"
-    - name: push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        git push
 
