@@ -49,10 +49,15 @@ jobs:
         files: 'apps/dmg/YPaste.dmg'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: actions/upload-artifact@v1
+    - uses: actions/checkout@v3
       with:
         name: appcast
         path: ./apps/appcast.xml
+
+    - uses: actions/checkout@v3
+      with:
+        name: app
+        path: ./apps/dmg/*.dmg
 
   commit:
     runs-on: ubuntu-latest
