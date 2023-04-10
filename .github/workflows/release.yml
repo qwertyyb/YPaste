@@ -70,11 +70,6 @@ jobs:
       with:
         name: appcast
 
-    - name: move appcast.xml
-      run: |
-        mv appcast/appcast.xml ./appcast.xml
-        rm -rf appcast
-
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
